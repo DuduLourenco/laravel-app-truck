@@ -9,7 +9,9 @@
 		<div class="wrap-login100 p-t-90 p-b-30">
 		<form class="login100-form validate-form" method="post" action="{{ url('/usuarios/entrar') }}">
 				{{ csrf_field() }}
-				{{$usuarios}}
+				@foreach ($usuarios as $usuario)
+					<p>{{$usuario->nmUsuario}}</p>
+				@endforeach
 				<span class="login100-form-title p-b-40">
 					Login
 				</span>

@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends Model
 {
-    protected $fillable = [
-        'cdUsuario',
+    protected $fillable = [        
         'nmUsuario',
         'cdCpfUsuario',
         'dtNascimentoUsuario',
@@ -16,5 +15,10 @@ class Usuario extends Model
         'nmSenhaUsuario'
     ];
 
+    protected $guarded = [
+        'cdUsuario',
+        'created_at',
+        'updated_at'
+    ];
     protected $table = 'tb_usuario';
 }

@@ -27,7 +27,8 @@ class UsuariosController extends Controller
 
     public function cadastrar(Request $request)
     {
-        Usuario::created($request->all());
-        return redirect("usuarios\login")->with("message", "Usuário cadastro com sucesso!");
+        $usuario = new Usuario;
+        $usuario->nmUsuario = $request->nmUsuario;
+        return redirect("usuarios\login")->with("message", "OI".$request->nmUsuario);
     }
 }
