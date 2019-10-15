@@ -9,10 +9,11 @@ class Usuario extends Model
     protected $fillable = [
         'cdUsuario',
         'nmUsuario',
-        'nmSobrenomeUsuario',
+        'cdCpfUsuario',
         'dtNascimentoUsuario',
         'nrTelefoneUsuario',
-        'dsEmailUsuario'
+        'dsEmailUsuario',
+        'nmSenhaUsuario'
     ];
 
     protected $table = 'tb_usuario';

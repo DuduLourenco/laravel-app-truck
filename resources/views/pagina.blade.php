@@ -1,4 +1,4 @@
-@extends('layout.menu')
+@extends('layouts.menu')
 
 @section('content')
     ola
