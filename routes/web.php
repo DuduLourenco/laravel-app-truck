@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/teste', function () {
+    return view('index');
+});
+
+Route::group(["prefix" => "usuarios"], function () {
+    Route::get("/", "UsuariosController@cadastro");
+});
