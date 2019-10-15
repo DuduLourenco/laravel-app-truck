@@ -22,13 +22,21 @@ class UsuariosController extends Controller
 
     public function entrar(Request $request)
     {
+        
         var_dump($request->all());
     }
 
     public function cadastrar(Request $request)
     {
-        $usuario = new Usuario;
+        $usuario = new Usuario();        
         $usuario->nmUsuario = $request->nmUsuario;
-        return redirect("usuarios\login")->with("message", "OI".$request->nmUsuario);
+        $usuario->cdCpfUsuario = $request->cdCpfUsuario;
+        $usuario->dtNascimentoUsuario = $request->dtNascimentoUsuario;
+        $usuario->nrTelefoneUsuario = $request->nrTelefoneUsuario;
+        $usuario->dsEmailUsuario = $request->dsEmailUsuario;
+        $usuario->nmSenhaUsuario = $request->nmSenhaUsuario;
+        $usuario->save();
+
+        return redirect("usuarios\login")->with("message", "Usuário cadastrado com sucesso!");
     }
 }

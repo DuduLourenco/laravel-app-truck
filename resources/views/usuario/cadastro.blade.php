@@ -27,32 +27,32 @@
 				</div>
 
 				<div class="wrap-input100 validate-input m-b-16" data-validate="Entre com o Nome Completo">
-						<input class="input100" type="text" name="nome" id="nmUsuario" maxlength="100" placeholder="Nome Completo">
+						<input class="input100" type="text" name="nmUsuario" id="nmUsuario" maxlength="100" placeholder="Nome Completo">
 						<span class="focus-input100"></span>
 				</div>
 
 				<div class="row">
 					<div class="col-sm">
 						<div class="wrap-input100 validate-input m-b-16 col-sm" data-validate="Entre com o CPF">
-							<input class="input100" type="text" name="cpf" id="cdCpfUsuario" maxlength="14" placeholder="CPF">
+							<input class="input100" type="text" name="cdCpfUsuario" id="cdCpfUsuario" maxlength="14" placeholder="CPF">
 							<span class="focus-input100"></span>
 						</div>
 					</div>
 					<div class="col-sm">
 						<div class="wrap-input100 validate-input m-b-16 col-sm" data-validate="Entre com a Data de Nascimento">
-							<input class="input100" type="text" name="nascimento" id="dtNascimentoUsuario" maxlength="10" placeholder="Data de Nascimento">
+							<input class="input100" type="text" name="dtNascimentoUsuario" id="dtNascimentoUsuario" maxlength="10" placeholder="Data de Nascimento">
 							<span class="focus-input100"></span>
 						</div>
 					</div>
 				</div>				
 
 				<div class="wrap-input100 validate-input m-b-16" data-validate="Entre com o Telefone">
-						<input class="input100" type="text" name="telefone" id="nrTelefoneUsuario" maxlength="14" placeholder="Telefone">
+						<input class="input100" type="text" name="nrTelefoneUsuario" id="nrTelefoneUsuario" maxlength="14" placeholder="Telefone">
 						<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input m-b-16" data-validate="Entre com o E-mail: ex@abc.xyz">
-					<input class="input100" type="text" name="email" id="dsEmailUsuario" maxlength="100" placeholder="E-mail">
+					<input class="input100" type="text" name="dsEmailUsuario" id="dsEmailUsuario" maxlength="100" placeholder="E-mail">
 					<span class="focus-input100"></span>
 				</div>
 
@@ -62,7 +62,7 @@
 								<span class="btn-show-pass">
 									<i class="fa fa fa-eye"></i>
 								</span>
-								<input class="input100" type="password" name="senha" id="cdSenhaUsuario" placeholder="Senha">					
+								<input class="input100" type="password" name="nmSenhaUsuario" id="nmSenhaUsuario" placeholder="Senha">					
 								<span class="focus-input100"></span>
 							</div>	
 						</div>
@@ -71,7 +71,7 @@
 								<span class="btn-show-pass">
 									<i class="fa fa fa-eye"></i>
 								</span>
-								<input class="input100" type="password" name="senhaC" id="cdSenhaUsuarioC" placeholder="Confirmar Senha">					
+								<input class="input100" type="password" name="nmSenhaUsuarioC" id="nmSenhaUsuarioC" placeholder="Confirmar Senha">					
 								<span class="focus-input100"></span>
 							</div>
 						</div>
