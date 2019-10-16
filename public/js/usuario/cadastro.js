@@ -52,7 +52,7 @@ function valida(){
    }
 
    if (erro != "") {
-        bootbox.alert(erro);
+        alert(erro);
         return false;
    } else {
         $("#form").submit();
