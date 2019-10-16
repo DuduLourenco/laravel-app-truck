@@ -18,7 +18,7 @@ class CriaTabelaTbUsuario extends Migration
             $table->string('nmUsuario', 100);
             $table->string('cdCpfUsuario', 14);
             $table->date('dtNascimentoUsuario');
-            $table->string('nrTelefoneUsuario', 14);
+            $table->string('nrTelefoneUsuario', 15);
             $table->string('dsEmailUsuario', 100);
             $table->string('nmSenhaUsuario', 20);
             $table->timestamps();

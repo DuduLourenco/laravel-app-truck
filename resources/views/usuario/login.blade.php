@@ -30,7 +30,7 @@
 				</div>
 
 				<div class="wrap-input100 validate-input m-b-16" data-validate="Entre com o CPF">
-					<input class="input100" type="text" maxlength="14" name="cpf" id="cdCpfUsuario" placeholder="CPF">
+					<input class="input100" type="text" maxlength="14" name="cdCpfUsuario" id="cdCpfUsuario" placeholder="CPF">
 					<span class="focus-input100"></span>
 				</div>
 
@@ -38,7 +38,7 @@
 					<span class="btn-show-pass">
 						<i class="fa fa fa-eye"></i>
 					</span>
-					<input class="input100" type="password" maxlength="20" name="senha" id="cdSenhaUsuario" placeholder="SENHA">
+					<input class="input100" type="password" maxlength="20" name="cdSenhaUsuario" id="cdSenhaUsuario" placeholder="SENHA">
 					<span class="focus-input100"></span>
 				</div>
 

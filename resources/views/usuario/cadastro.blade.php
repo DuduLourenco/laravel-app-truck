@@ -7,7 +7,7 @@
 @section('conteudo')
 	<div class="container-login100">
 		<div class="wrap-login100 p-t-90 p-b-30" style="width: 640px" >
-		<form class="login100-form validate-form" method="post" action="{{ url('/usuarios/cadastrar') }}">
+		<form id="form" class="login100-form validate-form" method="post" action="{{ url('/usuarios/cadastrar') }}">
 				{{ csrf_field() }}
 				<span class="login100-form-title p-b-40">
 					Novo Usuário
@@ -58,7 +58,7 @@
 
 				<div class="row">
 						<div class="col-sm">
-							<div class="wrap-input100 validate-input m-b-20" data-validate = "Entre com a Senha">
+							<div id="senhaDiv" class="wrap-input100 validate-input m-b-20" data-validate = "Entre com a Senha">
 								<span class="btn-show-pass">
 									<i class="fa fa fa-eye"></i>
 								</span>
@@ -78,7 +78,7 @@
 				</div>			
 
 				<div class="container-login100-form-btn">
-					<button class="login100-form-btn">
+					<button type="button" class="login100-form-btn" onclick="valida()">
 						Proximo Passo
 					</button>
 				</div>
@@ -96,4 +96,11 @@
 			</form>
 		</div>
 	</div>
+
+	
+
+@endsection
+
+@section('importacoes')
+	<script src="../js/usuario/cadastro.js"></script>
 @endsection

@@ -20,9 +20,14 @@
 
 
 <!--===============================================================================================-->
-	<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../vendor/jquery/jquery-3.4.1.min.js"></script>
+	<script src="../vendor/jquery/jquery.mask.js"></script>
 <!--===============================================================================================-->
 	<script src="../js/main.js"></script>
+	<script src="../js/util.js"></script>
+	<script src="../vendor/bootbox/bootbox.min.js"></script>
+
+	@yield('importacoes')
 
 </body>
 </html>
