@@ -16,9 +16,14 @@ class Usuario extends Model
     ];
 
     protected $guarded = [
-        'cdUsuario',
+        'id',
         'created_at',
         'updated_at'
     ];
     protected $table = 'tb_usuario';
+    
+    public function listVeiculos()
+    {
+        return $this->hasMany(Veiculo::class, 'idUsuario');
+    }
 }

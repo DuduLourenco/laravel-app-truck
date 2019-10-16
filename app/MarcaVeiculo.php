@@ -4,18 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Marca extends Model
+class MarcaVeiculo extends Model
 {
     protected $fillable = [                
-        'nmModelo',
-        'cdModelo'
+        'nmMarca'
     ];
 
     protected $guarded = [
-        'cdMarca',        
+        'id',        
         'created_at',
         'updated_at'
     ];
 
     protected $table = 'tb_marca_veiculo';
+
+    public function listModelos()
+    {
+        return $this->hasMany(ModeloVeiculo::class, 'idMarca');
+    }
 }

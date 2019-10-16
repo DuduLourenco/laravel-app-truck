@@ -14,7 +14,7 @@ class CriaTabelaMarcaVeiculo extends Migration
     public function up()
     {
         Schema::create('tb_marca_veiculo', function (Blueprint $table) {
-            $table->increments('cdMarca');
+            $table->increments('id');
             $table->string('nmMarca', 100);
             $table->timestamps();
         });

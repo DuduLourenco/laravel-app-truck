@@ -14,11 +14,11 @@ class CriaTabelaModeloVeiculo extends Migration
     public function up()
     {
         Schema::create('tb_modelo_veiculo', function (Blueprint $table) {
-            $table->increments('cdModelo');
+            $table->increments('id');
             $table->string('nmModelo', 100);
             $table->string('nnModelo', 4);
-            $table->integer('cdMarca')->unsigned();
-            $table->foreign('cdMarca')->references('cdMarca')->on('tb_marca_veiculo')->onDelete('cascade');
+            $table->integer('idMarca')->unsigned();
+            $table->foreign('idMarca')->references('id')->on('tb_marca_veiculo')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ class CriaTabelaTbUsuario extends Migration
     public function up()
     {
         Schema::create('tb_usuario', function (Blueprint $table) {
-            $table->bigIncrements('cdUsuario');
+            $table->increments('id');
             $table->string('nmUsuario', 100);
             $table->string('cdCpfUsuario', 14);
             $table->date('dtNascimentoUsuario');

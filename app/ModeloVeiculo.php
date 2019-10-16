@@ -3,22 +3,28 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ModeloVeiculo extends Model
 {
     protected $fillable = [        
         'nmModelo',
         'nnModelo',
-        'cdMarca',
+        'idMarca',
     ];
 
     protected $guarded = [
-        'cdModelo',        
+        'id',        
         'created_at',
         'updated_at'
     ];
 
     protected $table = 'tb_modelo_veiculo';
+
+    public function marca()
+    {
+        return $this->belongsTo(MarcaVeiculo::class, 'idMarca');
+    }
 }
 
 
