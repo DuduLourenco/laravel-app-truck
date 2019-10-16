@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
 {
+    private $usuario;
+
+    public function __construct()
+    {
+        $this->usuario = new Usuario();
+    }
+
     public function loginView()
     {        
         $list_usuarios = Usuario::all();
@@ -21,9 +28,14 @@ class UsuariosController extends Controller
     }
 
     public function entrar(Request $request)
-    {
-        
-        var_dump($request->all());
+    {        
+        $usuario = $this->findByCpf($request->cdCpfUsuario);
+
+        if ($usuario->nmSenhaUsuario == $request->nmSenhaUsuario ) {
+            return redirect("usuarios/")->with("message", "Usuário logado com sucesso!");
+        } else {
+            return redirect("usuarios/")->with("message", "CPF ou Senha Incorretos!");
+        }
     }
 
     public function cadastrar(Request $request)
@@ -37,6 +49,10 @@ class UsuariosController extends Controller
         $usuario->nmSenhaUsuario = $request->nmSenhaUsuario;
         $usuario->save();
 
-        return redirect("usuarios\login")->with("message", "Usuário cadastrado com sucesso!");
+        return redirect("usuarios/")->with("message", "Usuário cadastrado com sucesso!");
+    }
+
+    public function findByCpf($cdCpfUsuario){
+        return $this->usuario->where('cdCpfUsuario', $cdCpfUsuario)->first();
     }
 }

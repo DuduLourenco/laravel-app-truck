@@ -11,16 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/teste', function () {
-    return view('index');
-});
-
 Route::group(["prefix" => "usuarios"], function () {
-    Route::get("/login", "UsuariosController@loginView");
+    Route::get("", "UsuariosController@loginView");
     Route::get("/cadastro", "UsuariosController@cadastroView");
     Route::post("/entrar", "UsuariosController@entrar");
     Route::post("/cadastrar", "UsuariosController@cadastrar");

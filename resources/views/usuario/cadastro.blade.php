@@ -88,7 +88,7 @@
 						Já possui uma conta?
 					</span>
 
-					<a href="{{ url('usuarios/login') }}" class="txt3 bo1 hov1">
+					<a href="{{ url('usuarios') }}" class="txt3 bo1 hov1">
 						Entrar Agora
 					</a>
 				</div>

@@ -22,10 +22,24 @@
 <!--===============================================================================================-->
 	<script src="../vendor/jquery/jquery-3.4.1.min.js"></script>
 	<script src="../vendor/jquery/jquery.mask.js"></script>
+	<script src="../vendor/bootstrap/js/popper.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap.js"></script>
+	<script src="../vendor/bootbox/bootbox.min.js"></script>
 <!--===============================================================================================-->
 	<script src="../js/main.js"></script>
 	<script src="../js/util.js"></script>
-	<script src="../vendor/bootbox/bootbox.min.js"></script>
+	
+	@if (Session::has('message'))
+	<input type="hidden" id="message" value="{{ Session::get('message') }}">
+   <script>
+	    mensagem = $('#message').val();
+   		bootbox.alert({
+            message: mensagem,
+            backdrop: true,
+            size: 'small'
+        });
+   </script>
+	@endif
 
 	@yield('importacoes')
 
