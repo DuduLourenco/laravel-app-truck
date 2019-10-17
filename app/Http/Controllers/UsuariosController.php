@@ -33,7 +33,7 @@ class UsuariosController extends Controller
         $usuario = $this->findByCpf($request->cdCpfUsuario);
 
         if ($usuario->nmSenhaUsuario == $request->nmSenhaUsuario ) {
-            return redirect("usuarios/")->with("message", "Usuário logado com sucesso!");
+            return redirect("veiculos/cadastro")->with("message", "Usuário logado com sucesso!");
         } else {
             return redirect("usuarios/")->with("message", "CPF ou Senha Incorretos!");
         }

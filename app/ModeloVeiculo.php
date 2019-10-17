@@ -9,7 +9,6 @@ class ModeloVeiculo extends Model
 {
     protected $fillable = [        
         'nmModelo',
-        'nnModelo',
         'idMarca',
     ];
 

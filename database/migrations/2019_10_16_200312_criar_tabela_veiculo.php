@@ -17,6 +17,9 @@ class CriarTabelaVeiculo extends Migration
             $table->increments('id');
             $table->integer('idUsuario')->unsigned();            
             $table->integer('idModelo')->unsigned();
+            $table->string('nmPlacaVeiculo');
+            $table->string('anoVeiculo');
+            $table->string('dsConsumoVeiculo');
             $table->foreign('idUsuario')->references('id')->on('tb_usuario')->onDelete('cascade');
             $table->foreign('idModelo')->references('id')->on('tb_modelo_veiculo')->onDelete('cascade');
             $table->timestamps();

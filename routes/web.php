@@ -17,3 +17,7 @@ Route::group(["prefix" => "usuarios"], function () {
     Route::post("/entrar", "UsuariosController@entrar");
     Route::post("/cadastrar", "UsuariosController@cadastrar");
 });
+
+Route::group(["prefix" => "veiculos"], function () {
+    Route::get("/cadastro", "VeiculosController@cadastroView");
+});

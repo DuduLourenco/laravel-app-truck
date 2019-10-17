@@ -8,7 +8,10 @@ class Veiculo extends Model
 {
     protected $fillable = [
         'idModelo',
-        'idUsuario'
+        'idUsuario',
+        'nmPlacaVeiculo',
+        'anoVeiculo',
+        'dsConsumoVeiculo'
     ];
 
     protected $guarded = [
