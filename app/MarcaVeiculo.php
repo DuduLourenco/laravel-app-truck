@@ -18,8 +18,9 @@ class MarcaVeiculo extends Model
 
     protected $table = 'tb_marca_veiculo';
 
-    public function listModelos()
+    public function getModelos()
     {
         return $this->hasMany(ModeloVeiculo::class, 'idMarca');
     }
+
 }

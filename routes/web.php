@@ -21,3 +21,6 @@ Route::group(["prefix" => "usuarios"], function () {
 Route::group(["prefix" => "veiculos"], function () {
     Route::get("/cadastro", "VeiculosController@cadastroView");
 });
+
+Route::get("listModelos/{id}", "ModelosController@listModelosByIdMarca");
+

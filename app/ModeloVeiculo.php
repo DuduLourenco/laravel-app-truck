@@ -20,7 +20,7 @@ class ModeloVeiculo extends Model
 
     protected $table = 'tb_modelo_veiculo';
 
-    public function marca()
+    public function getMarca()
     {
         return $this->belongsTo(MarcaVeiculo::class, 'idMarca');
     }
