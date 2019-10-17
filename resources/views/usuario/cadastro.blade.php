@@ -14,7 +14,7 @@
 				</span>
 
 				<div class="container-login100-form-btn">
-					<a href="#" class="btn-login-with bg1 m-b-10" style="width: 50%" >
+					<a href="#" class="btn-login-with bg1 m-b-10" style="max-width: 320px;" >
 						<i class="fa fa-facebook-official"></i>
 						Cadastrar com Facebook
 					</a>
@@ -26,39 +26,39 @@
 					</span>
 				</div>
 
-				<div class="wrap-input100 validate-input m-b-16" data-validate="Entre com o Nome Completo">
-						<input class="input100" type="text" name="nmUsuario" id="nmUsuario" maxlength="100" placeholder="Nome Completo">
+			<div class="wrap-input100 m-b-16 {{$errors->has("nmUsuario") ? "alert-validate" : ""}}" data-validate="{{ $errors->has("nmUsuario") ? $errors->first("nmUsuario") : "" }}">
+			<input class="input100" type="text" name="nmUsuario" id="nmUsuario" maxlength="100" placeholder="Nome Completo" value="{{ old("nmUsuario") }}">
 						<span class="focus-input100"></span>
 				</div>
 
 				<div class="row">
 					<div class="col-sm">
-						<div class="wrap-input100 validate-input m-b-16 col-sm" data-validate="Entre com o CPF">
-							<input class="input100" type="text" name="cdCpfUsuario" id="cdCpfUsuario" maxlength="14" placeholder="CPF">
+						<div class="wrap-input100 m-b-16 {{$errors->has("cdCpfUsuario") ? "alert-validate" : ""}}" data-validate="{{ $errors->has("cdCpfUsuario") ? $errors->first("cdCpfUsuario") : "" }}">
+							<input class="input100" type="text" name="cdCpfUsuario" id="cdCpfUsuario" maxlength="14" placeholder="CPF" value="{{ old("cdCpfUsuario") }}">
 							<span class="focus-input100"></span>
 						</div>
 					</div>
 					<div class="col-sm">
-						<div class="wrap-input100 validate-input m-b-16 col-sm" data-validate="Entre com a Data de Nascimento">
-							<input class="input100" type="text" name="dtNascimentoUsuario" id="dtNascimentoUsuario" maxlength="10" placeholder="Data de Nascimento">
+						<div class="wrap-input100 m-b-16 {{$errors->has("dtNascimentoUsuario") ? "alert-validate" : ""}}" data-validate="{{ $errors->has("dtNascimentoUsuario") ? $errors->first("dtNascimentoUsuario") : "" }}">
+							<input class="input100" type="text" name="dtNascimentoUsuario" id="dtNascimentoUsuario" maxlength="10" placeholder="Data de Nascimento" value="{{ old("dtNascimentoUsuario") }}">
 							<span class="focus-input100"></span>
 						</div>
 					</div>
 				</div>				
 
-				<div class="wrap-input100 validate-input m-b-16" data-validate="Entre com o Telefone">
-						<input class="input100" type="text" name="nrTelefoneUsuario" id="nrTelefoneUsuario" maxlength="14" placeholder="Telefone">
+				<div class="wrap-input100 m-b-16 {{$errors->has("nrTelefoneUsuario") ? "alert-validate" : ""}}" data-validate="{{ $errors->has("nrTelefoneUsuario") ? $errors->first("nrTelefoneUsuario") : "" }}">
+						<input class="input100" type="text" name="nrTelefoneUsuario" id="nrTelefoneUsuario" maxlength="14" placeholder="Telefone" value="{{ old("nrTelefoneUsuario") }}">
 						<span class="focus-input100"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input m-b-16" data-validate="Entre com o E-mail: ex@abc.xyz">
-					<input class="input100" type="text" name="dsEmailUsuario" id="dsEmailUsuario" maxlength="100" placeholder="E-mail">
+				<div class="wrap-input100 m-b-16 {{$errors->has("dsEmailUsuario") ? "alert-validate" : ""}}" data-validate="{{ $errors->has("dsEmailUsuario") ? $errors->first("dsEmailUsuario") : "" }}">
+					<input class="input100" type="text" name="dsEmailUsuario" id="dsEmailUsuario" maxlength="100" placeholder="E-mail" value="{{ old("dsEmailUsuario") }}">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="row">
 						<div class="col-sm">
-							<div id="senhaDiv" class="wrap-input100 validate-input m-b-20" data-validate = "Entre com a Senha">
+							<div id="senhaDiv" class="wrap-input100 m-b-20 {{$errors->has("nmSenhaUsuario") ? "alert-validate" : ""}}" data-validate = "{{ $errors->has("nmSenhaUsuario") ? $errors->first("nmSenhaUsuario") : "" }}">
 								<span class="btn-show-pass">
 									<i class="fa fa fa-eye"></i>
 								</span>
@@ -67,7 +67,7 @@
 							</div>	
 						</div>
 						<div class="col-sm">
-							<div class="wrap-input100 validate-input m-b-20" data-validate = "Entre com a Senha">
+							<div class="wrap-input100 m-b-20 {{$errors->has("nmSenhaUsuarioC") ? "alert-validate" : ""}}" data-validate = "{{ $errors->has("nmSenhaUsuarioC") ? $errors->first("nmSenhaUsuarioC") : "" }}">
 								<span class="btn-show-pass">
 									<i class="fa fa fa-eye"></i>
 								</span>
