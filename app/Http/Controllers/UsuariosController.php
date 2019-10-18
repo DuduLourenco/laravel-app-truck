@@ -55,7 +55,12 @@ class UsuariosController extends Controller
         $usuario->nrTelefoneUsuario = $request->nrTelefoneUsuario;
         $usuario->dsEmailUsuario = $request->dsEmailUsuario;
         $usuario->nmSenhaUsuario = $request->nmSenhaUsuario;
-        $usuario->save();
+        try {
+            $usuario->save();
+        } catch (\Exception $e) {
+            return "ERRO: ".$e->getMessage();
+        }
+        
 
         return redirect("usuarios/")->with("message", "Usuário cadastrado com sucesso!");
     }
