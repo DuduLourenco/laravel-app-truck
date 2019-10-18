@@ -35,7 +35,7 @@ class UsuariosController extends Controller
         if ($usuario->nmSenhaUsuario == $request->nmSenhaUsuario ) {
             return redirect("veiculos/cadastro")->with("message", "Usuário logado com sucesso!");
         } else {
-            return redirect("usuarios/")->with("message", "CPF ou Senha Incorretos!");
+            return redirect("usuarios/login")->with("message", "CPF ou Senha Incorretos!");
         }
     }
 
@@ -62,7 +62,7 @@ class UsuariosController extends Controller
         }
         
 
-        return redirect("usuarios/")->with("message", "Usuário cadastrado com sucesso!");
+        return redirect("usuarios/login")->with("message", "Usuário cadastrado com sucesso!");
     }
 
     public function findByCpf($cdCpfUsuario){

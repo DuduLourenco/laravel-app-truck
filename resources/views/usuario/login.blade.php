@@ -69,6 +69,6 @@
 @endsection
 
 @section('importacoes')
-	<script src="../js/usuario/login.js"></script>
+	<script src="{{ asset('js/usuario/login.js') }}"></script>
 @endsection
 
