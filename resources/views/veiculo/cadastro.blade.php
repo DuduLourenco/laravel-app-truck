@@ -24,13 +24,13 @@
 				<div class="row">
 					<div class="col-sm">
 							<div class="wrap-input100 m-b-16" data-validate="">
-									<input class="input100" type="text" name="nmPlacaVeiculo" placeholder="Placa">
+									<input class="input100" type="text" name="nmPlacaVeiculo" id="nmPlacaVeiculo"  placeholder="Placa">
 									<span class="focus-input100"></span>
 							</div>
 					</div>
 					<div class="col-sm">
 							<div class="wrap-input100  m-b-16" data-validate="">
-									<input class="input100" type="text" name="dsConsumoVeiculo" placeholder="Consumo - km/l">
+									<input class="input100" type="text" name="dsConsumoVeiculo" id="dsConsumoVeiculo" maxlength="5" onkeyup="formataPreco()" placeholder="Consumo em km/l">
 									<span class="focus-input100"></span>
 							</div>
 					</div>
@@ -60,7 +60,7 @@
 						</div>
 						<div class="col-sm">
 								<div class="wrap-input100  m-b-16" data-validate="">
-								<input class="input100" type="tel" type="text" name="anoVeiculo" placeholder="Ano">
+								<input class="input100" type="tel" type="text" name="anoVeiculo" id="anoVeiculo" placeholder="Ano">
 										<span class="focus-input100"></span>
 								</div>
 						</div>
@@ -68,9 +68,19 @@
 				
 
 				<div class="container-login100-form-btn">
-					<button type="button" class="login100-form-btn" onclick="valida()">
-						Proximo Passo
-					</button>
+					<div class="row">
+						<div class="col-sm p-t-5">
+								<button type="button" class="login100-form-btn wrap-input100" onclick="valida()">
+										Adicionar +
+								</button>
+						</div>						
+						<div class="col-sm p-t-5">
+								<button type="button" class="login100-form-btn wrap-input100"  onclick="valida()">
+										Finalizar
+								</button>
+						</div>
+						
+					</div>
 				</div>
 
 			</form>

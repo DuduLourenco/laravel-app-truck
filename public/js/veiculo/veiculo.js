@@ -15,3 +15,15 @@ $('select[name=marca]').change(function() {
     }    
     
 });
+
+$(function(){
+    $('#nmPlacaVeiculo').mask("SSS-0A00");
+    $('#anoVeiculo').mask('0000'); 
+    $('#dsConsumoVeiculo').mask('00,00', {reverse: true});
+});
+
+$('#nmPlacaVeiculo').on('input', function(evt) {
+    $(this).val(function(_, val) {
+      return val.toUpperCase();
+    });
+});
