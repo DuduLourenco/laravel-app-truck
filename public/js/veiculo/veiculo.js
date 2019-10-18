@@ -8,7 +8,7 @@ $('select[name=marca]').change(function() {
         $('select[name=modelo]').empty();
         $('select[name=modelo]').append('<option value="" selected="selected">Modelo</option>');
     } else {
-        $.get('/listModelos/' + idMarca, function (modelos) {
+        $.get('modelos/listModelos/' + idMarca, function (modelos) {
             $('select[name=modelo]').empty();
             $('select[name=modelo]').append('<option value="" selected="selected">Modelo</option>');
             $.each(modelos, function (key, value) {            
