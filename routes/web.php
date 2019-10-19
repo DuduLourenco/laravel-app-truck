@@ -18,6 +18,10 @@ Route::group(["prefix" => "usuarios"], function () {
     Route::post("/cadastrar", "UsuariosController@cadastrar");
 });
 
+Route::group(["prefix" => "/"], function () {
+    Route::get("/", "PrincipalController@principalView");
+});
+
 Route::group(["prefix" => "veiculos"], function () {
     Route::get("/cadastro", "VeiculosController@cadastroView");
     Route::post("/cadastrar", "VeiculosController@cadastrar");
@@ -26,6 +30,7 @@ Route::group(["prefix" => "veiculos"], function () {
         Route::get("/listModelos/{id}", "ModelosController@listModelosByIdMarca");
     });
 });
+
 
 
 

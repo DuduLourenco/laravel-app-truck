@@ -31,9 +31,10 @@ class UsuariosController extends Controller
     public function entrar(Request $request)
     {        
         $usuario = $this->findByCpf($request->cdCpfUsuario);
-
-        if ($usuario->nmSenhaUsuario == $request->nmSenhaUsuario ) {
-            return redirect("veiculos/cadastro")->with("message", "Usuário logado com sucesso!");
+        if ($usuario->nmSenhaUsuario == $request->nmSenhaUsuario ) {            
+            $request->session()->put('usuario', $usuario);
+            $request->session()->put('logado', true);
+            return redirect("veiculos/cadastro"); 
         } else {
             return redirect("usuarios/login")->with("message", "CPF ou Senha Incorretos!");
         }

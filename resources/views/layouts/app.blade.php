@@ -12,12 +12,11 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 <!--===============================================================================================-->
+	@yield('css')
 </head>
 <body>
-
-
+	
 	@yield('conteudo')
-
 	
 <!--===============================================================================================-->
 	<script src="{{ asset('vendor/jquery/jquery-3.4.1.min.js') }}"></script>

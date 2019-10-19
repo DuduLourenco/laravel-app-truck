@@ -7,19 +7,15 @@ $('select[name=marca]').change(function() {
 
 function finalizaVeiculos() {    
     $.ajax({
-        url:'/veiculos/cadastrar',
+        url:'cadastrar',
         type: 'POST',
         dataType:'json',
         contentType: 'json',
-        success: 'sucess',
         data: JSON.stringify(veiculos),
-        contentType: 'application/json; charset=utf-8',
-        success: function(success) {
-            $.each(success.success, function(i,index){
-                alert("foi");
-            });
-        }
-    });
+        contentType: 'application/json; charset=utf-8'        
+    }).done(function() { 
+        //window.location = "../usuarios/login"
+    });;
 }
 
 

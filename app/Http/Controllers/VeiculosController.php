@@ -28,9 +28,33 @@ class VeiculosController extends Controller
 
     public function cadastrar(Request $request)
     {        
-        
+        $veiculos = $request->all();
+        $usuario = $request->session()->get('usuario');
+        $usuario = [
+            'idUsuario' => $usuario->id,
+            'nmUsuario' => $usuario->nmUsuario
+        ];
+
+        foreach ($veiculos as $veiculo) {
+            $novoVeiculo = new Veiculo();
+            $novoVeiculo->idModelo = $veiculo['idModelo'];
+            $novoVeiculo->idUsuario = $usuario['idUsuario'];
+            $novoVeiculo->nmPlacaVeiculo = $veiculo['nmPlacaVeiculo'];
+            $novoVeiculo->anoVeiculo = $veiculo['anoVeiculo'];
+            $novoVeiculo->dsConsumoVeiculo = $veiculo['dsConsumoVeiculo'];
+
+            try{
+                $novoVeiculo->save();
+            }catch (\Exception $e) {
+                return "ERRO: ".$e->getMessage();
+            }
+
+        }
+        $sen['sucess'] = true;
+        return $sen;
+
         //$sen['sucess'] = 
-        return var_dump($request->getContent());;
+        //return var_dump($request->getContent());;
         
         //return redirect("usuarios/login")->with("message", "Veículos Cadastrados com Sucesso!");
     }

@@ -13,5 +13,6 @@ function entrar(){
         $('#cdCpfUsuario').focus();
         return false;
     }
+    
     $('#form').submit();
 }
