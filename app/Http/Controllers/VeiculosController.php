@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Veiculo;
 use App\MarcaVeiculo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class VeiculosController extends Controller
 {
@@ -24,4 +25,16 @@ class VeiculosController extends Controller
             'marcas' => $list_marcas
         ]);
     }
+
+    public function cadastrar(Request $request)
+    {        
+        
+        //$sen['sucess'] = 
+        return var_dump($request->getContent());;
+        
+        //return redirect("usuarios/login")->with("message", "Veículos Cadastrados com Sucesso!");
+    }
+
+
+
 }

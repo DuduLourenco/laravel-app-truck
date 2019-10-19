@@ -90,7 +90,7 @@
 								</button>
 						</div>					
 						<div class="col-sm p-t-5">
-								<button type="button" class="login100-form-btn wrap-input100"  onclick="valida()">
+								<button type="button" class="login100-form-btn wrap-input100"  onclick="finalizaVeiculos()">
 										Finalizar
 								</button>
 						</div>

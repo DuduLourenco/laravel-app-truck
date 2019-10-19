@@ -2,7 +2,29 @@ var veiculos = new Array();
 var tabelaVeiculo = $("#tabelaVeiculo");
 
 $('select[name=marca]').change(function() {
-    var idMarca = $(this).val();
+    carregaModelos();
+});
+
+function finalizaVeiculos() {    
+    $.ajax({
+        url:'/veiculos/cadastrar',
+        type: 'POST',
+        dataType:'json',
+        contentType: 'json',
+        success: 'sucess',
+        data: JSON.stringify(veiculos),
+        contentType: 'application/json; charset=utf-8',
+        success: function(success) {
+            $.each(success.success, function(i,index){
+                alert("foi");
+            });
+        }
+    });
+}
+
+
+function carregaModelos() {
+    var idMarca = $('select[name=marca]').val();
 
     if (idMarca == "") {
         $('select[name=modelo]').empty();
@@ -15,8 +37,8 @@ $('select[name=marca]').change(function() {
                 $('select[name=modelo]').append('<option value=' + value.id + '>' + value.nmModelo + '</option>');
             });
         });
-    }        
-});
+    }  
+}
 
 function adicionarVeiculo () {   
     
@@ -26,12 +48,14 @@ function adicionarVeiculo () {
 
     var infos = "\nDados:\n";
     idModelo = $("#modelo").val();
+    idMarca = $("#marca").val();
     nmPlacaVeiculo = $("#nmPlacaVeiculo").val();
     anoVeiculo = $("#anoVeiculo").val();
     dsConsumoVeiculo = $("#dsConsumoVeiculo").val();
 
     var novoVeiculo = {
         idModelo: idModelo,
+        idMarca: idMarca,
         nmPlacaVeiculo: nmPlacaVeiculo,
         anoVeiculo: anoVeiculo,
         dsConsumoVeiculo: dsConsumoVeiculo
@@ -42,34 +66,45 @@ function adicionarVeiculo () {
     limparCampos();
 }
 
-function carregarVeiculo (index) {  
-    limparCampos();  
-    $("#nmPlacaVeiculo").val(veiculos[index].nmPlacaVeiculo);
-    $("#anoVeiculo").val(veiculos[index].anoVeiculo);
-    $("#dsConsumoVeiculo").val(veiculos[index].dsConsumoVeiculo);
+function carregarVeiculo (i) {  
+    limparCampos();   
+    $("#nmPlacaVeiculo").val(veiculos[i].nmPlacaVeiculo);
+    $("#anoVeiculo").val(veiculos[i].anoVeiculo);
+    $("#dsConsumoVeiculo").val(veiculos[i].dsConsumoVeiculo);
+    $("#marca").val(veiculos[i].idMarca);
+    carregaModelos(); 
     $("#divBtnAtualizar").attr('style','display : block');
-    $("#btnAtualizar").attr('data-value',index);
-    $("#divBtnAdicionar").attr('style','display : none');
-}
+    $("#btnAtualizar").attr('data-value',i);
+    $("#divBtnAdicionar").attr('style','display : none'); 
+    $("#modelo").val(veiculos[i].idModelo);
+} 
 
 function editarVeiculo (btnAtualizar) {
+
+    if (validaCampos()) {
+        return false;
+    }
+
     btnAtualizar = $(btnAtualizar);
+    index = btnAtualizar.data('value');
 
     idModelo = $("#modelo").val();
+    idMarca = $("#marca").val();
     nmPlacaVeiculo = $("#nmPlacaVeiculo").val();
     anoVeiculo = $("#anoVeiculo").val();
     dsConsumoVeiculo = $("#dsConsumoVeiculo").val();
 
     var atualizadoVeiculo = {
         idModelo: idModelo,
+        idMarca: idMarca,
         nmPlacaVeiculo: nmPlacaVeiculo,
         anoVeiculo: anoVeiculo,
         dsConsumoVeiculo: dsConsumoVeiculo
     }
-
-    veiculos[btnAtualizar.data('value')] = atualizadoVeiculo;
+    veiculos[index] = atualizadoVeiculo;
     $("#divBtnAtualizar").attr('style','display : none');
     $("#divBtnAdicionar").attr('style','display : block');
+    $("#btnVeiculo"+index).html(nmPlacaVeiculo);
     limparCampos();
 }
 

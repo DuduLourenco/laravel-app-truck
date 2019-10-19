@@ -20,6 +20,7 @@ Route::group(["prefix" => "usuarios"], function () {
 
 Route::group(["prefix" => "veiculos"], function () {
     Route::get("/cadastro", "VeiculosController@cadastroView");
+    Route::post("/cadastrar", "VeiculosController@cadastrar");
 
     Route::group(["prefix" => "/modelos"], function () {
         Route::get("/listModelos/{id}", "ModelosController@listModelosByIdMarca");
