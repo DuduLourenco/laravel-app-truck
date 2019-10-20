@@ -16,6 +16,7 @@ Route::group(["prefix" => "usuarios"], function () {
     Route::get("/cadastro", "UsuariosController@cadastroView");
     Route::post("/entrar", "UsuariosController@entrar");
     Route::post("/cadastrar", "UsuariosController@cadastrar");
+    Route::post("/verificaLogado", "UsuariosController@verificaLogado");
 });
 
 Route::group(["prefix" => "/"], function () {

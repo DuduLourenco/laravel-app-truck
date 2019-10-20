@@ -1,67 +1,57 @@
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-    <div class="container-fluid">
-        <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#">App Trucks</a>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
+<nav class="navbar navbar-expand-lg navbar-light al-navbar" style="background-color: #e6e6e6">
+    <div class="container">
+        <a class="navbar-brand" href="#">App Truck</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primaryNav"
+            aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-                <div class="input-group no-border">
-                    <input type="text" value="" class="form-control" placeholder="Search...">
-                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                        <i class="material-icons">search</i>
-                        <div class="ripple-container"></div>
-                    </button>
-                </div>
-            </form>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#pablo">
-                        <i class="material-icons">dashboard</i>
-                        <p class="d-lg-none d-md-block">
-                            Stats
-                        </p>
-                    </a>
+        <div class="collapse navbar-collapse" id="primaryNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Viajar <span class="sr-only"></span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('veiculos/cadastro') }}">Veículos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Viagens</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ganhos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Gastos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cofrinho Manutenção</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons">notifications</i>
-                        <span class="notification">5</span>
-                        <p class="d-lg-none d-md-block">
-                            Some Actions
-                        </p>
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" id="navbarDropdown">
+                        <i class="fa fa-envelope" aria-hidden="true">
+                            <span class="badge badge-secondary">0</span>
+                        </i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                        <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                        <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                        <a class="dropdown-item" href="#">Another Notification</a>
-                        <a class="dropdown-item" href="#">Another One</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <p class="dropdown-item"> Sem Notificações</p>
                     </div>
                 </li>
+
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons">person</i>
-                        <p class="d-lg-none d-md-block">
-                            Account
-                        </p>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Minha Conta
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">Settings</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Log out</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#"><i class="fa fa-fw fa-user"></i> Perfil</a>
+                        <a class="dropdown-item" href="{{ url('usuarios', ['login']) }}"><i
+                                class="fa fa-fw fa-close"></i> Sair</a>
                     </div>
                 </li>
             </ul>
+
+
         </div>
     </div>
 </nav>

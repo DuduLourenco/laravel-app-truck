@@ -39,7 +39,7 @@ body, html {
 /*---------------------------------------------*/
 a {
 	font-family: Oswald-Regular;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
@@ -65,7 +65,7 @@ h1,h2,h3,h4,h5,h6 {
 
 p {
 	font-family: Oswald-Regular;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
@@ -487,3 +487,53 @@ iframe {
 
 /*//////////////////////////////////////////////////*/
 
+.al-navbar {
+  border-bottom:1px solid #f0f0f0;
+  padding:20px;
+  background:#fff;
+  box-shadow:0 0 3px #f0f0f0;
+  
+}
+.al-navbar .navbar-brand {
+  font-weight:800;
+}
+.al-navbar .active a {
+  color:red;
+}
+.al-navbar .dropdown-menu {
+  border-radius:0;
+  border-color:#f0f0f0;
+  box-shadow:0 0 2px #f0f0f0;
+  padding:0;
+  
+  
+}
+.al-navbar .dropdown-menu a {
+  padding:10px 25px;
+  color:#999;
+  
+}
+.al-navbar .dropdown-menu a:hover {
+  color:#fff;
+  background:#333333;
+}
+.al-icons a {
+  color:#222;
+  margin:0 15px 0 0;
+}
+@media screen and (min-width:992px) {
+  .al-icons {
+      margin:0 0 0 20px;
+ }
+}
+@media screen and (max-width:992px) {
+  .al-icons {
+      margin:10px 0 0 0;
+ }
+}
+
+/*/////////////////*/
+
+.fa {
+  font-size: 20px;
+}

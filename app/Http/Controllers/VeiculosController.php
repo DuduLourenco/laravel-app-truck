@@ -53,10 +53,13 @@ class VeiculosController extends Controller
         $sen['sucess'] = true;
         return $sen;
 
-        //$sen['sucess'] = 
-        //return var_dump($request->getContent());;
-        
-        //return redirect("usuarios/login")->with("message", "Veículos Cadastrados com Sucesso!");
+    }
+
+    public function listVeiculosByIdUsuario($idUsuario)
+    {
+        $usuario = $this->usuario->find($idUsuario);
+        $veiculos = $usuario->listVeiculos()->getQuery()->get(['id','nmPlacaVeiculo']);
+        return Response::json($veiculos);
     }
 
 
