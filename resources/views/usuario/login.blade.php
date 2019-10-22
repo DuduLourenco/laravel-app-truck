@@ -4,7 +4,12 @@
 	Entrar
 @endsection
 
+{{
+	Session::put('logado', false)
+}}
+
 @section('conteudo')
+
 	<div class="container-login100">
 		<div class="wrap-login100 p-t-90 p-b-30">
 		<form id="form" class="login100-form validate-form" method="post" action="{{ url('/usuarios/entrar') }}">

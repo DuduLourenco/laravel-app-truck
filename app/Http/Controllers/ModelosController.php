@@ -24,4 +24,11 @@ class ModelosController extends Controller
         $modelos = $marca->getModelos()->getQuery()->get(['id','nmModelo']);
         return Response::json($modelos);
     }
+
+    public function findMarcaByIdModelo($idModelo)
+    {
+        $modelo = $this->modelo->find($idModelo);
+        $marca = $modelo->getMarca()->first();
+        return $marca;
+    }
 }

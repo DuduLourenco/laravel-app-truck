@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
 
 class UsuariosController extends Controller
 {
@@ -16,7 +17,7 @@ class UsuariosController extends Controller
     }
 
     public function loginView()
-    {        
+    {
         $list_usuarios = Usuario::all();
         return view('usuario.login', [
             'usuarios' => $list_usuarios
@@ -24,31 +25,51 @@ class UsuariosController extends Controller
     }
 
     public function cadastroView()
-    {        
+    {
         return view('usuario.cadastro');
     }
 
     public function entrar(Request $request)
-    {        
+    {
         $usuario = $this->findByCpf($request->cdCpfUsuario);
+        if ($usuario->nmSenhaUsuario == $request->nmSenhaUsuario) {
+            $request->session()->put('usuario', $usuario);
+            $request->session()->put('logado', true);
 
-        if ($usuario->nmSenhaUsuario == $request->nmSenhaUsuario ) {
-            return redirect("veiculos/cadastro")->with("message", "Usuário logado com sucesso!");
+            $veiculos = $usuario->listVeiculos()->getQuery()->count();
+
+            if ($veiculos > 0) {
+                return redirect("/");
+            } else {
+                return redirect("/veiculos/cadastro");
+            }
         } else {
             return redirect("usuarios/login")->with("message", "CPF ou Senha Incorretos!");
         }
     }
 
+    public function verificaLogado(Request $request)
+    {
+        
+        if ($request->session()->get('logado')) {
+            echo "0";
+        } else {          
+            echo "1";
+        }
+    }
+
+
+
     public function cadastrar(Request $request)
     {
         $validacao = $this->validacao($request->all());
-        if($validacao->fails()){
+        if ($validacao->fails()) {
             return redirect()->back()
-                    ->withErrors($validacao->errors())
-                    ->withInput($request->all());
+                ->withErrors($validacao->errors())
+                ->withInput($request->all());
         }
 
-        $usuario = new Usuario();        
+        $usuario = new Usuario();
         $usuario->nmUsuario = $request->nmUsuario;
         $usuario->cdCpfUsuario = $request->cdCpfUsuario;
         $usuario->dtNascimentoUsuario = $request->dtNascimentoUsuario;
@@ -58,14 +79,15 @@ class UsuariosController extends Controller
         try {
             $usuario->save();
         } catch (\Exception $e) {
-            return "ERRO: ".$e->getMessage();
+            return "ERRO: " . $e->getMessage();
         }
-        
+
 
         return redirect("usuarios/login")->with("message", "Usuário cadastrado com sucesso!");
     }
 
-    public function findByCpf($cdCpfUsuario){
+    public function findByCpf($cdCpfUsuario)
+    {
         return $this->usuario->where('cdCpfUsuario', $cdCpfUsuario)->first();
     }
 
@@ -96,7 +118,5 @@ class UsuariosController extends Controller
         ];
 
         return Validator::make($data, $regras, $mensagens);
-
     }
-
 }

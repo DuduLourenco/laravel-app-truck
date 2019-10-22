@@ -12,15 +12,14 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 <!--===============================================================================================-->
+	@yield('css')
 </head>
-<body>
-
-
+<body >
+	<input type="hidden" id="refreshed" value="no">
 	@yield('conteudo')
-
 	
 <!--===============================================================================================-->
-	<script src="{{ asset('vendor/jquery/jquery-3.4.1.min.js') }}"></script>
+	<script src="{{ asset('vendor/jquery/jquery-3.4.1.js') }}"></script>
 	<script src="{{ asset('vendor/jquery/jquery.mask.js') }}"></script>
 	<script src="{{ asset('vendor/bootstrap/js/popper.js') }}"></script>
 	<script src="{{ asset('vendor/bootstrap/js/bootstrap.js') }}"></script>

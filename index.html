@@ -421,6 +421,13 @@
                 if (status == 'OK') {
                     directionsRenderer.setDirections(response);
                     window.alert(dest.lat + " " + dest.lng);
+                    var rota = response.routes[0].legs[0];
+                    var dados = "Dados: ";
+                    dados += "\nDe: " + rota.start_address;
+                    dados += "\nPara: " + rota.end_address;
+                    dados += "\nDistância: " + rota.distance['text'];
+                    dados += "\nDuração: " + rota.duration['text'];
+                    window.alert(dados);
                 } else {
                     window.alert('Directions request failed due to ' + status);
                 }
