@@ -42,13 +42,14 @@ $(document).ready(function () {
                 tabelaVeiculo.append('<div class="p-t-5 col-sm"><button id="btnVeiculo' + i + '" onclick="carregarVeiculo(' + i + ')" type="button" class="login100-form-btn wrap-input100">' + veiculo.nmPlacaVeiculo + '</button></div>');
                 i++;
                 //Popular o Array veiculos com o retorno
-
+                id = veiculo.id;
                 nmPlacaVeiculo = veiculo.nmPlacaVeiculo;
                 anoVeiculo = veiculo.anoVeiculo;
                 dsConsumoVeiculo = veiculo.dsConsumoVeiculo;
                 idModelo = veiculo.idModelo;
 
                 var novoVeiculo = {
+                    id: id,
                     idModelo: idModelo,
                     nmPlacaVeiculo: nmPlacaVeiculo,
                     anoVeiculo: anoVeiculo,
@@ -60,11 +61,9 @@ $(document).ready(function () {
                 });
 
                 veiculos.push(novoVeiculo);
+                veiculosSalvos.push(novoVeiculo);
                 //Fim
             });
-
-            veiculosSalvos = veiculos;
-
         },
         error: function () {
             mensagemAlerta('Erro ao listar Veículos');
@@ -103,6 +102,7 @@ function adicionarVeiculo() {
                 dsConsumoVeiculo = $("#dsConsumoVeiculo").val();
 
                 var novoVeiculo = {
+                    id: "",
                     idModelo: idModelo,
                     idMarca: idMarca,
                     nmPlacaVeiculo: nmPlacaVeiculo,
@@ -144,32 +144,51 @@ function editarVeiculo() {
     nmPlacaVeiculo = $("#nmPlacaVeiculo").val();
     $.get('findByPlaca/' + nmPlacaVeiculo, function (veiculo) {
 
-        if (( veiculos.findIndex(veiculo => veiculo.nmPlacaVeiculo === nmPlacaVeiculo) >= 0 && veiculos[index].nmPlacaVeiculo != nmPlacaVeiculo ) || (veiculosSalvos.findIndex(veiculo => veiculo.nmPlacaVeiculo === nmPlacaVeiculo) >= 0 && !veiculos.findIndex(veiculo => veiculo.nmPlacaVeiculo === nmPlacaVeiculo) >= 0) || (!veiculos.findIndex(veiculo => veiculo.nmPlacaVeiculo === nmPlacaVeiculo) >= 0 && veiculos[index].nmPlacaVeiculo == nmPlacaVeiculo)){
-            mensagemAlerta('Veículo com Placa já Cadastrada');
+        if (veiculos[index].nmPlacaVeiculo == nmPlacaVeiculo) {
+
+            salvarEdicao(index, nmPlacaVeiculo, veiculos[index].id);
+
         } else {
-            idModelo = $("#modelo").val();
-            idMarca = $("#marca").val();
-            anoVeiculo = $("#anoVeiculo").val();
-            dsConsumoVeiculo = $("#dsConsumoVeiculo").val();
-    
-            var atualizadoVeiculo = {
-                idModelo: idModelo,
-                idMarca: idMarca,
-                nmPlacaVeiculo: nmPlacaVeiculo,
-                anoVeiculo: anoVeiculo,
-                dsConsumoVeiculo: dsConsumoVeiculo
+            if (veiculos.findIndex(veiculo => veiculo.nmPlacaVeiculo === nmPlacaVeiculo) == -1) {
+                if (veiculosSalvos.findIndex(veiculoS => veiculoS.nmPlacaVeiculo === nmPlacaVeiculo) >= 0) {
+
+                    salvarEdicao(index, nmPlacaVeiculo, veiculoS.id);
+
+                } else {
+                    if (!veiculo) {
+
+                        salvarEdicao(index, nmPlacaVeiculo, veiculos[index].id);
+
+                    }
+                }
             }
-    
-            veiculos[index] = atualizadoVeiculo;
-            $("#divBtnAtualizar").attr('style', 'display : none');
-            $("#divBtnAdicionar").attr('style', 'display : block');
-            $("#btnVeiculo" + index).html(nmPlacaVeiculo);
-    
-            limparCampos();
         }
 
     });
 
+}
+
+function salvarEdicao(index, nmPlacaVeiculo, id = null) {
+
+    idModelo = $("#modelo").val();
+    idMarca = $("#marca").val();
+    anoVeiculo = $("#anoVeiculo").val();
+    dsConsumoVeiculo = $("#dsConsumoVeiculo").val();
+
+    var atualizadoVeiculo = {
+        id: id,
+        idModelo: idModelo,
+        idMarca: idMarca,
+        nmPlacaVeiculo: nmPlacaVeiculo,
+        anoVeiculo: anoVeiculo,
+        dsConsumoVeiculo: dsConsumoVeiculo
+    }
+
+    veiculos[index] = atualizadoVeiculo;
+    $("#divBtnAtualizar").attr('style', 'display : none');
+    $("#divBtnAdicionar").attr('style', 'display : block');
+    $("#btnVeiculo" + index).html(nmPlacaVeiculo);
+    limparCampos();
 }
 
 
