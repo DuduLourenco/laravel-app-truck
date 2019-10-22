@@ -29,7 +29,8 @@
 				</div>
 
 				<div class="row">
-				<table id="tabelaVeiculo" class="container-login100-form-btn">	</table>
+				<table id="tabelaVeiculo" class="container-login100-form-btn">							
+				</table>
 				</div>
 
 				<div class="text-center p-t-25 p-b-30">
@@ -57,7 +58,7 @@
 				<div class="row">
 						<div class="col-sm">
 								<div class="wrap-input100  m-b-16" data-validate="" id="divMarca">
-										<select name="marca" id="marca" class="input100" style="border: none; outline: 0px;" >
+										<select onchange="carregaModelos()" name="marca" id="marca" class="input100" style="border: none; outline: 0px;" >
 											<option value="" selected="selected" >Marca</option>
 												@foreach ($marcas as $marca) {
 													<option value='{{$marca->id}}' >{{$marca->nmMarca}}</option>
@@ -91,7 +92,7 @@
 								</button>
 						</div>		
 						<div class="col-sm p-t-5" id="divBtnAtualizar" style="display: none">
-								<button type="button" id="btnAtualizar" class="login100-form-btn wrap-input100"  onclick="editarVeiculo(this)">
+								<button type="button" id="btnAtualizar" class="login100-form-btn wrap-input100"  onclick="editarVeiculo()">
 										Editar
 								</button>
 						</div>					
@@ -103,7 +104,7 @@
 						
 					</div>
 				</div>
-
+			<input type="hidden" id="idUsuario" value="{{Session::get('usuario')->id}}">
 			</form>
 		</div>
 	</div>

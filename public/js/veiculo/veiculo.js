@@ -1,107 +1,175 @@
 var veiculos = new Array();
+var veiculosSalvos = new Array(); //Veiculos que já estão salvos no banco
 var tabelaVeiculo = $("#tabelaVeiculo");
+var idUsuario = $("#idUsuario").val();
+var index;
 
-$('select[name=marca]').change(function() {
-    carregaModelos();
-});
+//Variáveis para criação de um Veiculo
+var idModelo;
+var idMarca;
+var nmPlacaVeiculo;
+var anoVeiculo;
+var dsConsumoVeiculo;
 
-function finalizaVeiculos() {    
+
+
+function finalizaVeiculos() {
     $.ajax({
-        url:'cadastrar',
+        url: 'cadastrar',
         type: 'POST',
-        dataType:'json',
+        dataType: 'json',
         contentType: 'json',
         data: JSON.stringify(veiculos),
-        contentType: 'application/json; charset=utf-8'        
-    }).done(function() { 
-        //window.location = "../usuarios/login"
-    });;
+        contentType: 'application/json; charset=utf-8'
+    }).done(function () {
+        window.location = "../"
+    });
 }
 
+$(document).ready(function () {
+    valor = $(this).val();
+    $.ajax({
 
-function carregaModelos() {
-    var idMarca = $('select[name=marca]').val();
+        type: 'POST',
+        url: "listar/" + idUsuario,
+        dataType: 'JSON',
+        data: {
+            "veiculos": veiculos
+        },
+        success: function (data) {
+            var i = 0;
+            data.forEach(veiculo => {
+                tabelaVeiculo.append('<div class="p-t-5 col-sm"><button id="btnVeiculo' + i + '" onclick="carregarVeiculo(' + i + ')" type="button" class="login100-form-btn wrap-input100">' + veiculo.nmPlacaVeiculo + '</button></div>');
+                i++;
+                //Popular o Array veiculos com o retorno
 
-    if (idMarca == "") {
-        $('select[name=modelo]').empty();
-        $('select[name=modelo]').append('<option value="" selected="selected">Modelo</option>');
-    } else {
-        $.get('modelos/listModelos/' + idMarca, function (modelos) {
-            $('select[name=modelo]').empty();
-            $('select[name=modelo]').append('<option value="" selected="selected">Modelo</option>');
-            $.each(modelos, function (key, value) {            
-                $('select[name=modelo]').append('<option value=' + value.id + '>' + value.nmModelo + '</option>');
+                nmPlacaVeiculo = veiculo.nmPlacaVeiculo;
+                anoVeiculo = veiculo.anoVeiculo;
+                dsConsumoVeiculo = veiculo.dsConsumoVeiculo;
+                idModelo = veiculo.idModelo;
+
+                var novoVeiculo = {
+                    idModelo: idModelo,
+                    nmPlacaVeiculo: nmPlacaVeiculo,
+                    anoVeiculo: anoVeiculo,
+                    dsConsumoVeiculo: dsConsumoVeiculo
+                }
+
+                $.get('modelos/findMarca/' + idModelo, function (marca) {
+                    novoVeiculo.idMarca = marca.id;
+                });
+
+                veiculos.push(novoVeiculo);
+                //Fim
             });
-        });
-    }  
-}
 
-function adicionarVeiculo () {   
-    
+            veiculosSalvos = veiculos;
+
+        },
+        error: function () {
+            mensagemAlerta('Erro ao listar Veículos');
+        },
+    });
+});
+
+function adicionarVeiculo() {
+
     if (validaCampos()) {
         return false;
     }
 
-    var infos = "\nDados:\n";
-    idModelo = $("#modelo").val();
-    idMarca = $("#marca").val();
     nmPlacaVeiculo = $("#nmPlacaVeiculo").val();
-    anoVeiculo = $("#anoVeiculo").val();
-    dsConsumoVeiculo = $("#dsConsumoVeiculo").val();
 
-    var novoVeiculo = {
-        idModelo: idModelo,
-        idMarca: idMarca,
-        nmPlacaVeiculo: nmPlacaVeiculo,
-        anoVeiculo: anoVeiculo,
-        dsConsumoVeiculo: dsConsumoVeiculo
-    }
+    $.get('findByPlaca/' + nmPlacaVeiculo, function (veiculo) {
+        placaExiste = false;
 
-    veiculos.push(novoVeiculo);
-    tabelaVeiculo.append('<div class="p-t-5 col-sm"><button id="btnVeiculo'+(veiculos.length - 1)+'" onclick="carregarVeiculo('+(veiculos.length - 1)+')" type="button" class="login100-form-btn wrap-input100">'+veiculos[ veiculos.length - 1 ].nmPlacaVeiculo+'</button></div>');
-    limparCampos();
+
+        if (veiculo) {
+            mensagemAlerta('Veículo com Placa já Cadastrada');
+        } else {
+
+            veiculos.forEach(veiculo => {
+                if (veiculo.nmPlacaVeiculo == nmPlacaVeiculo) {
+                    mensagemAlerta('Veículo com Placa já Cadastrada');
+                    placaExiste = true;
+                }
+            });
+
+            if (!placaExiste) {
+                idModelo = $("#modelo").val();
+                idMarca = $("#marca").val();
+
+                anoVeiculo = $("#anoVeiculo").val();
+                dsConsumoVeiculo = $("#dsConsumoVeiculo").val();
+
+                var novoVeiculo = {
+                    idModelo: idModelo,
+                    idMarca: idMarca,
+                    nmPlacaVeiculo: nmPlacaVeiculo,
+                    anoVeiculo: anoVeiculo,
+                    dsConsumoVeiculo: dsConsumoVeiculo
+                }
+
+                veiculos.push(novoVeiculo);
+                tabelaVeiculo.append('<div class="p-t-5 col-sm"><button id="btnVeiculo' + (veiculos.length - 1) + '" onclick="carregarVeiculo(' + (veiculos.length - 1) + ')" type="button" class="login100-form-btn wrap-input100">' + veiculos[veiculos.length - 1].nmPlacaVeiculo + '</button></div>');
+                limparCampos();
+            }
+
+        }
+    });
+
 }
 
-function carregarVeiculo (i) {  
-    limparCampos();   
+function carregarVeiculo(i) {
+    limparCampos();
+    index = i;
     $("#nmPlacaVeiculo").val(veiculos[i].nmPlacaVeiculo);
     $("#anoVeiculo").val(veiculos[i].anoVeiculo);
     $("#dsConsumoVeiculo").val(veiculos[i].dsConsumoVeiculo);
     $("#marca").val(veiculos[i].idMarca);
-    carregaModelos(); 
-    $("#divBtnAtualizar").attr('style','display : block');
-    $("#btnAtualizar").attr('data-value',i);
-    $("#divBtnAdicionar").attr('style','display : none'); 
-    $("#modelo").val(veiculos[i].idModelo);
-} 
+    $("#divBtnAtualizar").attr('style', 'display : block');
+    $("#btnAtualizar").attr('data-value', i);
+    $("#divBtnAdicionar").attr('style', 'display : none');
+    carregaModelos(veiculos[i].idModelo);
+}
 
-function editarVeiculo (btnAtualizar) {
+function editarVeiculo() {
 
     if (validaCampos()) {
         return false;
     }
 
-    btnAtualizar = $(btnAtualizar);
-    index = btnAtualizar.data('value');
+    btnAtualizar = $("#btnAtualizar");
 
-    idModelo = $("#modelo").val();
-    idMarca = $("#marca").val();
     nmPlacaVeiculo = $("#nmPlacaVeiculo").val();
-    anoVeiculo = $("#anoVeiculo").val();
-    dsConsumoVeiculo = $("#dsConsumoVeiculo").val();
+    $.get('findByPlaca/' + nmPlacaVeiculo, function (veiculo) {
 
-    var atualizadoVeiculo = {
-        idModelo: idModelo,
-        idMarca: idMarca,
-        nmPlacaVeiculo: nmPlacaVeiculo,
-        anoVeiculo: anoVeiculo,
-        dsConsumoVeiculo: dsConsumoVeiculo
-    }
-    veiculos[index] = atualizadoVeiculo;
-    $("#divBtnAtualizar").attr('style','display : none');
-    $("#divBtnAdicionar").attr('style','display : block');
-    $("#btnVeiculo"+index).html(nmPlacaVeiculo);
-    limparCampos();
+        if (( veiculos.findIndex(veiculo => veiculo.nmPlacaVeiculo === nmPlacaVeiculo) >= 0 && veiculos[index].nmPlacaVeiculo != nmPlacaVeiculo ) || (veiculosSalvos.findIndex(veiculo => veiculo.nmPlacaVeiculo === nmPlacaVeiculo) >= 0 && !veiculos.findIndex(veiculo => veiculo.nmPlacaVeiculo === nmPlacaVeiculo) >= 0) || (!veiculos.findIndex(veiculo => veiculo.nmPlacaVeiculo === nmPlacaVeiculo) >= 0 && veiculos[index].nmPlacaVeiculo == nmPlacaVeiculo)){
+            mensagemAlerta('Veículo com Placa já Cadastrada');
+        } else {
+            idModelo = $("#modelo").val();
+            idMarca = $("#marca").val();
+            anoVeiculo = $("#anoVeiculo").val();
+            dsConsumoVeiculo = $("#dsConsumoVeiculo").val();
+    
+            var atualizadoVeiculo = {
+                idModelo: idModelo,
+                idMarca: idMarca,
+                nmPlacaVeiculo: nmPlacaVeiculo,
+                anoVeiculo: anoVeiculo,
+                dsConsumoVeiculo: dsConsumoVeiculo
+            }
+    
+            veiculos[index] = atualizadoVeiculo;
+            $("#divBtnAtualizar").attr('style', 'display : none');
+            $("#divBtnAdicionar").attr('style', 'display : block');
+            $("#btnVeiculo" + index).html(nmPlacaVeiculo);
+    
+            limparCampos();
+        }
+
+    });
+
 }
 
 
@@ -143,7 +211,7 @@ function validaCampos() {
     } else if (nmPlacaVeiculo.trim().length != 8) {
         divNmPlacaVeiculo.attr("data-validate", "Preenchimento Incorreto");
         divNmPlacaVeiculo.addClass("alert-validate");
-        erro += "\ncampo:Placa";        
+        erro += "\ncampo:Placa";
     }
 
 
@@ -167,13 +235,16 @@ function validaCampos() {
         erro += "\ncampo:Consumo";
     }
 
-    if (erro == "") {        
+    if (erro == "") {
         return false;
     }
     return true;
 }
 
-function limparCampos () {
+
+
+
+function limparCampos() {
     $("#modelo").val("");
     $("#marca").val("");
     $("#nmPlacaVeiculo").val("");
@@ -181,14 +252,35 @@ function limparCampos () {
     $("#dsConsumoVeiculo").val("");
 }
 
-$(function(){
+$(function () {
     $('#nmPlacaVeiculo').mask("SSS-0A00");
-    $('#anoVeiculo').mask('0000'); 
-    $('#dsConsumoVeiculo').mask('00,00', {reverse: true});
+    $('#anoVeiculo').mask('0000');
+    $('#dsConsumoVeiculo').mask('00,00', { reverse: true });
 });
 
-$('#nmPlacaVeiculo').on('input', function(evt) {
-    $(this).val(function(_, val) {
-      return val.toUpperCase();
+$('#nmPlacaVeiculo').on('input', function (evt) {
+    $(this).val(function (_, val) {
+        return val.toUpperCase();
     });
 });
+
+function carregaModelos($modelo = null) {
+
+    var idMarca = $('select[name=marca]').val();
+
+    if (idMarca == "") {
+        $('select[name=modelo]').empty();
+        $('select[name=modelo]').append('<option value="" selected="selected">Modelo</option>');
+    } else {
+        $.get('modelos/listModelos/' + idMarca, function (modelos) {
+            $('select[name=modelo]').empty();
+            $('select[name=modelo]').append('<option value="" selected="selected">Modelo</option>');
+            $.each(modelos, function (key, value) {
+                $('select[name=modelo]').append('<option value=' + value.id + '>' + value.nmModelo + '</option>');
+            });
+        }).done(function () {
+            $('select[name=modelo]').val($modelo);
+        });
+
+    }
+}

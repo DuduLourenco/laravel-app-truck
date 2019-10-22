@@ -14,6 +14,8 @@ class MarcasController extends Controller
         $this->marca = new MarcaVeiculo();
     }
 
+    
+
     public function listAll()
     {
         return $this->marca->all();

@@ -19,7 +19,7 @@
 	@yield('conteudo')
 	
 <!--===============================================================================================-->
-	<script src="{{ asset('vendor/jquery/jquery-3.4.1.min.js') }}"></script>
+	<script src="{{ asset('vendor/jquery/jquery-3.4.1.js') }}"></script>
 	<script src="{{ asset('vendor/jquery/jquery.mask.js') }}"></script>
 	<script src="{{ asset('vendor/bootstrap/js/popper.js') }}"></script>
 	<script src="{{ asset('vendor/bootstrap/js/bootstrap.js') }}"></script>

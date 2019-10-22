@@ -26,9 +26,12 @@ Route::group(["prefix" => "/"], function () {
 Route::group(["prefix" => "veiculos"], function () {
     Route::get("/cadastro", "VeiculosController@cadastroView");
     Route::post("/cadastrar", "VeiculosController@cadastrar");
-
+    Route::any("/listar/{id}", "VeiculosController@listVeiculosByIdUsuario"); 
+    Route::any("/findByPlaca/{id}", "VeiculosController@findByPlaca");    
+    
     Route::group(["prefix" => "/modelos"], function () {
         Route::get("/listModelos/{id}", "ModelosController@listModelosByIdMarca");
+        Route::any("/findMarca/{id}", "ModelosController@findMarcaByIdModelo");
     });
 });
 
