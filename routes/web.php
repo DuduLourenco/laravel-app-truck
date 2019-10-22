@@ -22,5 +22,7 @@ Route::group(["prefix" => "veiculos"], function () {
     Route::get("/cadastro", "VeiculosController@cadastroView");
 });
 
+Route::get("/maps", "maps@index");
+
 Route::get("/listModelos/{id}", "ModelosController@listModelosByIdMarca");
 
