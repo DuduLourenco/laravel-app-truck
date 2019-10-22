@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar-light al-navbar" style="background-color: #e6e6e6">
     <div class="container">
         <a class="navbar-brand" href="#">App Truck</a>
@@ -7,8 +8,8 @@
         </button>
         <div class="collapse navbar-collapse" id="primaryNav">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Viajar <span class="sr-only"></span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/') }}">Viajar <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('veiculos/cadastro') }}">Veículos</a>

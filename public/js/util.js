@@ -51,3 +51,4 @@ function mensagemAlerta($mensagem) {
 		size: 'small'
 	});
 }
+

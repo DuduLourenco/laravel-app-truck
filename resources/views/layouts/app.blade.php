@@ -2,7 +2,6 @@
 <html lang="pt">
 <head>	
 	<meta charset="UTF-8">
-	<title>App Trucks - @yield('titulo')</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
@@ -12,6 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 <!--===============================================================================================-->
+	<title>App Trucks - @yield('titulo')</title>
+
+	
 	@yield('css')
 </head>
 <body >

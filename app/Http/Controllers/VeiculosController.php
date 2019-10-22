@@ -22,7 +22,7 @@ class VeiculosController extends Controller
     }
 
     public function cadastroView(Request $request)
-    {        
+    {
         $list_marcas = $this->marcaVeiculo->all();
         $list_veiculos = $this->listVeiculosByIdUsuario($request->session()->get('usuario'));
         return view('veiculo.cadastro', [
@@ -32,7 +32,7 @@ class VeiculosController extends Controller
     }
 
     public function cadastrar(Request $request)
-    {        
+    {
         $veiculos = $request->all();
         $usuario = $request->session()->get('usuario');
         $usuario = [
@@ -41,29 +41,42 @@ class VeiculosController extends Controller
         ];
 
         foreach ($veiculos as $veiculo) {
-            $novoVeiculo = new Veiculo();
-            $novoVeiculo->idModelo = $veiculo['idModelo'];
-            $novoVeiculo->idUsuario = $usuario['idUsuario'];
-            $novoVeiculo->nmPlacaVeiculo = $veiculo['nmPlacaVeiculo'];
-            $novoVeiculo->anoVeiculo = $veiculo['anoVeiculo'];
-            $novoVeiculo->dsConsumoVeiculo = $veiculo['dsConsumoVeiculo'];
 
-            try{
-                $novoVeiculo->save();
-            }catch (\Exception $e) {
-                return "ERRO: ".$e->getMessage();
+            $novoVeiculo = new Veiculo();
+            $novoVeiculo->nmPlacaVeiculo = $veiculo['nmPlacaVeiculo'];          
+            $veiculoParaUpdate = Veiculo::find($veiculo['id']);//findByPlaca($novoVeiculo->nmPlacaVeiculo);
+            //return var_dump($veiculoParaUpdate);
+            if ($veiculoParaUpdate) {
+                $veiculoParaUpdate->nmPlacaVeiculo   = $veiculo['nmPlacaVeiculo'];
+                $veiculoParaUpdate->idModelo         = $veiculo['idModelo'];
+                $veiculoParaUpdate->idUsuario        = $usuario['idUsuario'];
+                $veiculoParaUpdate->anoVeiculo       = $veiculo['anoVeiculo'];
+                $veiculoParaUpdate->dsConsumoVeiculo = $veiculo['dsConsumoVeiculo'];
+            } else {
+                $novoVeiculo->idModelo         = $veiculo['idModelo'];
+                $novoVeiculo->idUsuario        = $usuario['idUsuario'];
+                $novoVeiculo->anoVeiculo       = $veiculo['anoVeiculo'];
+                $novoVeiculo->dsConsumoVeiculo = $veiculo['dsConsumoVeiculo'];
             }
 
+            try {
+                if ($veiculoParaUpdate) {
+                    $veiculoParaUpdate->update();
+                } else {
+                    $novoVeiculo->save();
+                }
+            } catch (\Exception $e) {
+                return "ERRO: " . $e->getMessage();
+            }
         }
         $sen['sucess'] = true;
         return $sen;
-
     }
 
     public function listVeiculosByIdUsuario($idUsuario)
     {
         $usuario = $this->usuario->find($idUsuario)->first();
-        $veiculos = $usuario->listVeiculos()->getQuery()->get(['id','nmPlacaVeiculo','idModelo','anoVeiculo','dsConsumoVeiculo']);
+        $veiculos = $usuario->listVeiculos()->getQuery()->get(['id', 'nmPlacaVeiculo', 'idModelo', 'anoVeiculo', 'dsConsumoVeiculo']);
         return $veiculos;
     }
 
@@ -71,7 +84,4 @@ class VeiculosController extends Controller
     {
         return $this->veiculo->where('nmPlacaVeiculo', $nmPlacaVeiculo)->first();
     }
-
-
-
 }
