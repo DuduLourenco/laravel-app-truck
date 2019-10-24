@@ -43,10 +43,10 @@ Cadastro
 					</div>
 				</div>
 				<div class="col-sm">
-					<div class="wrap-input100 m-b-16 {{$errors->has("dtNascimentoUsuario") ? "alert-validate" : ""}}"
-						data-validate="{{ $errors->has("dtNascimentoUsuario") ? $errors->first("dtNascimentoUsuario") : "" }}">
-						<input class="input100" type="text" name="dtNascimentoUsuario" id="dtNascimentoUsuario"
-							maxlength="10" placeholder="Data de Nascimento" value="{{ old("dtNascimentoUsuario") }}">
+					<div class="wrap-input100 m-b-16 {{$errors->has("dtNascimentoUsuarioNF") ? "alert-validate" : ""}}"
+						data-validate="{{ $errors->has("dtNascimentoUsuarioNF") ? $errors->first("dtNascimentoUsuarioNF") : "" }}">
+						<input class="input100" type="text" name="dtNascimentoUsuarioNF" id="dtNascimentoUsuarioNF"
+							maxlength="10" placeholder="Data de Nascimento" value="{{ old("dtNascimentoUsuarioNF") }}">
 						<span class="focus-input100"></span>
 					</div>
 				</div>
@@ -91,6 +91,8 @@ Cadastro
 					</div>
 				</div>
 			</div>
+
+			<input type="hidden" name="dtNascimentoUsuario" id="dtNascimentoUsuario">
 
 			<div class="container-login100-form-btn">
 				<button type="button" class="login100-form-btn" onclick="valida()">

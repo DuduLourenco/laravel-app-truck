@@ -65,7 +65,7 @@ $(document).ready(function () {
                 //Fim
             });
         },
-        error: function () {
+        error: function (data) {
             mensagemAlerta('Erro ao listar Veículos');
         },
     });
@@ -121,9 +121,10 @@ function adicionarVeiculo() {
 }
 
 function carregarVeiculo(i) {
-    limparCampos();
+    limparCampos();    
     index = i;
     $("#nmPlacaVeiculo").val(veiculos[i].nmPlacaVeiculo);
+    $("#spanVeiculo").html("Editar Veículo - " + veiculos[i].nmPlacaVeiculo);
     $("#anoVeiculo").val(veiculos[i].anoVeiculo);
     $("#dsConsumoVeiculo").val(veiculos[i].dsConsumoVeiculo);
     $("#marca").val(veiculos[i].idMarca);
@@ -156,9 +157,9 @@ function editarVeiculo() {
 
                 } else {
                     if (!veiculo) {
-
                         salvarEdicao(index, nmPlacaVeiculo, veiculos[index].id);
-
+                    } else {
+                        mensagemAlerta('Veículo com Placa já Cadastrada');
                     }
                 }
             }
@@ -188,6 +189,7 @@ function salvarEdicao(index, nmPlacaVeiculo, id = null) {
     $("#divBtnAtualizar").attr('style', 'display : none');
     $("#divBtnAdicionar").attr('style', 'display : block');
     $("#btnVeiculo" + index).html(nmPlacaVeiculo);
+    $("#spanVeiculo").html("Novo Veículo");
     limparCampos();
 }
 

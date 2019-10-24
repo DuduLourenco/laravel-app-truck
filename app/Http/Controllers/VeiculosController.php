@@ -24,10 +24,8 @@ class VeiculosController extends Controller
     public function cadastroView(Request $request)
     {
         $list_marcas = $this->marcaVeiculo->all();
-        $list_veiculos = $this->listVeiculosByIdUsuario($request->session()->get('usuario'));
         return view('veiculo.cadastro', [
-            'marcas' => $list_marcas,
-            'veiculos' => $list_veiculos
+            'marcas' => $list_marcas
         ]);
     }
 
@@ -75,9 +73,8 @@ class VeiculosController extends Controller
 
     public function listVeiculosByIdUsuario($idUsuario)
     {
-        $usuario = $this->usuario->find($idUsuario)->first();
-        $veiculos = $usuario->listVeiculos()->getQuery()->get(['id', 'nmPlacaVeiculo', 'idModelo', 'anoVeiculo', 'dsConsumoVeiculo']);
-        return $veiculos;
+        $usuario = $this->usuario->find($idUsuario);
+        return $veiculos = $usuario->listVeiculos()->getQuery()->get(['id', 'nmPlacaVeiculo', 'idModelo', 'anoVeiculo', 'dsConsumoVeiculo']);        
     }
 
     public function findByPlaca($nmPlacaVeiculo)

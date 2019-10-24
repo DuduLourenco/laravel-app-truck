@@ -21,9 +21,9 @@ class Usuario extends Model
         'updated_at'
     ];
     protected $table = 'tb_usuario';
-    
+
     public function listVeiculos()
     {
-        return $this->hasMany(Veiculo::class, 'idUsuario');
+        return $this->hasMany(Veiculo::class, 'idUsuario', 'id');
     }
 }

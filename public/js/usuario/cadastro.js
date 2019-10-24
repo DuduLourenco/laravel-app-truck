@@ -9,7 +9,7 @@ $(function(){
     };
     
     $('#nrTelefoneUsuario').mask(SPMaskBehavior, spOptions);
-    $('#dtNascimentoUsuario').mask('0000-00-00');
+    $('#dtNascimentoUsuarioNF').mask('00/00/0000');
     $('#cdCpfUsuario').mask('000.000.000-00');    
     
 
@@ -19,7 +19,7 @@ function valida(){
     var erro = "";
    nmUsuario           = $("#nmUsuario").val();
    cdCpfUsuario        = $("#cdCpfUsuario").val();
-   dtNascimentoUsuario = $("#dtNascimentoUsuario").val();
+   dtNascimentoUsuarioNF = $("#dtNascimentoUsuarioNF").val(); //NF = não formatado
    nrTelefoneUsuario   = $("#nrTelefoneUsuario").val();
    dsEmailUsuario      = $("#dsEmailUsuario").val();
    nmSenhaUsuario      = $("#nmSenhaUsuario").val();
@@ -30,10 +30,14 @@ function valida(){
         erro += "CPF inválido!<BR>";
    }
 
-   if(!validaData(dtNascimentoUsuario) && dtNascimentoUsuario!=""){       
+   dtNascimentoUsuario = formataData(dtNascimentoUsuarioNF);
+
+   if(!validaData(dtNascimentoUsuario) && dtNascimentoUsuarioNF!=""){       
         $("#dtNascimentoUsuario").focus();
         erro += "Data de Nascimento Inválida!<BR>";
-   } 
+   }  else {
+       $("#dtNascimentoUsuario").val(dtNascimentoUsuario);
+   }
 
    if (nmSenhaUsuario.trim() != nmSenhaUsuarioC.trim() && (nmSenhaUsuario.trim() != "" && nmSenhaUsuarioC.trim() != "")) {
         $("#nmSenhaUsuario").focus();
@@ -49,7 +53,7 @@ function valida(){
         });
 
         return false;
-   } else {
+   } else {        
         $("#form").submit();
    }
    

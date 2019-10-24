@@ -23,6 +23,10 @@ Route::group(["prefix" => "/"], function () {
     Route::get("/", "PrincipalController@principalView");
 });
 
+Route::group(["prefix" => "/viagens"], function () {
+    Route::get("/", "ViagensController@viagemView");
+});
+
 Route::group(["prefix" => "veiculos"], function () {
     Route::get("/cadastro", "VeiculosController@cadastroView");
     Route::post("/cadastrar", "VeiculosController@cadastrar");

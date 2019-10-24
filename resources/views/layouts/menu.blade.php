@@ -1,7 +1,6 @@
-
 <nav class="navbar navbar-expand-lg navbar-light al-navbar" style="background-color: #e6e6e6">
     <div class="container">
-        <a class="navbar-brand" href="#">App Truck</a>
+        <!--<a class="navbar-brand" href="#">App Truck</a>-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primaryNav"
             aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -15,7 +14,7 @@
                     <a class="nav-link" href="{{ url('veiculos/cadastro') }}">Veículos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Viagens</a>
+                    <a class="nav-link" href="{{ url('viagens') }}">Viagens</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Ganhos</a>
@@ -28,16 +27,6 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" id="navbarDropdown">
-                        <i class="fa fa-envelope" aria-hidden="true">
-                            <span class="badge badge-secondary">0</span>
-                        </i>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <p class="dropdown-item"> Sem Notificações</p>
-                    </div>
-                </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -51,8 +40,7 @@
                     </div>
                 </li>
             </ul>
-
-
         </div>
+
     </div>
 </nav>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulo')
-Cadastro
+Veículos
 @endsection
 
 @if(!Session::get('logado'))
@@ -39,8 +39,8 @@ Cadastro
 			</div>
 
 			<div class="text-center p-t-25 p-b-30">
-				<span class="txt1">
-					Cadastrar Veículo(s)
+				<span id="spanVeiculo" class="txt1">
+					Novo Veículo
 				</span>
 			</div>
 
@@ -114,7 +114,7 @@ Cadastro
 
 				</div>
 			</div>
-			<input type="hidden" id="idUsuario" value="{{Session::get('usuario')->id}}">
+			<input type="hidden" id="idUsuario" value="@if (Session::has('usuario')){{Session::get('usuario')->id}}@endif">
 			<input type="hidden" id="idVeiculo" value="">
 		</form>
 	</div>

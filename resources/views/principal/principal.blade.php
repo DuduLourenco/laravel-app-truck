@@ -23,21 +23,21 @@ Viajar
 
 <div class="container-login100" style="align-items: stretch">
   <div class="wrap-login100 p-t-45 p-b-30" style="width: 640px">
-
-    @if (Carbon\Carbon::now()->format('H') >= 18 || Carbon\Carbon::now()->format('H') <= 4) <span
-      class="login100-form-title p-b-40">
-      Boa noite, {{Session::get('usuario')->nmUsuario}}
-      </span>
-      @elseif (Carbon\Carbon::now()->format('H') >= 12)
-      <span class="login100-form-title p-b-40">
-        Boa tarde, {{Session::get('usuario')->nmUsuario}}
-      </span>
-      @else
-      <span class="login100-form-title p-b-40">
-        Bom dia, {{Session::get('usuario')->nmUsuario}}
-      </span>
+      @if (Session::has('usuario'))
+        @if (Carbon\Carbon::now()->format('H') >= 18 || Carbon\Carbon::now()->format('H') <= 4) <span
+          class="login100-form-title p-b-40">
+          Boa noite, {{Session::get('usuario')->nmUsuario}}
+          </span>
+        @elseif (Carbon\Carbon::now()->format('H') >= 12)
+          <span class="login100-form-title p-b-40">
+            Boa tarde, {{Session::get('usuario')->nmUsuario}}
+          </span>
+        @else
+          <span class="login100-form-title p-b-40">
+            Bom dia, {{Session::get('usuario')->nmUsuario}}
+          </span>
+        @endif
       @endif
-
       <div class="wrap-input100 m-b-16 m-t-16">
         <div id="map" class="input100 mx-auto" style="min-height: 340px;">
 

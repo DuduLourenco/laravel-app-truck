@@ -52,3 +52,21 @@ function mensagemAlerta($mensagem) {
 	});
 }
 
+function formataData(data, tipo) {
+	switch (tipo) {
+		default:
+			var dia  = data.split("/")[0];
+        	var mes  = data.split("/")[1];
+			var ano  = data.split("/")[2];
+			dataFormatada = ano + '-' + ("0"+mes).slice(-2) + '-' + ("0"+dia).slice(-2);
+			break;
+		case 2:
+			var ano  = data.split("-")[0];
+        	var mes  = data.split("-")[1];
+			var dia  = data.split("-")[2];
+			dataFormatada = ("0"+dia).slice(-2) + '/' + ("0"+mes).slice(-2) + '/' + ano;
+			break;
+	}
+	return dataFormatada;
+}
+

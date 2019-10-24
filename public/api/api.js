@@ -1,11 +1,3 @@
-function carregaMap(){
-    $.get('../api/getRota', function (rota) {
-        
-    });
-}
-
-
-
 var place;
         var dest = {
             lat: 0,

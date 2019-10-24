@@ -32,12 +32,11 @@ class UsuariosController extends Controller
     public function entrar(Request $request)
     {
         $usuario = $this->findByCpf($request->cdCpfUsuario);
-        if ($usuario->nmSenhaUsuario == $request->nmSenhaUsuario) {
+        if ($usuario && ( $usuario->nmSenhaUsuario == $request->nmSenhaUsuario )) {
             $request->session()->put('usuario', $usuario);
             $request->session()->put('logado', true);
 
             $veiculos = $usuario->listVeiculos()->getQuery()->count();
-
             if ($veiculos > 0) {
                 return redirect("/");
             } else {
@@ -79,10 +78,8 @@ class UsuariosController extends Controller
         try {
             $usuario->save();
         } catch (\Exception $e) {
-            return "ERRO: " . $e->getMessage();
+            return redirect("usuarios/login")->with("message", "Erro ao cadastrar Usuário!");
         }
-
-
         return redirect("usuarios/login")->with("message", "Usuário cadastrado com sucesso!");
     }
 
@@ -96,7 +93,7 @@ class UsuariosController extends Controller
         $regras = [
             'nmUsuario' => 'required|min:5',
             'cdCpfUsuario' => 'required',
-            'dtNascimentoUsuario' => 'required',
+            'dtNascimentoUsuarioNF' => 'required',
             'nrTelefoneUsuario' => 'required',
             'dsEmailUsuario' => 'required',
             'nmSenhaUsuario' => 'required|min:8',
@@ -108,7 +105,7 @@ class UsuariosController extends Controller
             'nmUsuario.required' => 'Entre com o Nome',
 
             'cdCpfUsuario.required' => 'Entre com o CPF',
-            'dtNascimentoUsuario.required' => 'Entre com a Data de Nascimento',
+            'dtNascimentoUsuarioNF.required' => 'Entre com a Data de Nascimento',
             'nrTelefoneUsuario.required' => 'Entre com o Número de Telefone',
             'dsEmailUsuario.required' => 'Entre com o E-mail',
             'nmSenhaUsuario.required' => 'Entre com a Senha',
