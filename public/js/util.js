@@ -70,3 +70,8 @@ function formataData(data, tipo) {
 	return dataFormatada;
 }
 
+function arredonda(numero, casasDecimais) {
+    casasDecimais = typeof casasDecimais !== 'undefined' ?  casasDecimais : 2;
+    return + (Math.floor(numero + ('e+' + casasDecimais)) + ('e-' + casasDecimais));
+}
+
