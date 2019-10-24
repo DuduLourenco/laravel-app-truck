@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(["prefix" => "usuarios"], function () {
+Route::group(["prefix" => "/usuarios"], function () {
     Route::get("/login", "UsuariosController@loginView");
     Route::get("/cadastro", "UsuariosController@cadastroView");
     Route::post("/entrar", "UsuariosController@entrar");
@@ -27,7 +27,7 @@ Route::group(["prefix" => "/viagens"], function () {
     Route::get("/", "ViagensController@viagemView");
 });
 
-Route::group(["prefix" => "veiculos"], function () {
+Route::group(["prefix" => "/veiculos"], function () {
     Route::get("/cadastro", "VeiculosController@cadastroView");
     Route::post("/cadastrar", "VeiculosController@cadastrar");
     Route::any("/listar/{id}", "VeiculosController@listVeiculosByIdUsuario");

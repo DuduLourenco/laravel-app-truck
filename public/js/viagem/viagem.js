@@ -10,6 +10,7 @@ var pos = {
 var map, directionsRenderer, directionsService;
 var directionsRenderer;
 var directionsService;
+var distancia;
 
 function initMap() {
     directionsRenderer = new google.maps.DirectionsRenderer;
@@ -288,7 +289,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
             travelMode: google.maps.TravelMode["DRIVING"]
         }, function (response, status) {
             if (status == 'OK') {
-                directionsRenderer.setDirections(response);                
+                directionsRenderer.setDirections(response);
                 var rota = response.routes[0].legs[0];
                 var dados = "Dados: ";
                 dados += "\nDe: " + rota.start_address;
@@ -297,8 +298,8 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                 dados += "\nDuração: " + rota.duration['text'];
                 $("#dsDistancia").val(rota.distance['text']);
                 $("#dsTempo").val(rota.duration['text']);
-                window.location.href='#ancora';
-                //mensagemAlerta(dados);
+                window.location.href = '#ancora';
+                distancia = rota.distance['value'];
             } else {
                 window.alert('Directions request failed due to ' + status);
             }
@@ -306,4 +307,21 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     }
 
 }
+
+function calculaGasto() {
+    nmPlacaVeiculo = $("#veiculo").val();
+    $.get('/veiculos/findByPlaca/' + nmPlacaVeiculo, function (veiculo) {
+
+    }).done(function (veiculo) {
+        consumo = veiculo.dsConsumoVeiculo.toString().replace(",", ".");
+        gastoTotal = (distancia/(consumo*1000)) * 3.639;
+        gastoTotal = arredonda(gastoTotal,2);
+        $("#dsGastoTotalInfo").val("R$ " + gastoTotal.toString().replace(".", ","));
+        $("#dsGastoTotal").val(gastoTotal.toString().replace(".", ","));
+    });
+
+}
+
+
+
 

@@ -72,11 +72,11 @@ Viagens
 			<div class="row">
 				<div class="col-sm">
 					<div class="wrap-input100  m-b-16" data-validate="" id="divMarca">
-						<select onchange="" name="veiculo" id="veiculo" class="input100"
+						<select onchange="calculaGasto()" name="veiculo" id="veiculo" class="input100"
 							style="border: none; outline: 0px;">
 							<option value="" selected="selected">Veículo</option>
 							@foreach ($veiculos as $veiculo) {
-							<option value='{{$veiculo->id}}'>{{$veiculo->nmPlacaVeiculo}}</option>
+							<option value='{{$veiculo->nmPlacaVeiculo}}'>{{$veiculo->nmPlacaVeiculo}}</option>
 							@endforeach
 						</select>
 						<span class="focus-input100"></span>
@@ -101,7 +101,8 @@ Viagens
 			<div class="row">
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="">
-						<input class="input100" type="text" name="dsGastoTotal" id="dsGastoTotal"
+						
+						<input class="input100" type="text" name="dsGastoTotalInfo" id="dsGastoTotalInfo"
 							placeholder="Gasto Total" disabled="true">
 						<span class="focus-input100"></span>
 					</div>
@@ -126,6 +127,7 @@ Viagens
 			<input type="hidden" id="idUsuario"
 				value="@if (Session::has('usuario')){{Session::get('usuario')->id}}@endif">
 			<input type="hidden" id="idViagem" value="">
+			<input type="hidden" id="dsGastoTotal" value="">
 		</form>
 	</div>
 </div>
