@@ -5,7 +5,7 @@ Viagens
 @endsection
 
 @section('css')
-<!-- <link href="{{ asset('api/api.css') }}" rel="stylesheet"> -->
+
 @endsection
 
 @if(!Session::get('logado'))
@@ -21,17 +21,11 @@ Viagens
 
 <div class="container-login100" style="align-items: stretch">
 	<div class="wrap-login100 p-b-30 p-t-45" style="width: 640px">
-		<form id="form" class="login100-form validate-form" method="get" action="{{ url('viagens/nova') }}">
+		<form id="form" class="login100-form validate-form" method="get" action="{{ url('/usuarios/login') }}">
 			{{ csrf_field() }}
 			<span class="login100-form-title p-b-40">
-				Viagens
-			</span>
-
-			<div class="text-center p-t-25 p-b-15">
-				<span class="txt1">
-					Proximas Viagens
-				</span>
-			</div>
+				Nova Viagem - Confirmação
+			</span>			
 
 			<div class="row">
 				<table id="tabelaVeiculo" class="container-login100-form-btn">
@@ -117,7 +111,7 @@ Viagens
 			<div class="container-login100-form-btn">
 				<div class="row">
 					<div class="col-sm p-t-5">
-						<button type="button" class="login100-form-btn wrap-input100" onclick="salvaViagem()">
+						<button type="button" class="login100-form-btn wrap-input100" onclick="">
 							Agendar Viagem
 						</button>
 					</div>
@@ -137,8 +131,5 @@ Viagens
 @endsection
 
 @section('importacoes')
-<script src="{{ asset('js/viagem/viagem.js') }}"></script>
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQCnq0A9TueU4DKWoAtSONIXX-6kFLxys&libraries=places,directions&callback=initMap"
-	async defer></script>
+
 @endsection

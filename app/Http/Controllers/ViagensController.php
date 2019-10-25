@@ -26,4 +26,13 @@ class ViagensController extends Controller
             'veiculos' => $list_veiculos
         ]);
     }
+
+    public function viagemCView(Request $request)
+    {
+        $usuario = $request->session()->get('usuario');
+        $list_veiculos = $usuario->listVeiculos()->getQuery()->get(['id', 'nmPlacaVeiculo', 'idModelo', 'anoVeiculo', 'dsConsumoVeiculo']);
+        return view('viagem.viagem_confirmacao', [
+            'veiculos' => $list_veiculos
+        ]);
+    }
 }

@@ -25,6 +25,7 @@ Route::group(["prefix" => "/"], function () {
 
 Route::group(["prefix" => "/viagens"], function () {
     Route::get("/", "ViagensController@viagemView");
+    Route::get("/nova", "ViagensController@viagemCView");
 });
 
 Route::group(["prefix" => "/veiculos"], function () {

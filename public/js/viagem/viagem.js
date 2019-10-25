@@ -240,7 +240,6 @@ function initAutocomplete() {
             }
         });
 
-        map.fitBounds(bounds);
     });
 
     searchBoxDestino.addListener('places_changed', function () {
@@ -277,7 +276,6 @@ function initAutocomplete() {
 
         });
 
-        map.fitBounds(bounds);
     });
 }
 
@@ -320,6 +318,10 @@ function calculaGasto() {
         $("#dsGastoTotal").val(gastoTotal.toString().replace(".", ","));
     });
 
+}
+
+function salvaViagem(){
+    $("#form").submit();
 }
 
 
