@@ -21,7 +21,7 @@ Viagens
 
 <div class="container-login100" style="align-items: stretch">
 	<div class="wrap-login100 p-b-30 p-t-45" style="width: 640px">
-		<form id="form" class="login100-form validate-form" method="get" action="{{ url('viagens/nova') }}">
+		<form id="form" class="login100-form validate-form" method="post" action="{{ url('viagens/nova') }}">
 			{{ csrf_field() }}
 			<span class="login100-form-title p-b-40">
 				Viagens
@@ -34,7 +34,7 @@ Viagens
 			</div>
 
 			<div class="row">
-				<table id="tabelaVeiculo" class="container-login100-form-btn">
+				<table id="tabelaViagens" class="container-login100-form-btn">
 				</table>
 			</div>
 
@@ -45,7 +45,7 @@ Viagens
 			</div>
 
 			<div class="wrap-input100 m-b-16 m-t-16">
-				<input class="input100" type="text" id="dsOrigem" placeholder="De">
+				<input class="input100" type="text" name="dsOrigem" id="dsOrigem" placeholder="De">
 				<span class="focus-input100"></span>
 			</div>
 
@@ -85,14 +85,14 @@ Viagens
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="">
 						<input class="input100" type="text" name="dsTempo" id="dsTempo" placeholder="Tempo de Viagem"
-							disabled="true">
+						readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="">
 						<input class="input100" type="text" name="dsDistancia" id="dsDistancia"
-							placeholder="Total de KM" disabled="true">
+							placeholder="Total de KM" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
@@ -103,7 +103,7 @@ Viagens
 					<div class="wrap-input100 m-b-16" data-validate="">
 						
 						<input class="input100" type="text" name="dsGastoTotalInfo" id="dsGastoTotalInfo"
-							placeholder="Gasto Total" disabled="true">
+							placeholder="Gasto Total" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
@@ -124,10 +124,16 @@ Viagens
 				</div>
 			</div>
 
-			<input type="hidden" id="idUsuario"
+			<input type="hidden" name="idUsuario" id="idUsuario"
 				value="@if (Session::has('usuario')){{Session::get('usuario')->id}}@endif">
-			<input type="hidden" id="idViagem" value="">
-			<input type="hidden" id="dsGastoTotal" value="">
+
+			<input type="hidden" name="idViagem" id="idViagem" value="">
+			<input type="hidden" name="dsGastos" id="dsGastos" value="">
+
+			<input type="hidden" name="dsOrigemLat" id="dsOrigemLat" value="">
+			<input type="hidden" name="dsOrigemLng" id="dsOrigemLng" value="">
+			<input type="hidden" name="dsDestinoLat" id="dsDestinoLat" value="">
+			<input type="hidden" name="dsDestinoLng" id="dsDestinoLng" value="">
 		</form>
 	</div>
 </div>

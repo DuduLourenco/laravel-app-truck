@@ -31,8 +31,10 @@ class ViagensController extends Controller
     {
         $usuario = $request->session()->get('usuario');
         $list_veiculos = $usuario->listVeiculos()->getQuery()->get(['id', 'nmPlacaVeiculo', 'idModelo', 'anoVeiculo', 'dsConsumoVeiculo']);
+        //return $request->all();
         return view('viagem.viagem_confirmacao', [
-            'veiculos' => $list_veiculos
+            'veiculos' => $list_veiculos,
+            'request' => $request
         ]);
     }
 }

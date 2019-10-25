@@ -294,10 +294,18 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                 dados += "\nPara: " + rota.end_address;
                 dados += "\nDistância: " + rota.distance['text'];
                 dados += "\nDuração: " + rota.duration['text'];
+
                 $("#dsDistancia").val(rota.distance['text']);
                 $("#dsTempo").val(rota.duration['text']);
+
+                $("#dsOrigemLat").val(pos.lat);
+                $("#dsOrigemLng").val(pos.lng);
+                $("#dsDestinoLat").val(dest.lat);
+                $("#dsDestinoLng").val(dest.lng);
+
                 window.location.href = '#ancora';
                 distancia = rota.distance['value'];
+                calculaGasto();
             } else {
                 window.alert('Directions request failed due to ' + status);
             }
@@ -308,19 +316,23 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
 function calculaGasto() {
     nmPlacaVeiculo = $("#veiculo").val();
-    $.get('/veiculos/findByPlaca/' + nmPlacaVeiculo, function (veiculo) {
 
-    }).done(function (veiculo) {
-        consumo = veiculo.dsConsumoVeiculo.toString().replace(",", ".");
-        gastoTotal = (distancia/(consumo*1000)) * 3.639;
-        gastoTotal = arredonda(gastoTotal,2);
-        $("#dsGastoTotalInfo").val("R$ " + gastoTotal.toString().replace(".", ","));
-        $("#dsGastoTotal").val(gastoTotal.toString().replace(".", ","));
-    });
+    if ($("#dsDistancia").val() && nmPlacaVeiculo != "") {
+        
+        $.get('/veiculos/findByPlaca/' + nmPlacaVeiculo, function (veiculo) {
+
+        }).done(function (veiculo) {
+            consumo = veiculo.dsConsumoVeiculo.toString().replace(",", ".");
+            gastoTotal = (distancia / (consumo * 1000)) * 3.639;
+            gastoTotal = arredonda(gastoTotal, 2);
+            $("#dsGastoTotalInfo").val("R$ " + gastoTotal.toString().replace(".", ","));
+            $("#dsGastos").val(gastoTotal.toString().replace(".", ","));
+        });
+    }
 
 }
 
-function salvaViagem(){
+function salvaViagem() {
     $("#form").submit();
 }
 
