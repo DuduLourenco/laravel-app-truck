@@ -24,6 +24,35 @@ class UsuariosController extends Controller
         ]);
     }
 
+    public function alterarView(){
+        return view('usuario.alterar');
+    }
+
+    public function alterar(Request $request){
+        $validacao = $this->validacao($request->all());
+        if ($validacao->fails()) {
+            return redirect()->back()
+                ->withErrors($validacao->errors())
+                ->withInput($request->all());
+        }
+        $usuario = $this->findByCpf($request->cdCpfUsuario);
+        $usuario->nmUsuario = $request->nmUsuario;
+        $usuario->cdCpfUsuario = $request->cdCpfUsuario;
+        $usuario->dtNascimentoUsuario = $request->dtNascimentoUsuario;
+        $usuario->nrTelefoneUsuario = $request->nrTelefoneUsuario;
+        $usuario->dsEmailUsuario = $request->dsEmailUsuario;
+        $usuario->nmSenhaUsuario = $request->nmSenhaUsuario;
+        $request->session()->put('usuario', $usuario);
+        try {
+            $usuario->save();
+        } catch (\Exception $e) {
+            return redirect("usuarios/alterar")->with("message", "Erro ao cadastrar Usuário!");
+        }
+        return redirect("usuarios/alterar")->with("message", "Usuário cadastrado com sucesso!");
+
+    }
+
+
     public function cadastroView()
     {
         return view('usuario.cadastro');
@@ -49,14 +78,13 @@ class UsuariosController extends Controller
 
     public function verificaLogado(Request $request)
     {
-        
+
         if ($request->session()->get('logado')) {
             echo "0";
-        } else {          
+        } else {
             echo "1";
         }
     }
-
 
 
     public function cadastrar(Request $request)

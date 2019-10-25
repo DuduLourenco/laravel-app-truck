@@ -34,7 +34,7 @@
                         Minha Conta
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#"><i class="fa fa-fw fa-user"></i> Perfil</a>
+                        <a class="dropdown-item" href="{{ url('usuarios/alterarDados') }}"><i class="fa fa-fw fa-user"></i> Perfil</a>
                         <a class="dropdown-item" href="{{ url('usuarios', ['login']) }}"><i
                                 class="fa fa-fw fa-close"></i> Sair</a>
                     </div>

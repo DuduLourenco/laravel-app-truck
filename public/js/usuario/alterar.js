@@ -19,7 +19,7 @@ function valida(){
     var erro = "";
    nmUsuario           = $("#nmUsuario").val();
    cdCpfUsuario        = $("#cdCpfUsuario").val();
-   dtNascimentoUsuarioNF = $("#dtNascimentoUsuarioNF").val(); //NF = não formatado
+   dtNascimentoUsuario = $("#dtNascimentoUsuario").val(); //NF = não formatado
    nrTelefoneUsuario   = $("#nrTelefoneUsuario").val();
    dsEmailUsuario      = $("#dsEmailUsuario").val();
    nmSenhaUsuario      = $("#nmSenhaUsuario").val();
@@ -30,7 +30,6 @@ function valida(){
         erro += "CPF inválido!<BR>";
    }
 
-   dtNascimentoUsuario = formataData(dtNascimentoUsuarioNF);
 
    if(!validaData(dtNascimentoUsuario) && dtNascimentoUsuarioNF!=""){
         $("#dtNascimentoUsuario").focus();
@@ -54,11 +53,19 @@ function valida(){
 
         return false;
    } else {
-        $("#form").submit();
+       bootbox.confirm({
+        message: "Você tem certeza que deseja realizar estas alterações?",
+        size: 'small',
+        callback: function(result){
+            if(result){
+                $("#form").submit();
+            }
+        }
+    });
+
+
+
    }
 
 
 }
-
-
-
