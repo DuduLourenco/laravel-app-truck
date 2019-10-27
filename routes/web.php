@@ -23,6 +23,8 @@ Route::group(["prefix" => "/usuarios"], function () {
 
 Route::group(["prefix" => "/"], function () {
     Route::get("/", "PrincipalController@principalView");
+    Route::get("/", "TesteController@viewOpen");
+
 });
 
 Route::group(["prefix" => "/viagens"], function () {
