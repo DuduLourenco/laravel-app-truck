@@ -37,4 +37,25 @@ class ViagensController extends Controller
             'request' => $request
         ]);
     }
+
+    public function listViagensbyId($idUsuario)
+    {
+        $usuario = $this->usuario->find($idUsuario);
+        return $viagens = $usuario->listViagens()->getQuery()->get([                
+            'dsOrigemLat',
+            'dsOrigemLng',
+            'dsDestinoLat',
+            'dsDestinoLng',
+            'dsDistancia',
+            'dsTempo',
+            'dtPrazo',
+            'hrPrazo',
+            'dsGastos',
+            'dsValor',
+            'dsLucro',
+            'dsStatus',
+            'idUsuario',
+            'idVeiculo'
+        ]);        
+    }
 }
