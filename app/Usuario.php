@@ -26,4 +26,9 @@ class Usuario extends Model
     {
         return $this->hasMany(Veiculo::class, 'idUsuario', 'id');
     }
+
+    public function listViagens()
+    {
+        return $this->hasMany(Viagem::class, 'idUsuario', 'id');
+    }
 }

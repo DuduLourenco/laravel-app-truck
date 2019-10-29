@@ -15,18 +15,18 @@ class CriaTbViagem extends Migration
     {
         Schema::create('tb_viagem', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('dsOrigemLat');
-            $table->string('dsOrigemLng');
-            $table->string('dsDestinoLat');
-            $table->string('dsDestinoLng');
-            $table->string('dsDistancia');
-            $table->string('dsTempo');
-            $table->string('dtPrazo');
-            $table->string('hrPrazo');
-            $table->string('dsGastos');
-            $table->string('dsValor');
-            $table->string('dsLucro');
-            $table->string('dsStatus');
+            $table->double('dsOrigemLat')->required();
+            $table->double('dsOrigemLng')->required();
+            $table->double('dsDestinoLat')->required();
+            $table->double('dsDestinoLng')->required();
+            $table->double('dsDistancia')->required();
+            $table->string('dsTempo')->required();
+            $table->date('dtPrazo')->required();
+            $table->time('hrPrazo')->required();
+            $table->double('dsGastos')->required();
+            $table->double('dsValor')->required();
+            $table->double('dsLucro')->required();
+            $table->string('dsStatus')->required();
             $table->integer('idUsuario')->unsigned();
             $table->integer('idVeiculo')->unsigned();
             $table->foreign('idUsuario')->references('id')->on('tb_usuario')->onDelete('cascade');

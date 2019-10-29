@@ -23,6 +23,36 @@ class UsuariosController extends Controller
             'usuarios' => $list_usuarios
         ]);
     }
+    
+    public function relatorioView()
+    {
+        return view('usuario.relatorio');
+    }
+
+    
+    public function listarViagensByCpf($cpf)
+    {
+
+        $usuario = $this->findByCpf($cpf);
+        return $usuario->listViagens()->getQuery()->get([                
+            'dsOrigemLat',
+            'dsOrigemLng',
+            'dsDestinoLat',
+            'dsDestinoLng',
+            'dsDistancia',
+            'dsTempo',
+            'dtPrazo',
+            'hrPrazo',
+            'dsGastos',
+            'dsValor',
+            'dsLucro',
+            'dsStatus',
+            'idUsuario',
+            'idVeiculo'
+        ]);  
+       
+        
+    }
 
     public function alterarView(){
         return view('usuario.alterar');
