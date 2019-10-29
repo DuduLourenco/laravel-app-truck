@@ -21,7 +21,7 @@ Viagens
 
 <div class="container-login100" style="align-items: stretch">
 	<div class="wrap-login100 p-b-30 p-t-45" style="width: 640px">
-		<form id="form" class="login100-form validate-form" method="post" action="{{ url('viagens/nova') }}">
+		<form id="form" class="login100-form validate-form" method="post" action="{{ url('viagens/confirmar') }}">
 			{{ csrf_field() }}
 			<span class="login100-form-title p-b-40">
 				Viagens
@@ -84,14 +84,14 @@ Viagens
 				</div>
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="">
-						<input class="input100" type="text" name="dsTempo" id="dsTempo" placeholder="Tempo de Viagem"
+						<input class="input100" type="text" name="dsTempoInfo" id="dsTempoInfo" placeholder="Tempo de Viagem"
 						readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="">
-						<input class="input100" type="text" name="dsDistancia" id="dsDistancia"
+						<input class="input100" type="text" name="dsDistanciaInfo" id="dsDistanciaInfo"
 							placeholder="Total de KM" readonly>
 						<span class="focus-input100"></span>
 					</div>
@@ -134,6 +134,9 @@ Viagens
 			<input type="hidden" name="dsOrigemLng" id="dsOrigemLng" value="">
 			<input type="hidden" name="dsDestinoLat" id="dsDestinoLat" value="">
 			<input type="hidden" name="dsDestinoLng" id="dsDestinoLng" value="">
+
+			<input type="hidden" name="dsDistancia" id="dsDistancia" value="">
+			<input type="hidden" name="dsTempo" id="dsTempo" value="">
 		</form>
 	</div>
 </div>

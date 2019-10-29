@@ -4,7 +4,16 @@
 Alterar
 @endsection
 
+@if(!Session::get('logado'))
+<script>
+	window.location = '{{url('usuarios/login')}}';
+</script>
+@endif
+
 @section('conteudo')
+
+@extends('layouts.menu')
+
 <div class="container-login100">
 	<div class="wrap-login100 p-t-90 p-b-30" style="width: 640px">
 		<form id="form" class="login100-form validate-form" method="post" action="{{ url('/usuarios/alterar') }}">
@@ -39,7 +48,8 @@ Alterar
 					<div class="wrap-input100 m-b-16 {{$errors->has("dtNascimentoUsuario") ? "alert-validate" : ""}}"
 						data-validate="{{ $errors->has("dtNascimentoUsuario") ? $errors->first("dtNascimentoUsuario") : "" }}">
 						<input class="input100" type="text" name="dtNascimentoUsuario" id="dtNascimentoUsuario"
-							maxlength="10" placeholder="Data de Nascimento" value="{{Session::get('usuario')->dtNascimentoUsuario}}">
+							maxlength="10" placeholder="Data de Nascimento"
+							value="{{Session::get('usuario')->dtNascimentoUsuario}}">
 						<span class="focus-input100"></span>
 					</div>
 				</div>

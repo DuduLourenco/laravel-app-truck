@@ -25,11 +25,14 @@ Route::group(["prefix" => "/usuarios"], function () {
 
 Route::group(["prefix" => "/"], function () {
     Route::get("/", "PrincipalController@principalView");
+    Route::get("/teste", "TesteController@viewOpen");
+
 });
 
 Route::group(["prefix" => "/viagens"], function () {
     Route::get("/", "ViagensController@viagemView");
-    Route::post("/nova", "ViagensController@viagemCView");
+    Route::post("/confirmar", "ViagensController@viagemConfirmacaoView");    
+    Route::post("/cadastrar", "ViagensController@cadastrar");
 });
 
 Route::group(["prefix" => "/veiculos"], function () {

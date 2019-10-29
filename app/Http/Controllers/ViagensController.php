@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Veiculo;
+use App\Viagem;
 use App\Usuario;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class ViagensController extends Controller
         ]);
     }
 
-    public function viagemCView(Request $request)
+    public function viagemConfirmacaoView(Request $request)
     {
         $usuario = $request->session()->get('usuario');
         $list_veiculos = $usuario->listVeiculos()->getQuery()->get(['id', 'nmPlacaVeiculo', 'idModelo', 'anoVeiculo', 'dsConsumoVeiculo']);
@@ -38,10 +39,38 @@ class ViagensController extends Controller
         ]);
     }
 
+    public function cadastrar(Request $request)
+    {
+        $viagem = new Viagem();
+        $viagem->dsOrigemLat  = $request->dsOrigemLat;
+        $viagem->dsOrigemLng  = $request->dsOrigemLng;
+        $viagem->dsDestinoLat = $request->dsDestinoLat;
+        $viagem->dsDestinoLng = $request->dsDestinoLng;
+        $viagem->dsDistancia  = $request->dsDistancia;
+        $viagem->dsTempo      = $request->dsTempo;
+        $viagem->dtPrazo      = $request->dtPrazo;
+        $viagem->hrPrazo      = $request->hrPrazo;
+        $viagem->dsGastos     = $request->dsGastos; 
+        $viagem->dsValor      = $request->dsValor;
+        $viagem->dsLucro      = $request->dsLucro;
+        $viagem->dsStatus     = $request->dsStatus;
+        $viagem->idUsuario    = $request->idUsuario;
+        $viagem->idVeiculo    = $request->idVeiculo;
+        //return var_dump($viagem->first());
+
+        try {
+            $viagem->save();
+        } catch (\Exception $e) {
+            dd($e);
+            return redirect("/")->with("message", "Erro ao cadastrar Viagem!");
+        }
+        return redirect("/")->with("message", "Viagem cadastrada com sucesso!");
+    }
+
     public function listViagensbyId($idUsuario)
     {
         $usuario = $this->usuario->find($idUsuario);
-        return $viagens = $usuario->listViagens()->getQuery()->get([                
+        return $viagens = $usuario->listViagens()->getQuery()->get([
             'dsOrigemLat',
             'dsOrigemLng',
             'dsDestinoLat',
@@ -56,6 +85,6 @@ class ViagensController extends Controller
             'dsStatus',
             'idUsuario',
             'idVeiculo'
-        ]);        
+        ]);
     }
 }
