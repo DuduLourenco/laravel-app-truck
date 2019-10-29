@@ -16,34 +16,50 @@ function showGetResult()
 }
 
 
-window.onload = function () {
+window.onload = grafico();
+function grafico () {
     var lucros = JSON.parse(showGetResult());
     var arrayLucros = [];
+    var spam = $("#timeSpam").val();
+    var spamT = "";
     for (let index = 0; index < lucros.length; index++) {
-        if(lucros[index].dsStatus == "Feita"){
-            arrayLucros.push({ label: lucros[index].dtPrazo,  y: this.parseFloat(lucros[index].dsLucro) });    
+        if(spam==1){
+            if(lucros[index].dsStatus == "Feita" && new Date(lucros[index].dtPrazo).getTime() > new Date(Date.now()).getTime()-(3.154*Math.pow(10,10))){
+                arrayLucros.push({ label: lucros[index].dtPrazo,  y: this.parseFloat(lucros[index].dsLucro) });    
+                spamT="Anual";
+            }
+        }else if(spam==2){
+            if(lucros[index].dsStatus == "Feita" && new Date(lucros[index].dtPrazo).getTime() > new Date(Date.now()).getTime()-(2.628*Math.pow(10,9))){
+                arrayLucros.push({ label: lucros[index].dtPrazo,  y: this.parseFloat(lucros[index].dsLucro) });    
+                spamT="Mensal";
+            }
+        }else{
+            if(lucros[index].dsStatus == "Feita" ){
+                arrayLucros.push({ label: lucros[index].dtPrazo,  y: this.parseFloat(lucros[index].dsLucro) });    
+                spamT="Total";
+            }
         }
+        
     }
     arrayLucros.push(
-        { label: "Lucro Mensal", isIntermediateSum: true});
-    window.alert(JSON.stringify(arrayLucros));
+        { label: "Lucro "+spamT, isIntermediateSum: true});
     var chart = new CanvasJS.Chart("chartContainer", {
-        theme: "light1", // "light1", "ligh2", "dark1", "dark2"
+        theme: "dark1", // "light1", "ligh2", "dark1", "dark2"
         animationEnabled: true,
         title: {
-            text: "Balanço"
+            text: "Balanço "+spamT
         },
         axisY: {
-            title: "Balanço)",
+            title: "Lucro",
             prefix: "R$",
             lineThickness: 0
         },
         data: [{
             type: "waterfall",
             indexLabel: "{y}",
-            indexLabelFontColor: "#EEEEEE",
+            indexLabelFontColor: "#FFFF00",
             indexLabelPlacement: "inside",
-            yValueFormatString: "#,##0",
+            yValueFormatString: "#,##0.00",
             dataPoints: arrayLucros
         }]
     });

@@ -34,7 +34,7 @@ class UsuariosController extends Controller
     {
 
         $usuario = $this->findByCpf($cpf);
-        return $usuario->listViagens()->getQuery()->get([                
+        return $usuario->listViagens()->getQuery()->orderBy('dtPrazo')->get([                
             'dsOrigemLat',
             'dsOrigemLng',
             'dsDestinoLat',

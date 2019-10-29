@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
             'nmModelo'=>'Accelo 815',
             'idMarca'=>1,
         ]);
-        for ($i=0; $i < 500; $i++) { 
+        for ($i=0; $i < 50; $i++) { 
             Usuario::create([
                 'nmUsuario'=> $this->randomName(),
                 'cdCpfUsuario'=> $this->cpfRandom(),
@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
             ]);
 
             
-            for ($j=0; $j <10 ; $j++) { 
+            for ($j=0; $j <5 ; $j++) { 
                 $gasto=rand(0,3000);
                 $ganhos=rand(0,3000);
                 $lucro = $gasto-$ganhos;
@@ -92,7 +92,40 @@ class DatabaseSeeder extends Seeder
                     'dsDestinoLng'=>rand(0,100),
                     'dsDistancia'=>rand(0,100),
                     'dsTempo'=>rand(0,100),
-                    'dtPrazo'=> $this->randomDateInRange(new DateTime('2000-01-01'), new DateTime('2019-01-01')),
+                    'dtPrazo'=> $this->randomDateInRange(new DateTime('2018-01-01'), new DateTime('2019-10-10')),
+                    'hrPrazo'=>date("H:i",$this->randomDateInRange(new DateTime('2000-01-01'), new DateTime('2019-01-01'))->getTimestamp()),
+                    'dsGastos'=>$gasto,
+                    'dsValor'=>$ganhos,
+                    'dsLucro'=>$lucro,
+                    'dsStatus'=>"Feita",
+                    'idUsuario'=>$i+1,
+                    'idVeiculo'=>($i*2)+rand(1,2)
+                ]);
+                Viagem::create([
+                    'dsOrigemLat'=>rand(0,100),
+                    'dsOrigemLng'=>rand(0,100),
+                    'dsDestinoLat'=>rand(0,100),
+                    'dsDestinoLng'=>rand(0,100),
+                    'dsDistancia'=>rand(0,100),
+                    'dsTempo'=>rand(0,100),
+                    'dtPrazo'=> $this->randomDateInRange(new DateTime('2015-01-01'), new DateTime('2019-10-10')),
+                    'hrPrazo'=>date("H:i",$this->randomDateInRange(new DateTime('2000-01-01'), new DateTime('2019-01-01'))->getTimestamp()),
+                    'dsGastos'=>$gasto,
+                    'dsValor'=>$ganhos,
+                    'dsLucro'=>$lucro,
+                    'dsStatus'=>"Feita",
+                    'idUsuario'=>$i+1,
+                    'idVeiculo'=>($i*2)+rand(1,2)
+                ]);
+                
+                Viagem::create([
+                    'dsOrigemLat'=>rand(0,100),
+                    'dsOrigemLng'=>rand(0,100),
+                    'dsDestinoLat'=>rand(0,100),
+                    'dsDestinoLng'=>rand(0,100),
+                    'dsDistancia'=>rand(0,100),
+                    'dsTempo'=>rand(0,100),
+                    'dtPrazo'=> $this->randomDateInRange(new DateTime('2019-09-28'), new DateTime('2019-10-10')),
                     'hrPrazo'=>date("H:i",$this->randomDateInRange(new DateTime('2000-01-01'), new DateTime('2019-01-01'))->getTimestamp()),
                     'dsGastos'=>$gasto,
                     'dsValor'=>$ganhos,
