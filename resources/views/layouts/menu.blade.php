@@ -23,7 +23,7 @@
                     <a class="nav-link" href="#">Gastos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Cofrinho Manutenção</a>
+                    <a class="nav-link" href="{{url('usuarios/cofrinho')}}">Cofrinho Manutenção</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">

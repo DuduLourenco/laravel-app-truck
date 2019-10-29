@@ -161,6 +161,11 @@ class UsuariosController extends Controller
         return $this->usuario->where('cdCpfUsuario', $cdCpfUsuario)->first();
     }
 
+    public function cofrinhoView()
+    {
+        return view('usuario.cofrinho');
+    }
+
     public function validacao($data)
     {
         $regras = [

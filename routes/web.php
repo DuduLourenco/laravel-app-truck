@@ -21,7 +21,7 @@ Route::group(["prefix" => "/usuarios"], function () {
     Route::get("/relatorio", "UsuariosController@relatorioView");
     Route::get("/listarViagens/{cpf}", "UsuariosController@listarViagensByCpf");
     Route::post("/alterar", "UsuariosController@alterar");
-    Route::post("/cofrinho", "UsuariosController@cofrinhoView");
+    Route::get("/cofrinho", "UsuariosController@cofrinhoView");
 });
 
 
