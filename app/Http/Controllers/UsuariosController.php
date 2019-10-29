@@ -23,18 +23,18 @@ class UsuariosController extends Controller
             'usuarios' => $list_usuarios
         ]);
     }
-    
+
     public function relatorioView()
     {
         return view('usuario.relatorio');
     }
 
-    
+
     public function listarViagensByCpf($cpf)
     {
 
         $usuario = $this->findByCpf($cpf);
-        return $usuario->listViagens()->getQuery()->orderBy('dtPrazo')->get([                
+        return $usuario->listViagens()->getQuery()->orderBy('dtPrazo')->get([
             'dsOrigemLat',
             'dsOrigemLng',
             'dsDestinoLat',
@@ -49,9 +49,9 @@ class UsuariosController extends Controller
             'dsStatus',
             'idUsuario',
             'idVeiculo'
-        ]);  
-       
-        
+        ]);
+
+
     }
 
     public function alterarView(){
@@ -74,13 +74,26 @@ class UsuariosController extends Controller
         $usuario->nmSenhaUsuario = $request->nmSenhaUsuario;
         $request->session()->put('usuario', $usuario);
         try {
-            $usuario->save();
+            $usuario->update();
         } catch (\Exception $e) {
             return redirect("usuarios/alterar")->with("message", "Erro ao cadastrar Usuário!");
         }
         return redirect("usuarios/alterar")->with("message", "Usuário cadastrado com sucesso!");
 
     }
+
+    public function alterarCofrinho(Request $request){
+        $usuario->dsValorCofrinho = $usuario->dsValorCofrinho+$request->valor;
+        $request->session()->put('usuario', $usuario);
+        try {
+            $usuario->update();
+        } catch (\Exception $e) {
+            return redirect("usuarios/alterar")->with("message", "Erro ao alterar cofrinho!");
+        }
+        return redirect("usuarios/alterar")->with("message", "Cofrinho alterado com sucesso!");
+
+    }
+
 
 
     public function cadastroView()
@@ -133,6 +146,8 @@ class UsuariosController extends Controller
         $usuario->nrTelefoneUsuario = $request->nrTelefoneUsuario;
         $usuario->dsEmailUsuario = $request->dsEmailUsuario;
         $usuario->nmSenhaUsuario = $request->nmSenhaUsuario;
+        $usuario->dsValorCofrinho = 0;
+
         try {
             $usuario->save();
         } catch (\Exception $e) {

@@ -21,6 +21,7 @@ class CriaTabelaTbUsuario extends Migration
             $table->string('nrTelefoneUsuario', 15)->unique();
             $table->string('dsEmailUsuario', 100)->unique();
             $table->string('nmSenhaUsuario', 100)->requiered();
+            $table->double('dsValorCofrinho',7);
             $table->timestamps();
         });
     }

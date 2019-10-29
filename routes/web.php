@@ -21,7 +21,9 @@ Route::group(["prefix" => "/usuarios"], function () {
     Route::get("/relatorio", "UsuariosController@relatorioView");
     Route::get("/listarViagens/{cpf}", "UsuariosController@listarViagensByCpf");
     Route::post("/alterar", "UsuariosController@alterar");
+    Route::post("/cofrinho", "UsuariosController@cofrinhoView");
 });
+
 
 Route::group(["prefix" => "/"], function () {
     Route::get("/", "PrincipalController@principalView");
@@ -31,7 +33,7 @@ Route::group(["prefix" => "/"], function () {
 
 Route::group(["prefix" => "/viagens"], function () {
     Route::get("/", "ViagensController@viagemView");
-    Route::post("/confirmar", "ViagensController@viagemConfirmacaoView");    
+    Route::post("/confirmar", "ViagensController@viagemConfirmacaoView");
     Route::post("/cadastrar", "ViagensController@cadastrar");
 });
 

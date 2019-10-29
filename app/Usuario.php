@@ -12,7 +12,8 @@ class Usuario extends Model
         'dtNascimentoUsuario',
         'nrTelefoneUsuario',
         'dsEmailUsuario',
-        'nmSenhaUsuario'
+        'nmSenhaUsuario',
+        'dsValorCofrinho'
     ];
 
     protected $guarded = [

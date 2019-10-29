@@ -6,6 +6,7 @@ use App\Veiculo;
 use App\MarcaVeiculo;
 use App\ModeloVeiculo;
 use App\Viagem;
+use App\Gasto;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +15,11 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    
-    
+
+
     public function run()
     {
-        
+
         // $this->call(UsersTableSeeder::class);
         $todayh = getdate();
         $d = $todayh['mday'];
@@ -34,37 +35,81 @@ class DatabaseSeeder extends Seeder
         MarcaVeiculo::create([
             'nmMarca'=>'Volvo'
         ]);
-        ModeloVeiculo::create([        
+        ModeloVeiculo::create([
             'nmModelo'=>'Atego 2425',
             'idMarca'=>1,
         ]);
-        ModeloVeiculo::create([        
+        ModeloVeiculo::create([
             'nmModelo'=>'R440',
             'idMarca'=>2,
         ]);
-        ModeloVeiculo::create([        
+        ModeloVeiculo::create([
             'nmModelo'=>'VM',
             'idMarca'=>3,
         ]);
-        
-        ModeloVeiculo::create([        
+
+        ModeloVeiculo::create([
             'nmModelo'=>'FH',
             'idMarca'=>3,
         ]);
-        ModeloVeiculo::create([        
+        ModeloVeiculo::create([
             'nmModelo'=>'Accelo 815',
             'idMarca'=>1,
         ]);
-        for ($i=0; $i < 50; $i++) { 
+        for ($i=0; $i < 20; $i++) {
+            $gastos=[];
+            $valor=0;
+            $viagens=[];
+            $gastoT=0;
+            for ($k=0; $k < 10; $k++) {
+                $gasto=[
+                    'dsTipo'=>$this->randomGasto(),
+                    'dsValor'=>rand(100, 500),
+                    'idUsuario'=>$i+1,
+                    'dtGasto'=> $this->randomDateInRange(new DateTime('2019-01-01'), new DateTime($y.'-'.$m.'-'.$d))
+                ];
+                $valor-=$gasto['dsValor'];
+                array_push($gastos,$gasto);
+            }
+            for ($m=0; $m <5 ; $m++) {
+                $gasto=rand(0,3000);
+                $ganhos=rand(0,3000);
+                $lucro = $gasto-$ganhos;
+                $gastoT-=$gasto*0.2;
+                $viagem=[
+                    'dsOrigemLat'=>rand(0,100),
+                    'dsOrigemLng'=>rand(0,100),
+                    'dsDestinoLat'=>rand(0,100),
+                    'dsDestinoLng'=>rand(0,100),
+                    'dsDistancia'=>rand(0,100),
+                    'dsTempo'=>rand(0,100),
+                    'dtPrazo'=> $this->randomDateInRange(new DateTime('2018-01-01'), new DateTime('2019-10-10')),
+                    'hrPrazo'=>date("H:i",$this->randomDateInRange(new DateTime('2000-01-01'), new DateTime('2019-01-01'))->getTimestamp()),
+                    'dsGastos'=>$gasto,
+                    'dsValor'=>$ganhos,
+                    'dsLucro'=>$lucro,
+                    'dsStatus'=>"Feita",
+                    'idUsuario'=>$i+1,
+                    'idVeiculo'=>($i*2)+rand(1,2)
+                ];
+
+                array_push($viagens,$viagem);
+            }
             Usuario::create([
                 'nmUsuario'=> $this->randomName(),
                 'cdCpfUsuario'=> $this->cpfRandom(),
                 'dtNascimentoUsuario'=>  $this->randomDateInRange(new DateTime('1900-01-01'), new DateTime($y.'-'.$m.'-'.$d)),
                 'nrTelefoneUsuario'=> rand(11111111111,99999999999),
                 'dsEmailUsuario'=> rand(0, 9000).'@'.rand(0, 90).'mail.com',
-                'nmSenhaUsuario'=> '12345678'
+                'nmSenhaUsuario'=> '12345678',
+                'dsValorCofrinho'=>$gastoT-$valor
             ]);
-            
+            for ($w=0; $w <10 ; $w++) {
+                Gasto::create(
+                    $gastos[$w]
+                );
+            }
+
             Veiculo::create([
                 'idModelo'=>rand(1,5),
                 'idUsuario'=>$i+1,
@@ -80,27 +125,11 @@ class DatabaseSeeder extends Seeder
                     'dsConsumoVeiculo'=>rand(1,20)
             ]);
 
-            
-            for ($j=0; $j <5 ; $j++) { 
-                $gasto=rand(0,3000);
-                $ganhos=rand(0,3000);
-                $lucro = $gasto-$ganhos;
-                Viagem::create([
-                    'dsOrigemLat'=>rand(0,100),
-                    'dsOrigemLng'=>rand(0,100),
-                    'dsDestinoLat'=>rand(0,100),
-                    'dsDestinoLng'=>rand(0,100),
-                    'dsDistancia'=>rand(0,100),
-                    'dsTempo'=>rand(0,100),
-                    'dtPrazo'=> $this->randomDateInRange(new DateTime('2018-01-01'), new DateTime('2019-10-10')),
-                    'hrPrazo'=>date("H:i",$this->randomDateInRange(new DateTime('2000-01-01'), new DateTime('2019-01-01'))->getTimestamp()),
-                    'dsGastos'=>$gasto,
-                    'dsValor'=>$ganhos,
-                    'dsLucro'=>$lucro,
-                    'dsStatus'=>"Feita",
-                    'idUsuario'=>$i+1,
-                    'idVeiculo'=>($i*2)+rand(1,2)
-                ]);
+            for ($j=0; $j <5 ; $j++) {
+
+                Viagem::create(
+                    $viagens[$j]
+                );
                 Viagem::create([
                     'dsOrigemLat'=>rand(0,100),
                     'dsOrigemLng'=>rand(0,100),
@@ -117,7 +146,7 @@ class DatabaseSeeder extends Seeder
                     'idUsuario'=>$i+1,
                     'idVeiculo'=>($i*2)+rand(1,2)
                 ]);
-                
+
                 Viagem::create([
                     'dsOrigemLat'=>rand(0,100),
                     'dsOrigemLng'=>rand(0,100),
@@ -135,7 +164,7 @@ class DatabaseSeeder extends Seeder
                     'idVeiculo'=>($i*2)+rand(1,2)
                 ]);
             }
-        }        
+        }
     }
 
     function randomDateInRange(DateTime $start, DateTime $end) {
@@ -158,7 +187,7 @@ class DatabaseSeeder extends Seeder
             'Maria Clara',
             'Heitor' ,
             'Pedro Henrique'
-    
+
         );
         $sobrenomes = array(
             'Silva',
@@ -169,11 +198,23 @@ class DatabaseSeeder extends Seeder
             'Pereira',
             'Rodrigues',
             'Almeida'
-    
+
         );
         return $nomes[rand ( 0 , count($nomes) -1)]." ".$sobrenomes[rand ( 0 , count($sobrenomes) -1)];
     }
-    
+
+    function randomGasto() {
+        $gasto = array(
+            'Combustível',
+            'Manutenção',
+            'Troca de Óleo',
+            'Alimentação',
+            'Estadia'
+
+        );
+        return $gasto[rand ( 0 , count($gasto) -1)];
+    }
+
 
     public static function cpfRandom($mascara = "1") {
         $n1 = rand(0, 9);
@@ -203,7 +244,7 @@ class DatabaseSeeder extends Seeder
         }
         return $retorno;
     }
-        
+
     private static function mod($dividendo, $divisor) {
         return round($dividendo - (floor($dividendo / $divisor) * $divisor));
     }
