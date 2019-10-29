@@ -21,7 +21,7 @@ Viagens
 
 <div class="container-login100" style="align-items: stretch">
 	<div class="wrap-login100 p-b-30 p-t-45" style="width: 640px">
-		<form id="form" class="login100-form validate-form" method="post" action="{{ url('/usuarios/login') }}">
+		<form id="form" class="login100-form validate-form" method="post" action="{{ url('viagens/cadastrar') }}">
 			{{ csrf_field() }}
 			<span class="login100-form-title p-b-40">
 				Nova Viagem - Confirmação
@@ -41,13 +41,13 @@ Viagens
 			<div class="row">
 				<div class="col-sm">
 					<div class="wrap-input100 m-t-16">
-						<input class="input100" type="text" value="Duração: {{$request->dsTempo}}" readonly>
+						<input class="input100" type="text" value="Duração: {{$request->dsTempoInfo}}" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
 				<div class="col-sm">
 					<div class="wrap-input100 m-t-16">
-						<input class="input100" type="text" value="Distância: {{$request->dsDistancia}}" readonly>
+						<input class="input100" type="text" value="Distância: {{$request->dsDistanciaInfo}}" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
@@ -127,7 +127,7 @@ Viagens
 			<div class="container-login100-form-btn">
 				<div class="row">
 					<div class="col-sm p-t-5">
-						<button type="button" class="login100-form-btn wrap-input100" onclick="">
+						<button type="button" class="login100-form-btn wrap-input100" onclick="finalizaViagem()">
 							Agendar Viagem
 						</button>
 					</div>
@@ -137,7 +137,13 @@ Viagens
 			<input type="hidden" name="idUsuario" id="idUsuario"
 				value="@if (Session::has('usuario')){{Session::get('usuario')->id}}@endif">
 			<input type="hidden" name="idViagem" id="idViagem" value="">
-			<input type="hidden" name="dsGastos" id="dsGastos" value="{{$request->dsGastos}}">
+			<input type="hidden" name="dsGastos" id="dsGastos" value="{{$request->dsGastos}}">			
+			<input type="hidden" name="dsOrigemLat"  id="dsOrigemLat"  value="{{$request->dsOrigemLat}}">
+			<input type="hidden" name="dsOrigemLng"  id="dsOrigemLng"  value="{{$request->dsOrigemLng}}">
+			<input type="hidden" name="dsDestinoLat" id="dsDestinoLat" value="{{$request->dsDestinoLat}}">
+			<input type="hidden" name="dsDestinoLng" id="dsDestinoLng" value="{{$request->dsDestinoLng}}">
+			<input type="hidden" name="dsDistancia" id="dsDistancia" value="{{$request->dsDistancia}}">
+			<input type="hidden" name="dsTempo" id="dsTempo" value="{{$request->dsTempo}}">
 		</form>
 	</div>
 </div>

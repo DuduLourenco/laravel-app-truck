@@ -31,7 +31,8 @@ Route::group(["prefix" => "/"], function () {
 
 Route::group(["prefix" => "/viagens"], function () {
     Route::get("/", "ViagensController@viagemView");
-    Route::post("/nova", "ViagensController@viagemCView");
+    Route::post("/confirmar", "ViagensController@viagemConfirmacaoView");    
+    Route::post("/cadastrar", "ViagensController@cadastrar");
 });
 
 Route::group(["prefix" => "/veiculos"], function () {

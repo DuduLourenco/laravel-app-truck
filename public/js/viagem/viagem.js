@@ -295,8 +295,11 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                 dados += "\nDistância: " + rota.distance['text'];
                 dados += "\nDuração: " + rota.duration['text'];
 
-                $("#dsDistancia").val(rota.distance['text']);
-                $("#dsTempo").val(rota.duration['text']);
+                $("#dsDistanciaInfo").val(rota.distance['text']);
+                $("#dsTempoInfo").val(rota.duration['text']);
+
+                $("#dsDistancia").val(rota.distance['value']);
+                $("#dsTempo").val(rota.duration['value']);
 
                 $("#dsOrigemLat").val(pos.lat);
                 $("#dsOrigemLng").val(pos.lng);
@@ -317,7 +320,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 function calculaGasto() {
     nmPlacaVeiculo = $("#veiculo").val();
 
-    if ($("#dsDistancia").val() && nmPlacaVeiculo != "") {
+    if ($("#dsDistanciaInfo").val() && nmPlacaVeiculo != "") {
         
         $.get('/veiculos/findByPlaca/' + nmPlacaVeiculo, function (veiculo) {
 
