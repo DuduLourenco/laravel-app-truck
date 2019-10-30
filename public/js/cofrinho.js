@@ -133,13 +133,9 @@ function depositar(){
                 data: {valor:parseFloat(result), usuario:$("#cpfUsuario").val()},
                 dataType: 'JSON',
                 async: false,
-                success:function(){
-                    document.location.reload(true);
-                },
-                error:function(data){
-                    window.alert(JSON.stringify(data));
-                }
+
             });
+            window.location.href=window.location.href;
         }
     });
 }
@@ -163,13 +159,9 @@ function retirar(){
                 data: {valor:-parseFloat(result), usuario:$("#cpfUsuario").val()},
                 dataType: 'JSON',
                 async: false,
-                success:function(){
-                    document.location.reload(true);
-                },
-                error:function(data){
-                    window.alert(JSON.stringify(data));
-                }
+
             });
+            window.location.href=window.location.href;
         }
     });
 }
