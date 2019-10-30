@@ -52,7 +52,7 @@ Viagens
 			<div class="wrap-input100 m-b-16" data-validate="" id="divNmPlacaVeiculo">
 				<input class="input100" type="text" name="dsDestino" id="dsDestino" placeholder="Para">
 				<span class="focus-input100"></span>
-			</div>			
+			</div>
 
 			<div class="wrap-input100 m-b-16 m-t-16">
 				<div id="map" class="input100 mx-auto" style="min-height: 340px;">
@@ -66,7 +66,7 @@ Viagens
 				<span class="txt1" href="#" id="ancora">
 					Informações
 				</span>
-				
+
 			</div>
 
 			<div class="row">
@@ -76,7 +76,7 @@ Viagens
 							style="border: none; outline: 0px;">
 							<option value="" selected="selected">Veículo</option>
 							@foreach ($veiculos as $veiculo) {
-							<option value='{{$veiculo->nmPlacaVeiculo}}'>{{$veiculo->nmPlacaVeiculo}}</option>
+							<option value='{{$veiculo->id}}'>{{$veiculo->nmPlacaVeiculo}}</option>
 							@endforeach
 						</select>
 						<span class="focus-input100"></span>
@@ -84,8 +84,8 @@ Viagens
 				</div>
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="">
-						<input class="input100" type="text" name="dsTempoInfo" id="dsTempoInfo" placeholder="Tempo de Viagem"
-						readonly>
+						<input class="input100" type="text" name="dsTempoInfo" id="dsTempoInfo"
+							placeholder="Tempo de Viagem" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
@@ -101,14 +101,14 @@ Viagens
 			<div class="row">
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="">
-						
+
 						<input class="input100" type="text" name="dsGastoTotalInfo" id="dsGastoTotalInfo"
 							placeholder="Gasto Total" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
 				<div class="col-sm">
-					<button type="button" class="login100-form-btn wrap-input100" onclick="">
+					<button type="button" class="login100-form-btn wrap-input100" onclick="exibeMais()">
 						Mais Informações
 					</button>
 				</div>
@@ -126,6 +126,8 @@ Viagens
 
 			<input type="hidden" name="idUsuario" id="idUsuario"
 				value="@if (Session::has('usuario')){{Session::get('usuario')->id}}@endif">
+
+			<input type="hidden" name="nmPlacaVeiculo" id="nmPlacaVeiculo" value="">
 
 			<input type="hidden" name="idViagem" id="idViagem" value="">
 			<input type="hidden" name="dsGastos" id="dsGastos" value="">

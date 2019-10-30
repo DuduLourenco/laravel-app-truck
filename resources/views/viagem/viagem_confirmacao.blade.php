@@ -62,7 +62,7 @@ Viagens
 				</div>
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16 m-t-16">
-						<input class="input100" type="text" value="Veículo: {{$request->veiculo}}" readonly>
+						<input class="input100" type="text" value="Veículo: {{$request->nmPlacaVeiculo}}" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
@@ -100,14 +100,14 @@ Viagens
 			<div class="row">
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="">
-						<input class="input100" type="text" name="dsValor" id="dsValor" maxlength="14"
+						<input class="input100" type="text" name="dsValorInfo" id="dsValorInfo" maxlength="14"
 							onkeyup="calculaLucro()" placeholder="Valor da Viagem">
 						<span class="focus-input100"></span>
 					</div>
 				</div>
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="">
-						<input class="input100" type="text" name="dsLucro" id="dsLucro" placeholder="Lucro" readonly>
+						<input class="input100" type="text" name="dsLucroInfo" id="dsLucroInfo" placeholder="Lucro" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
@@ -136,14 +136,24 @@ Viagens
 
 			<input type="hidden" name="idUsuario" id="idUsuario"
 				value="@if (Session::has('usuario')){{Session::get('usuario')->id}}@endif">
+
+			<input type="hidden" name="idVeiculo" id="idVeiculo" value="{{$request->veiculo}}">	
+
 			<input type="hidden" name="idViagem" id="idViagem" value="">
 			<input type="hidden" name="dsGastos" id="dsGastos" value="{{$request->dsGastos}}">			
+
 			<input type="hidden" name="dsOrigemLat"  id="dsOrigemLat"  value="{{$request->dsOrigemLat}}">
 			<input type="hidden" name="dsOrigemLng"  id="dsOrigemLng"  value="{{$request->dsOrigemLng}}">
 			<input type="hidden" name="dsDestinoLat" id="dsDestinoLat" value="{{$request->dsDestinoLat}}">
 			<input type="hidden" name="dsDestinoLng" id="dsDestinoLng" value="{{$request->dsDestinoLng}}">
+
 			<input type="hidden" name="dsDistancia" id="dsDistancia" value="{{$request->dsDistancia}}">
 			<input type="hidden" name="dsTempo" id="dsTempo" value="{{$request->dsTempo}}">
+
+			<input type="hidden" name="dsLucro" id="dsLucro" value="">
+			<input type="hidden" name="dsValor" id="dsValor" value="">
+
+			<input type="hidden" name="dsStatus" id="dsStatus" value="Pendente">
 		</form>
 	</div>
 </div>
