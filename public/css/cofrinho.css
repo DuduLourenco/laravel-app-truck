@@ -344,8 +344,10 @@
 	left: 210px;
 }
 
-/* #Link to page
-================================================== */
+#chartContainer{
+    position: absolute;
+    top: 25%;
+}
 
 .link-to-portfolio {
 	position: absolute;

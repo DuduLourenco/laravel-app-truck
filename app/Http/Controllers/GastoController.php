@@ -34,10 +34,7 @@ class GastoController extends Controller
         return redirect("usuarios/cofrinho")->with("message", "Gasto cadastrado com sucesso!");
     }
 
-    public function cofrinhoView()
-    {
-        return view('usuario.cofrinho');
-    }
+
     public function listAll()
     {
         return $this->gasto->all();

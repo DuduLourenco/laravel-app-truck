@@ -54,6 +54,21 @@ class UsuariosController extends Controller
 
     }
 
+    public function listarGastosByCpf($cpf)
+    {
+
+        $usuario = $this->findByCpf($cpf);
+        return $usuario->listGastos()->getQuery()->orderBy('dtGasto')->get([
+            'dsTipo',
+            'dsValor',
+            'idUsuario',
+            'dtGasto'
+        ]);
+
+
+    }
+
+
     public function alterarView(){
         return view('usuario.alterar');
     }
@@ -83,14 +98,16 @@ class UsuariosController extends Controller
     }
 
     public function alterarCofrinho(Request $request){
-        $usuario->dsValorCofrinho = $usuario->dsValorCofrinho+$request->valor;
+        $json=json_decode($request);
+        $usuario = $this->findByCpf($json->usuario);
+        $usuario->dsValorCofrinho = $usuario->dsValorCofrinho+$json->valor;
         $request->session()->put('usuario', $usuario);
         try {
             $usuario->update();
-        } catch (\Exception $e) {
-            return redirect("usuarios/alterar")->with("message", "Erro ao alterar cofrinho!");
+        } catch (   Exception $e) {
+            return redirect("usuarios/cofrinho")->with("message", "Erro ao alterar cofrinho!");
         }
-        return redirect("usuarios/alterar")->with("message", "Cofrinho alterado com sucesso!");
+        return redirect("usuarios/cofrinho")->with("message", "Cofrinho alterado com sucesso!");
 
     }
 
