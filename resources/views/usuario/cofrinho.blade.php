@@ -27,8 +27,6 @@ Viagens
         <div class="align-top">
             <div class="piggy-wrapper">
                 <div class="piggy-wrap">
-
-
                     <div class="piggy">
                         <div class="nose"></div>
                         <div class="mouth"></div>
@@ -40,8 +38,7 @@ Viagens
                             <span></span>
                         </div>
                         <div class="eye"></div>
-                        <div class="hole"><h1 class="valor">
-        R${{Session::get('usuario')->dsValorCofrinho}}</h1></div>
+                        <div class="hole"><h1 class="valor">R${{Session::get('usuario')->dsValorCofrinho}}</h1></div>
                     </div>
                 </div>
                 <div class="coin-wrap">

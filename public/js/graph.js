@@ -43,7 +43,7 @@ function grafico () {
     }
     arrayLucros.push({ label: "Lucro "+spamT, isIntermediateSum: true});
     var chart = new CanvasJS.Chart("chartContainer", {
-        theme: "dark1", // "light1", "ligh2", "dark1", "dark2"
+        theme: "light1", // "light1", "ligh2", "dark1", "dark2"
         animationEnabled: true,
         title: {
             text: "Balanço "+spamT
@@ -51,10 +51,10 @@ function grafico () {
         axisY: {
             title: "Lucro",
             prefix: "R$",
-            lineThickness: 0
+            lineThickness: 1
         },
         data: [{
-            type: "waterfall",
+            type: "column",
             indexLabel: "{y}",
             indexLabelFontColor: "#FFFF00",
             indexLabelPlacement: "inside",
