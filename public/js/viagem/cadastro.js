@@ -10,7 +10,7 @@ $(function(){
 $("#hrPrazo").mask("AB:CD", {
     translation: {
       "A": { pattern: /[0-2]/, optional: false},
-      "B": { pattern: /[0-3]/, optional: false},
+      "B": { pattern: /[0-4]/, optional: false},
       "C": { pattern: /[0-5]/, optional: false},
       "D": { pattern: /[0-9]/, optional: false}
     }
