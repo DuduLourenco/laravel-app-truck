@@ -32,4 +32,10 @@ class Usuario extends Model
     {
         return $this->hasMany(Viagem::class, 'idUsuario', 'id');
     }
+
+
+    public function listGastos()
+    {
+        return $this->hasMany(Gasto::class, 'idUsuario', 'id');
+    }
 }

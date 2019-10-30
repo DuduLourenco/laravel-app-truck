@@ -13,8 +13,8 @@ Viagens
 	window.location = '{{url('usuarios/login')}}';
 </script>
 @endif
-  
-  
+
+
 
 @section('conteudo')
 
@@ -22,7 +22,7 @@ Viagens
 
 @extends('layouts.menu')
 
-<div class="container-login100" style="align-items: stretch">
+<div class="container-login100"  style="align-items: stretch">
 						<select onchange="grafico()" name="timeSpam" id="timeSpam" class="input100"
 							style="border: none; outline: 0px;">
 							<option value="0" selected="selected">Sempre</option>
@@ -39,5 +39,6 @@ Viagens
 
 
 @section('importacoes')
+
 <script src="{{ asset('js/graph.js') }}"></script>
 @endsection

@@ -15,8 +15,8 @@ function showGetResult()
     return result;
 }
 
-
 window.onload = grafico();
+
 function grafico () {
     var lucros = JSON.parse(showGetResult());
     var arrayLucros = [];
@@ -63,5 +63,5 @@ function grafico () {
         }]
     });
     chart.render();
-
     }
+

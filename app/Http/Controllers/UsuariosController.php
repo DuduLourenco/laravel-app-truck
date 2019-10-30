@@ -54,6 +54,21 @@ class UsuariosController extends Controller
 
     }
 
+    public function listarGastosByCpf($cpf)
+    {
+
+        $usuario = $this->findByCpf($cpf);
+        return $usuario->listGastos()->getQuery()->orderBy('dtGasto')->get([
+            'dsTipo',
+            'dsValor',
+            'idUsuario',
+            'dtGasto'
+        ]);
+
+
+    }
+
+
     public function alterarView(){
         return view('usuario.alterar');
     }
@@ -83,8 +98,12 @@ class UsuariosController extends Controller
     }
 
     public function alterarCofrinho(Request $request){
-        $usuario->dsValorCofrinho = $usuario->dsValorCofrinho+$request->valor;
+        echo"<script> window.alert('aeee')</script>";
+        $json=json_decode($request);
+        $usuario = $this->findByCpf($json->usuario);
+        $usuario->dsValorCofrinho = $usuario->dsValorCofrinho+$json->valor;
         $request->session()->put('usuario', $usuario);
+        echo"<script> window.alert('ae')</script>";
         try {
             $usuario->update();
         } catch (\Exception $e) {
