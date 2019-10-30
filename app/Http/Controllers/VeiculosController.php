@@ -81,4 +81,9 @@ class VeiculosController extends Controller
     {
         return $this->veiculo->where('nmPlacaVeiculo', $nmPlacaVeiculo)->first();
     }
+
+    public function findById($id)
+    {
+        return $this->veiculo->find($id)->first();
+    }
 }

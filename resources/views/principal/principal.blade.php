@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulo')
-Viajar
+Início
 @endsection
 
 @section('css')
@@ -47,7 +47,9 @@ Viajar
       </div>
 
       <div class="wrap-input100 m-b-16 m-t-16">
-        <input class="input100" type="text" style="text-align: center" id="pac-input" placeholder="Insira sua Jornada">
+      <a  class="login100-form-btn wrap-input100" href="{{ url('viagens') }}">
+          Insira sua Jornada
+      </a>
         <span class="focus-input100"></span>
       </div>
 

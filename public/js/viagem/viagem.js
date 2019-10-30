@@ -318,11 +318,10 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 }
 
 function calculaGasto() {
-    nmPlacaVeiculo = $("#veiculo").val();
-
-    if ($("#dsDistanciaInfo").val() && nmPlacaVeiculo != "") {
+    idVeiculo = $("#veiculo").val();
+    if ($("#dsDistanciaInfo").val() && idVeiculo != "") {
         
-        $.get('/veiculos/findByPlaca/' + nmPlacaVeiculo, function (veiculo) {
+        $.get('/veiculos/findById/' + idVeiculo, function (veiculo) {
 
         }).done(function (veiculo) {
             consumo = veiculo.dsConsumoVeiculo.toString().replace(",", ".");
@@ -330,8 +329,13 @@ function calculaGasto() {
             gastoTotal = arredonda(gastoTotal, 2);
             $("#dsGastoTotalInfo").val("R$ " + gastoTotal.toString().replace(".", ","));
             $("#dsGastos").val(gastoTotal.toString().replace(".", ","));
+            $("#nmPlacaVeiculo").val(veiculo.nmPlacaVeiculo);
         });
     }
+
+}
+
+function exibeMais(){
 
 }
 

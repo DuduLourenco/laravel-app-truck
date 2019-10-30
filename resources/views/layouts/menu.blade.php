@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="primaryNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/') }}">Viajar <span class="sr-only"></span></a>
+                    <a class="nav-link" href="{{ url('/') }}">Início <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('veiculos/cadastro') }}">Veículos</a>

@@ -42,6 +42,7 @@ Route::group(["prefix" => "/veiculos"], function () {
     Route::post("/cadastrar", "VeiculosController@cadastrar");
     Route::any("/listar/{id}", "VeiculosController@listVeiculosByIdUsuario");
     Route::any("/findByPlaca/{id}", "VeiculosController@findByPlaca");
+    Route::any("/findById/{id}", "VeiculosController@findById");
 
     Route::group(["prefix" => "/modelos"], function () {
         Route::get("/listModelos/{id}", "ModelosController@listModelosByIdMarca");
