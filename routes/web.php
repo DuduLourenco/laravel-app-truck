@@ -34,9 +34,11 @@ Route::group(["prefix" => "/"], function () {
 });
 
 Route::group(["prefix" => "/viagens"], function () {
-    Route::get("/", "ViagensController@viagemView");
+    Route::get("/", "ViagensController@viagemView");    
     Route::post("/confirmar", "ViagensController@viagemConfirmacaoView");
     Route::post("/cadastrar", "ViagensController@cadastrar");
+    Route::get("/lista", "ViagensController@viagemListaView");
+    Route::any("/listar/{id}", "ViagensController@listViagensByIdUsuario");
 });
 
 Route::group(["prefix" => "/veiculos"], function () {

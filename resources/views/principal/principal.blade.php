@@ -51,9 +51,7 @@ Início
           Insira sua Jornada
       </a>
         <span class="focus-input100"></span>
-      </div>
-
-
+      </div>     
 
   </div>
 </div>

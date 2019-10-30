@@ -84,6 +84,6 @@ class VeiculosController extends Controller
 
     public function findById($id)
     {
-        return $this->veiculo->find($id)->first();
+        return $this->veiculo->find($id);
     }
 }

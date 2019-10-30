@@ -23,14 +23,14 @@ Viagens
 	<div class="wrap-login100 p-b-30 p-t-45" style="width: 640px">
 		<form id="form" class="login100-form validate-form" method="post" action="{{ url('viagens/confirmar') }}">
 			{{ csrf_field() }}
-			<span class="login100-form-title p-b-40">
+			<span class="login100-form-title p-b-50">
 				Viagens
 			</span>
 
-			<div class="text-center p-t-25 p-b-15">
-				<span class="txt1">
+			<div class="text-center">
+				<a class="login100-form-btn wrap-input100" href="{{ url('viagens/lista') }}">
 					Proximas Viagens
-				</span>
+				</a>
 			</div>
 
 			<div class="row">
@@ -108,11 +108,13 @@ Viagens
 					</div>
 				</div>
 				<div class="col-sm">
-					<button type="button" class="login100-form-btn wrap-input100" onclick="exibeMais()">
-						Mais Informações
+					<button id="btnMaisInfo" type="button" class="login100-form-btn wrap-input100"
+						onclick="exibeMais()">
+						Ver Mais
 					</button>
 				</div>
 			</div>
+
 
 			<div class="container-login100-form-btn">
 				<div class="row">

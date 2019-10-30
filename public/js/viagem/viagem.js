@@ -12,6 +12,13 @@ var directionsRenderer;
 var directionsService;
 var distancia;
 
+var dsConsumoVeiculo;
+var dsPrecoCombustivel = 3.639;
+
+var dsGastoManutencao;
+var dsGastoCombustivel;
+var dsGastoTotal;
+
 function initMap() {
     directionsRenderer = new google.maps.DirectionsRenderer;
     directionsService = new google.maps.DirectionsService;
@@ -324,11 +331,12 @@ function calculaGasto() {
         $.get('/veiculos/findById/' + idVeiculo, function (veiculo) {
 
         }).done(function (veiculo) {
-            consumo = veiculo.dsConsumoVeiculo.toString().replace(",", ".");
-            gastoTotal = (distancia / (consumo * 1000)) * 3.639;
-            gastoTotal = arredonda(gastoTotal, 2);
-            $("#dsGastoTotalInfo").val("R$ " + gastoTotal.toString().replace(".", ","));
-            $("#dsGastos").val(gastoTotal.toString().replace(".", ","));
+            dsConsumoVeiculo = veiculo.dsConsumoVeiculo.toString().replace(",", ".");
+            dsGastoManutencao = arredonda((distancia / (0,65 * 1000)), 2);
+            dsGastoCombustivel = arredonda ((distancia / (dsConsumoVeiculo * 1000)) * dsPrecoCombustivel, 2);
+            dsGastoTotal = arredonda(dsGastoCombustivel + dsGastoManutencao, 2);
+            $("#dsGastoTotalInfo").val("R$ " + dsGastoTotal);
+            $("#dsGastos").val(dsGastoTotal);
             $("#nmPlacaVeiculo").val(veiculo.nmPlacaVeiculo);
         });
     }
@@ -337,10 +345,26 @@ function calculaGasto() {
 
 function exibeMais(){
 
+    if ($("#nmPlacaVeiculo").val() != "" && $("#dsGastos").val()) {
+        maisInfo = "";
+        maisInfo += "Gasto Combustível: R$ " + dsGastoCombustivel ;
+        maisInfo += "<BR>Gasto Manutenção : R$ " + dsGastoManutencao;
+        maisInfo += "<BR>Gasto Total : R$ " + dsGastoTotal;
+        mensagemAlerta(maisInfo);
+    } else {
+        mensagemAlerta("Preencha todos os dados!");
+    }
+    
+    
 }
 
 function salvaViagem() {
-    $("#form").submit();
+    if ($("#nmPlacaVeiculo").val() != "" && $("#dsGastos").val()) {
+        $("#form").submit();
+    } else {
+        mensagemAlerta("Preencha todos os dados!");
+    }
+    
 }
 
 
