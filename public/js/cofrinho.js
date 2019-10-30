@@ -131,14 +131,14 @@ function depositar(){
             $.ajax({
                 url: scriptUrl,
                 type: 'POST',
-                data: {valor:parseFloat(result), usuario:$("#cpfUsuario").val()},
-                dataType: 'json',
+                data: JSON.stringify([{valor:parseFloat(result), usuario:$("#cpfUsuario").val()}]),
+                dataType: 'text',
                 async: false,
                 success:function(data){
                     window.alert(data);
                 },
                 error:function(data){
-                    alert(data);
+                    window.alert(JSON.stringify(data));
                 }
             });
         }

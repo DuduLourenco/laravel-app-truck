@@ -98,18 +98,16 @@ class UsuariosController extends Controller
     }
 
     public function alterarCofrinho(Request $request){
-        echo"<script> window.alert('aeee')</script>";
         $json=json_decode($request);
         $usuario = $this->findByCpf($json->usuario);
         $usuario->dsValorCofrinho = $usuario->dsValorCofrinho+$json->valor;
         $request->session()->put('usuario', $usuario);
-        echo"<script> window.alert('ae')</script>";
         try {
             $usuario->update();
-        } catch (\Exception $e) {
-            return redirect("usuarios/alterar")->with("message", "Erro ao alterar cofrinho!");
+        } catch (   Exception $e) {
+            return redirect("usuarios/cofrinho")->with("message", "Erro ao alterar cofrinho!");
         }
-        return redirect("usuarios/alterar")->with("message", "Cofrinho alterado com sucesso!");
+        return redirect("usuarios/cofrinho")->with("message", "Cofrinho alterado com sucesso!");
 
     }
 
