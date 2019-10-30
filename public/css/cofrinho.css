@@ -11,11 +11,10 @@
 }
 .piggy-wrapper{
 	position: relative;
+	top: -180px;
 	width: 350px;
 	height: 350px;
-	display: block;
 	margin: 0 auto;
-	margin-top: 80px;
 }
 .piggy-wrap{
 	position: relative;
@@ -345,8 +344,8 @@
 }
 
 #chartContainer{
-    position: absolute;
-    top: 25%;
+    position: relative;
+    top: 10%;
 }
 
 .link-to-portfolio {

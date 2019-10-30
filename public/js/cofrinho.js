@@ -127,15 +127,44 @@ function depositar(){
 
         callback: function(result){
             var scriptUrl = 'depositarCofrinho';
-            window.alert(result);
             $.ajax({
                 url: scriptUrl,
                 type: 'POST',
-                data: JSON.stringify([{valor:parseFloat(result), usuario:$("#cpfUsuario").val()}]),
-                dataType: 'text',
+                data: {valor:parseFloat(result), usuario:$("#cpfUsuario").val()},
+                dataType: 'JSON',
                 async: false,
-                success:function(data){
-                    window.alert(data);
+                success:function(){
+                    document.location.reload(true);
+                },
+                error:function(data){
+                    window.alert(JSON.stringify(data));
+                }
+            });
+        }
+    });
+}
+
+function retirar(){
+    $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+    bootbox.prompt({
+        size: "small",
+        inputType: "number",
+        title: "Qual valor você deseja retirar?",
+
+        callback: function(result){
+            var scriptUrl = 'depositarCofrinho';
+            $.ajax({
+                url: scriptUrl,
+                type: 'POST',
+                data: {valor:-parseFloat(result), usuario:$("#cpfUsuario").val()},
+                dataType: 'JSON',
+                async: false,
+                success:function(){
+                    document.location.reload(true);
                 },
                 error:function(data){
                     window.alert(JSON.stringify(data));

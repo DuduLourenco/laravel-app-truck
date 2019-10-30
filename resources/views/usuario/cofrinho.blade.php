@@ -21,9 +21,10 @@ Viagens
 @extends('layouts.menu')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/cofrinho.css') }}">
 
-<div id="chartContainer" style="height: 200px; width: 100%;"></div>
 <div class="text-center bg-light p-3">
     <h2 >Cofrinho da manutenção</h2>
+
+<div id="chartContainer" style="height:30%; width: 100%;"></div>
         <div class="align-top">
             <div class="piggy-wrapper">
                 <div class="piggy-wrap">
@@ -49,7 +50,7 @@ Viagens
                 <div class="legs back"></div>
 
     <button type="button" class="btn btn-success btn-lg" onclick="depositar()">Depositar</button>
-<button type="button" class="btn btn-danger btn-lg">Retirar</button>
+<button type="button" class="btn btn-danger btn-lg" onclick="retirar()">Retirar</button>
             </div>
         </div>
 </div>

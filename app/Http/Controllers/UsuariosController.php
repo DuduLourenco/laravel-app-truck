@@ -94,17 +94,16 @@ class UsuariosController extends Controller
             return redirect("usuarios/alterar")->with("message", "Erro ao cadastrar Usuário!");
         }
         return redirect("usuarios/alterar")->with("message", "Usuário cadastrado com sucesso!");
-
     }
 
     public function alterarCofrinho(Request $request){
-        $json=json_decode($request);
-        $usuario = $this->findByCpf($json->usuario);
-        $usuario->dsValorCofrinho = $usuario->dsValorCofrinho+$json->valor;
+        $input=$request->all();
+        $usuario = $this->findByCpf($input['usuario']);
+        $usuario->dsValorCofrinho = $usuario->dsValorCofrinho+$input['valor'];
         $request->session()->put('usuario', $usuario);
         try {
             $usuario->update();
-        } catch (   Exception $e) {
+        } catch ( Exception $e) {
             return redirect("usuarios/cofrinho")->with("message", "Erro ao alterar cofrinho!");
         }
         return redirect("usuarios/cofrinho")->with("message", "Cofrinho alterado com sucesso!");
