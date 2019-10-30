@@ -39,6 +39,19 @@ class ViagensController extends Controller
         ]);
     }
 
+    public function viagemListaView(Request $request)
+    {
+        $usuario = $request->session()->get('usuario');
+        return view('viagem.lista');
+    }
+
+    public function listViagensByIdUsuario($idUsuario)
+    {
+        $usuario = $this->usuario->find($idUsuario);
+        $viagens = $usuario->listViagens()->getQuery()->get(['id','dtPrazo','hrPrazo','idVeiculo']);        
+        return $viagens;
+    }
+
     public function cadastrar(Request $request)
     {
         $viagem = new Viagem();

@@ -112,7 +112,7 @@ class UsuariosController extends Controller
             if ($veiculos > 0) {
                 return redirect("/");
             } else {
-                return redirect("/veiculos/cadastro");
+                return redirect("/veiculos/cadastro")->with("message", "Recomendado: cadastre ao menos um veículo para utilizar o sistema!");;
             }
         } else {
             return redirect("usuarios/login")->with("message", "CPF ou Senha Incorretos!");

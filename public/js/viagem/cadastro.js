@@ -1,6 +1,10 @@
+var lucro, valor, gastos, manutencao;
+
+
 $(function(){    
     $('#dtPrazo').mask('00/00/0000');
     $('#dsValorInfo').mask('##.#00,00', { reverse: true });
+    $("#dsLucroInfo").mask('R$', { reverse: true });
 });
 
 $("#hrPrazo").mask("AB:CD", {
@@ -18,11 +22,8 @@ function finalizaViagem() {
     dtPrazo = formataData(dtPrazo);
     $("#dtPrazo").val(dtPrazo);
 
-    gastos = $("#dsGastos").val().toString().replace(".", "").replace(",", ".");
     $("#dsGastos").val(gastos);
 
-    valor =  $("#dsValorInfo").val().toString().replace(".", "").replace(".", "").replace(".", "");
-    valor = valor.toString().replace(",", ".");
     $("#dsValor").val(valor);
 
     $("#form").submit();
@@ -30,13 +31,10 @@ function finalizaViagem() {
 
 function calculaLucro(){
 
-    gastos = $("#dsGastos").val().toString().replace(".", "").replace(",", ".");
-    valor =  $("#dsValorInfo").val().toString().replace(".", "").replace(".", "").replace(".", "");
-    valor = valor.toString().replace(",", ".");
-    manutencao = ($("#dsDistancia").val()/1000) * 0.65;
-    lucro = valor - gastos - manutencao;
-    alert(manutencao);
-    lucro = arredonda(lucro);
+    gastos = $("#dsGastos").val();
+    valor =  formataDinheiro($("#dsValorInfo").val());
+    lucro = valor - gastos;
+    lucro = arredonda(lucro,2);
     $("#dsLucroInfo").val("R$ " + lucro);
     $("#dsLucro").val(lucro);
 
@@ -44,7 +42,7 @@ function calculaLucro(){
         $("#dsResultado").val("A Viagem É Vantajosa");
         $("#dsResultado").css("color", "green");
     } else {
-        $("#dsResultado").val("A Viagem NÃO Vantajosa");
+        $("#dsResultado").val("A Viagem NÃO é Vantajosa");
         $("#dsResultado").css("color", "red");
     }
 
