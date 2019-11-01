@@ -13,7 +13,7 @@ var directionsService;
 var distancia;
 
 var dsConsumoVeiculo;
-var dsPrecoCombustivel = 3.639;
+var dsPrecoCombustivel = 3.686;
 
 var dsGastoManutencao;
 var dsGastoCombustivel;

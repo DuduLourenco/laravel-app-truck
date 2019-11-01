@@ -27,6 +27,11 @@ Viagens
 				Próximas Viagens
 			</span>
 
+			<div class="text-center p-t-25 p-b-15">
+				<span class="txt2" id="spanViagem">
+				</span>
+			</div>
+
 			<div class="row">
 				<table id="tabelaViagem">
 				</table>

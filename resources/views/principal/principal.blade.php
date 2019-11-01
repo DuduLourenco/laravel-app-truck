@@ -51,7 +51,13 @@ Início
           Insira sua Jornada
       </a>
         <span class="focus-input100"></span>
-      </div>     
+      </div>  
+
+      <div class="text-center">
+				<a class="login100-form-btn wrap-input100" href="{{ url('viagens/lista') }}">
+					Proximas Viagens
+				</a>
+			</div>   
 
   </div>
 </div>

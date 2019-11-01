@@ -24,17 +24,17 @@ function grafico () {
     var spamT = "";
     for (let index = 0; index < lucros.length; index++) {
         if(spam==1){
-            if(lucros[index].dsStatus == "Feita" && new Date(lucros[index].dtPrazo).getTime() > new Date(Date.now()).getTime()-(3.154*Math.pow(10,10))){
+            if(lucros[index].dsStatus == "F" && new Date(lucros[index].dtPrazo).getTime() > new Date(Date.now()).getTime()-(3.154*Math.pow(10,10))){
                 arrayLucros.push({ label: lucros[index].dtPrazo,  y: this.parseFloat(lucros[index].dsLucro) });
                 spamT="Anual";
             }
         }else if(spam==2){
-            if(lucros[index].dsStatus == "Feita" && new Date(lucros[index].dtPrazo).getTime() > new Date(Date.now()).getTime()-(2.628*Math.pow(10,9))){
+            if(lucros[index].dsStatus == "F" && new Date(lucros[index].dtPrazo).getTime() > new Date(Date.now()).getTime()-(2.628*Math.pow(10,9))){
                 arrayLucros.push({ label: lucros[index].dtPrazo,  y: this.parseFloat(lucros[index].dsLucro) });
                 spamT="Mensal";
             }
         }else{
-            if(lucros[index].dsStatus == "Feita" ){
+            if(lucros[index].dsStatus == "F" ){
                 arrayLucros.push({ label: lucros[index].dtPrazo,  y: this.parseFloat(lucros[index].dsLucro) });
                 spamT="Total";
             }

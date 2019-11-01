@@ -153,7 +153,7 @@ Viagens
 			<input type="hidden" name="dsLucro" id="dsLucro" value="">
 			<input type="hidden" name="dsValor" id="dsValor" value="">
 
-			<input type="hidden" name="dsStatus" id="dsStatus" value="Pendente">
+			<input type="hidden" name="dsStatus" id="dsStatus" value="P">
 		</form>
 	</div>
 </div>

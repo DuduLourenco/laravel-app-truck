@@ -12,11 +12,13 @@ class ViagensController extends Controller
 {
     private $veiculo;
     private $usuario;
+    private $viagem;
 
     public function __construct(Veiculo $veiculo, Usuario $usuario)
     {
         $this->veiculo = $veiculo;
         $this->usuario = $usuario;
+        $this->viagem = new Viagem();
     }
 
     public function viagemView(Request $request)
@@ -45,10 +47,10 @@ class ViagensController extends Controller
         return view('viagem.lista');
     }
 
-    public function listViagensByIdUsuario($idUsuario)
+    public function listViagensAtivasByIdUsuario($idUsuario)
     {
         $usuario = $this->usuario->find($idUsuario);
-        $viagens = $usuario->listViagens()->getQuery()->get(['id','dtPrazo','hrPrazo','idVeiculo']);        
+        $viagens = $usuario->listViagens()->where('dsStatus','=','P')->getQuery()->get(['id','dtPrazo','hrPrazo','idVeiculo', 'dsStatus']);        
         return $viagens;
     }
 
@@ -74,10 +76,33 @@ class ViagensController extends Controller
         try {
             $viagem->save();
         } catch (\Exception $e) {
-            dd($e);
             return redirect("/")->with("message", "Erro ao cadastrar Viagem!");
         }
         return redirect("/")->with("message", "Viagem cadastrada com sucesso!");
+    }
+
+    public function excluirViagem($id)
+    {
+        $viagem = Viagem::find($id);
+        $viagem->dsStatus = "C";
+        try {
+            $viagem->save();
+            return redirect("/")->with("message", "Viagem excluida com sucesso!");
+        } catch (\Exception $e) {
+            return redirect("/")->with("message", "Erro ao excluir Viagem!");
+        }
+    }
+
+    public function finalizarViagem($id)
+    {
+        $viagem = Viagem::find($id);
+        $viagem->dsStatus = "F";
+        try {
+            $viagem->save();
+            return redirect("/")->with("message", "Viagem finalizada com sucesso!");
+        } catch (\Exception $e) {
+            return redirect("/")->with("message", "Erro ao finalizar Viagem!");
+        }
     }
 
     public function listViagensbyId($idUsuario)

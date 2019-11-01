@@ -14,9 +14,6 @@
                     <a class="nav-link" href="{{ url('veiculos/cadastro') }}">Veículos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('viagens') }}">Viagens</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{url('usuarios/relatorio')}}">Ganhos</a>
                 </li>
                 <li class="nav-item">
