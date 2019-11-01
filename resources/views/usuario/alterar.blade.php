@@ -15,8 +15,8 @@ Alterar
 @extends('layouts.menu')
 
 <div class="container-login100">
-	<div class="wrap-login100 p-t-90 p-b-30" style="width: 640px">
-		<form id="form" class="login100-form validate-form" method="post" action="{{ url('/usuarios/alterar') }}">
+	<div class="wrap-login100 p-t-45 p-b-30" style="width: 640px">
+		<form id="form" class="login100-form validate-form" method="post" action="{{ url('usuarios/alterar') }}">
 			{{ csrf_field() }}
 			<span class="login100-form-title p-b-40">
 				Perfil
@@ -100,6 +100,9 @@ Alterar
 					Salvar alterações
 				</button>
 			</div>
+
+			<input type="hidden" name="idUsuario" id="idUsuario"
+				value="@if (Session::has('usuario')){{Session::get('usuario')->id}}@endif">
 
 		</form>
 	</div>

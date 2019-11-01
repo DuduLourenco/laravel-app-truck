@@ -41,6 +41,14 @@ class ViagensController extends Controller
         ]);
     }
 
+    public function viagemAlteracaoView($id)
+    {
+        $viagem = Viagem::find($id);
+        return view('viagem.viagem_alteracao', [
+            'viagem' => $viagem
+        ]);
+    }
+
     public function viagemListaView(Request $request)
     {
         $usuario = $request->session()->get('usuario');
@@ -50,7 +58,7 @@ class ViagensController extends Controller
     public function listViagensAtivasByIdUsuario($idUsuario)
     {
         $usuario = $this->usuario->find($idUsuario);
-        $viagens = $usuario->listViagens()->where('dsStatus','=','P')->getQuery()->get(['id','dtPrazo','hrPrazo','idVeiculo', 'dsStatus']);        
+        $viagens = $usuario->listViagens()->where('dsStatus','=','P')->getQuery()->get(['id','dtPrazo','hrPrazo','idVeiculo', 'dsStatus','dsOrigemLat','dsOrigemLng','dsDestinoLat','dsDestinoLng']);        
         return $viagens;
     }
 
@@ -79,6 +87,21 @@ class ViagensController extends Controller
             return redirect("/")->with("message", "Erro ao cadastrar Viagem!");
         }
         return redirect("/")->with("message", "Viagem cadastrada com sucesso!");
+    }
+
+    public function alterar(Request $request)
+    {
+        $viagem = Viagem::find($request->idViagem);
+        $viagem->dtPrazo      = $request->dtPrazo;
+        $viagem->hrPrazo      = $request->hrPrazo; 
+        $viagem->dsValor      = $request->dsValor;
+        $viagem->dsLucro      = $request->dsLucro;
+        try {
+            $viagem->update();
+        } catch (\Exception $e) {
+            return redirect("/")->with("message", "Erro ao alterar Viagem!");
+        }
+        return redirect("/")->with("message", "Viagem alterada com sucesso!");
     }
 
     public function excluirViagem($id)

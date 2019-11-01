@@ -35,12 +35,16 @@ Route::group(["prefix" => "/"], function () {
 
 Route::group(["prefix" => "/viagens"], function () {
     Route::get("/", "ViagensController@viagemView");    
+
     Route::post("/confirmar", "ViagensController@viagemConfirmacaoView");
     Route::post("/cadastrar", "ViagensController@cadastrar");
+
     Route::get("/lista", "ViagensController@viagemListaView");
     Route::any("/listar/{id}", "ViagensController@listViagensAtivasByIdUsuario");
 
-    Route::any("/alterar/{id}", "ViagensController@alteraView");
+    Route::any("/alteracao/{id}", "ViagensController@viagemAlteracaoView");
+    Route::post("/alterar", "ViagensController@alterar");
+
     Route::any("/excluir/{id}", "ViagensController@excluirViagem");    
     Route::any("/feito/{id}", "ViagensController@finalizarViagem");
 });

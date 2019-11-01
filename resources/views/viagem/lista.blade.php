@@ -54,4 +54,7 @@ Viagens
 
 @section('importacoes')
 <script src="{{ asset('js/viagem/lista.js') }}"></script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQCnq0A9TueU4DKWoAtSONIXX-6kFLxys&libraries=places,directions&callback=initMap"
+	async defer></script>
 @endsection

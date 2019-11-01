@@ -74,13 +74,8 @@ class UsuariosController extends Controller
     }
 
     public function alterar(Request $request){
-        $validacao = $this->validacao($request->all());
-        if ($validacao->fails()) {
-            return redirect()->back()
-                ->withErrors($validacao->errors())
-                ->withInput($request->all());
-        }
-        $usuario = $this->findByCpf($request->cdCpfUsuario);
+        
+        $usuario = Usuario::find($request->idUsuario);
         $usuario->nmUsuario = $request->nmUsuario;
         $usuario->cdCpfUsuario = $request->cdCpfUsuario;
         $usuario->dtNascimentoUsuario = $request->dtNascimentoUsuario;
@@ -91,9 +86,9 @@ class UsuariosController extends Controller
         try {
             $usuario->update();
         } catch (\Exception $e) {
-            return redirect("usuarios/alterar")->with("message", "Erro ao cadastrar Usuário!");
+            return redirect("/")->with("message", "Erro ao alterar Usuário!");
         }
-        return redirect("usuarios/alterar")->with("message", "Usuário cadastrado com sucesso!");
+        return redirect("/")->with("message", "Usuário alterado com sucesso!");
     }
 
     public function alterarCofrinho(Request $request){

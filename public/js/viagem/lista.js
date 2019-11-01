@@ -20,21 +20,22 @@ $(document).ready(function () {
 
             data.forEach(viagem => {
 
-                id = viagem.id;
-                dtPrazo = formataData(viagem.dtPrazo, 2);
-                hrPrazo = viagem.hrPrazo;
+                
                 idVeiculo = viagem.idVeiculo;
+
                 $.get('../veiculos/findById/' + idVeiculo, function (veiculo) {
+                    id = viagem.id;
                     nmPlacaVeiculo = veiculo.nmPlacaVeiculo;
+                    dtPrazo = formataData(viagem.dtPrazo, 2);
                     if (i > 0) {
                         margTop = 60;
                     } else {
                         margTop = 0;
                     }
-
+                    
                     tabelaViagem.append(
                         "<div class='row p-t-" + margTop + "'>\
-                            <div class='col-sm'>\
+                        <div class='col-sm'>\
                                 <div class='wrap-input100 m-b-16'>\
                                     <input class='form-control' type='text' value='"+ dtPrazo + "' readonly>\
                                     <span class='focus-input100'></span>\
@@ -42,7 +43,7 @@ $(document).ready(function () {
                             </div>\
                             <div class='col-sm'>\
                                 <div class='wrap-input100 m-b-16'>\
-                                    <input class='form-control' type='text' value='"+ hrPrazo + "' readonly>\
+                                    <input class='form-control' type='text' value='"+ viagem.hrPrazo + "' readonly>\
                                     <span class='focus-input100'></span>\
                                 </div>\
                             </div>\
@@ -56,15 +57,15 @@ $(document).ready(function () {
                     ");
 
                     tabelaViagem.append("<div class='row' style='width:100%'>\
-                        <div class='col-3 p-b-15'>\
+                        <div class='col p-b-15'>\
                                 <button type='button' id='btnAlterar"+ id + "' onclick='alterar(" + id + ")'\
                             class='btn btn-dark btn-block'>Alterar</button>\
                         </div>\
-                        <div class='col-3 p-b-15'>\
+                        <div class='col p-b-15'>\
                             <button type='button' id='btnExcluir"+ id + "' onclick='excluir(" + id + ")'\
                             class='btn btn-dark btn-block'>Excluir</button>\
                         </div >\
-                        <div class='col-6 p-b-15'>\
+                        <div class='col p-b-15'>\
                             <button type='button' id='btnFeito"+ id + "' onclick='feito(" + id + ")'\
                             class='btn btn-dark btn-block'>Feito</button>\
                         </div >\
@@ -73,7 +74,7 @@ $(document).ready(function () {
                 });
 
 
-
+                
             });
 
         },
@@ -84,7 +85,7 @@ $(document).ready(function () {
 });
 
 function alterar(id) {
-    window.location.href = "alterar/" + id;
+    window.location.href = "alteracao/" + id;
 }
 
 function excluir(id) {
