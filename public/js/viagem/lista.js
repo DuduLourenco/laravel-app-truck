@@ -55,7 +55,7 @@ $(document).ready(function () {
                         </div >\
                     ");
 
-                    tabelaViagem.append("<div class='row'>\
+                    tabelaViagem.append("<div class='row' style='width:100%'>\
                         <div class='col-3 p-b-15'>\
                                 <button type='button' id='btnAlterar"+ id + "' onclick='alterar(" + id + ")'\
                             class='btn btn-dark btn-block'>Alterar</button>\

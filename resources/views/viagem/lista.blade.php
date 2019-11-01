@@ -33,7 +33,7 @@ Viagens
 			</div>
 
 			<div class="row">
-				<table id="tabelaViagem">
+				<table id="tabelaViagem" class="container-login100-form-btn">
 				</table>
 			</div>
 

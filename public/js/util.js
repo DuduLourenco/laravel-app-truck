@@ -44,6 +44,17 @@ function validaData(dateString) {
 	return d.toISOString().slice(0, 10) === dateString;
 }
 
+function validaHora(horaString){
+	if (horaString.trim().length != 5) return false;
+	horas = horaString.substring(0,2);
+	minutos = horaString.substring(3,5);
+	if (  (horas > 23) || (horas < 0) || (minutos > 59) || (minutos < 0)) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
 function mensagemAlerta($mensagem) {
 	bootbox.alert({
 		message: $mensagem,

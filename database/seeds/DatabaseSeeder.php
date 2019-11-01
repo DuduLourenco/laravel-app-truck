@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
                     'dsGastos'=>$gasto,
                     'dsValor'=>$ganhos,
                     'dsLucro'=>$lucro,
-                    'dsStatus'=>"Feita",
+                    'dsStatus'=>"F",
                     'idUsuario'=>$i+1,
                     'idVeiculo'=>($i*2)+rand(1,2)
                 ];
@@ -142,7 +142,7 @@ class DatabaseSeeder extends Seeder
                     'dsGastos'=>$gasto,
                     'dsValor'=>$ganhos,
                     'dsLucro'=>$lucro,
-                    'dsStatus'=>"Feita",
+                    'dsStatus'=>"F",
                     'idUsuario'=>$i+1,
                     'idVeiculo'=>($i*2)+rand(1,2)
                 ]);
@@ -159,7 +159,7 @@ class DatabaseSeeder extends Seeder
                     'dsGastos'=>$gasto,
                     'dsValor'=>$ganhos,
                     'dsLucro'=>$lucro,
-                    'dsStatus'=>"Feita",
+                    'dsStatus'=>"F",
                     'idUsuario'=>$i+1,
                     'idVeiculo'=>($i*2)+rand(1,2)
                 ]);

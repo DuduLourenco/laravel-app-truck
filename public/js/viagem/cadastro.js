@@ -5,28 +5,43 @@ $(function(){
     $('#dtPrazo').mask('00/00/0000');
     $('#dsValorInfo').mask('##.#00,00', { reverse: true });
     $("#dsLucroInfo").mask('R$', { reverse: true });
+    $("#hrPrazo").mask("00:00");
 });
 
-$("#hrPrazo").mask("AB:CD", {
-    translation: {
-      "A": { pattern: /[0-2]/, optional: false},
-      "B": { pattern: /[0-4]/, optional: false},
-      "C": { pattern: /[0-5]/, optional: false},
-      "D": { pattern: /[0-9]/, optional: false}
-    }
-});
+
 
 function finalizaViagem() {
-    
+
     dtPrazo = $("#dtPrazo").val();
+    hrPrazo = $("#hrPrazo").val();
+    valorV = $("#dsValorInfo").val();    
+
+    if (dtPrazo.trim() == "" || valorV.trim() == "" || hrPrazo.trim() == "") {
+        mensagemAlerta("Preencha todos os campos!");
+        return;
+    }
+
+    if (!validaData(formataData(dtPrazo))) {
+        mensagemAlerta("Data incorreta!");
+        return;
+    }
+
+    if (!validaHora(hrPrazo)) {
+        mensagemAlerta("Hora incorreta!");
+        return;
+    } 
+    
     dtPrazo = formataData(dtPrazo);
+
     $("#dtPrazo").val(dtPrazo);
 
     $("#dsGastos").val(gastos);
 
     $("#dsValor").val(valor);
-
+    
     $("#form").submit();
+    
+    
 }
 
 function calculaLucro(){

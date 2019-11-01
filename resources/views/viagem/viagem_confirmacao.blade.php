@@ -74,24 +74,24 @@ Viagens
 					Dados da Viagem
 					<br>
 					<span class="txt2">
-						Preencha as Dados
+						Preencha as Dados 
 					</span>
 				</span>
-
+				
 			</div>
 
 			<div class="row">
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="">
 						<input class="input100" maxlength="10" type="text" name="dtPrazo" id="dtPrazo"
-							placeholder="Prazo - Data">
+							placeholder="Prazo - Data" required>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="">
 						<input class="input100" maxlength="5" type="text" name="hrPrazo" id="hrPrazo"
-							placeholder="Prazo - Hora">
+							placeholder="Prazo - Hora" required>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
@@ -101,7 +101,7 @@ Viagens
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="">
 						<input class="input100" type="text" name="dsValorInfo" id="dsValorInfo" maxlength="14"
-							onkeyup="calculaLucro()" placeholder="Valor da Viagem">
+							onkeyup="calculaLucro()" placeholder="Valor da Viagem" required>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
