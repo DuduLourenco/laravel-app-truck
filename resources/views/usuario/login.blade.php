@@ -19,8 +19,8 @@
 				</span>
 
 				<div>
-					<a href="#" class="btn-login-with bg1 m-b-10">
-						<i class="fa fa-facebook-official"></i>
+					<a href="#" class="btn-login-with bg1 m-b-10 " style="color:#ffffff">
+						<i class="fa fa-facebook-official" ></i>
 						Entrar com Facebook
 					</a>
 				</div>
