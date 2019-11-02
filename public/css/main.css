@@ -76,6 +76,10 @@ ul, li {
 	list-style-type: none;
 }
 
+.bg-dark{
+ background-color: #070E38;
+}
+
 
 /*---------------------------------------------*/
 input {
@@ -134,7 +138,7 @@ iframe {
 .txt1 {
   font-family: Oswald-Bold;
   font-size: 20px;
-  color: #333333;
+  color: #070E38;
   line-height: 1.2;
 }
 
@@ -148,7 +152,7 @@ iframe {
 .txt3 {
   font-family: Oswald-Regular;
   font-size: 16px;
-  color: #333333;
+  color: #070E38;
   line-height: 1.2;
   text-transform: uppercase;
 }
@@ -219,7 +223,7 @@ iframe {
 .btn-login-with {
   font-family: Oswald-Medium;
   font-size: 16px;
-  color: #fff;
+  color: rgb(223, 208, 8);
   line-height: 1.2;
 
   display: -webkit-box;
@@ -240,8 +244,8 @@ iframe {
 }
 
 .btn-login-with:hover {
-  color: #fff;
-  background-color: #333333;
+  color: rgb(238, 215, 11);
+  background-color: #070E38;
 }
 
 /*------------------------------------------------------------------
@@ -326,11 +330,11 @@ iframe {
 }
 
 .btn-show-pass:hover {
-  color: #111111;
+  color: #797979;
 }
 
 .btn-show-pass.active {
-  color: #111111;
+  color: #d3d3d3;
 }
 
 /*------------------------------------------------------------------
@@ -357,12 +361,12 @@ iframe {
   padding: 0 20px;
   min-width: 160px;
   height: 62px;
-  background-color: transparent;
+  background-color: #110531;
   border-radius: 31px;
 
   font-family: Oswald-Regular;
   font-size: 16px;
-  color: #fff;
+  color: rgb(207, 221, 14);
   line-height: 1.2;
   text-transform: uppercase;
 
@@ -389,7 +393,7 @@ iframe {
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
   border-radius: 31px;
-  background-color: #333333;
+  background-color: #070E38;
   pointer-events: none;
   
   -webkit-transition: all 0.4s;
@@ -399,7 +403,7 @@ iframe {
 }
 
 .login100-form-btn:hover:before {
-  background-color: #222222;
+  background-color: #110941;
   width: calc(100% + 20px);
 }
 
@@ -515,7 +519,7 @@ iframe {
 }
 .al-navbar .dropdown-menu a:hover {
   color:#fff;
-  background:#333333;
+  background:#070E38;
 }
 .al-icons a {
   color:#222;

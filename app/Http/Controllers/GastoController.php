@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Gasto;
 use Illuminate\Http\Request;
 
 class GastoController extends Controller
@@ -17,10 +18,7 @@ class GastoController extends Controller
         date_default_timezone_set(date_default_timezone_get());
         $date = date('Y-m-d h:i:s', time());
         $usuario = $request->session()->get('usuario');
-        $usuario = [
-            'idUsuario' => $usuario->id,
-            'nmUsuario' => $usuario->nmUsuario
-        ];
+        
         $gasto = new Gasto();
         $gasto->dsTipo = $request->dsTipo;
         $gasto->dsValor = $request->dsValor;

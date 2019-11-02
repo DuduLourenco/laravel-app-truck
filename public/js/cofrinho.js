@@ -19,11 +19,7 @@ function showGetResult()
 window.onload = graficoColStack();
 function graficoColStack(){
     var gastos = JSON.parse(showGetResult());
-    var Estadia=[];
-    var Alimentacao=[];
-    var TrocaOleo=[];
-    var Manutencao=[];
-    var Combustivel=[];
+    r
     for (let index = 0; index < gastos.length; index++) {
         // if( new Date(gastos[index].dtGasto).getTime() > new Date(Date.now()).getTime()-(2.628*Math.pow(10,9))){
         //     gastos.push({ y: this.parseFloat(gastos[index].dsValor  ), x: periodo });

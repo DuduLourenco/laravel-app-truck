@@ -29,25 +29,25 @@ Viagens
 
 
 			<div class="wrap-input100 m-b-16 m-t-16">
-				<input class="input100" type="text" value="De: {{$request->dsOrigem}}" readonly>
+				<input class="input100 text-warning bg-dark" type="text" value="De: {{$request->dsOrigem}}" readonly>
 				<span class="focus-input100"></span>
 			</div>
 
 			<div class="wrap-input100" data-validate="" id="divNmPlacaVeiculo">
-				<input class="input100" type="text" value="Para: {{$request->dsDestino}}" readonly>
+				<input class="input100 text-warning bg-dark" type="text" value="Para: {{$request->dsDestino}}" readonly>
 				<span class="focus-input100"></span>
 			</div>
 
 			<div class="row">
 				<div class="col-sm">
 					<div class="wrap-input100 m-t-16">
-						<input class="input100" type="text" value="Duração: {{$request->dsTempoInfo}}" readonly>
+						<input class="input100 text-warning bg-dark" type="text" value="Duração: {{$request->dsTempoInfo}}" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
 				<div class="col-sm">
 					<div class="wrap-input100 m-t-16">
-						<input class="input100" type="text" value="Distância: {{$request->dsDistanciaInfo}}" readonly>
+						<input class="input100 text-warning bg-dark" type="text" value="Distância: {{$request->dsDistanciaInfo}}" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
@@ -56,13 +56,13 @@ Viagens
 			<div class="row">
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16 m-t-16">
-						<input class="input100" type="text" value="Total de Gastos: R$ {{$request->dsGastos}}" readonly>
+						<input class="input100 text-warning bg-dark" type="text" value="Total de Gastos: R$ {{$request->dsGastos}}" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16 m-t-16">
-						<input class="input100" type="text" value="Veículo: {{$request->nmPlacaVeiculo}}" readonly>
+						<input class="input100 text-warning bg-dark" type="text" value="Veículo: {{$request->nmPlacaVeiculo}}" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
@@ -107,7 +107,7 @@ Viagens
 				</div>
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="">
-						<input class="input100" type="text" name="dsLucroInfo" id="dsLucroInfo" placeholder="Lucro" readonly>
+						<input class="input100  text-warning bg-dark" type="text" name="dsLucroInfo" id="dsLucroInfo" placeholder="Lucro" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>

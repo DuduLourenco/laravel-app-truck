@@ -114,7 +114,7 @@ Viagens
 				</div>
 			</div>
 
-			<input type="hidden" name="idUsuario" id="idUsuario"
+			<input  type="hidden" name="idUsuario" id="idUsuario"
 				value="@if (Session::has('usuario')){{Session::get('usuario')->id}}@endif">
 
 			<input type="hidden" name="nmPlacaVeiculo" id="nmPlacaVeiculo" value="">

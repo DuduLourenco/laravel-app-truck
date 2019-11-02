@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Usuario;
+use App\Gasto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
@@ -27,6 +28,11 @@ class UsuariosController extends Controller
     public function relatorioView()
     {
         return view('usuario.relatorio');
+    }
+
+    public function gastosView()
+    {
+        return view('usuario.gastos');
     }
 
 
@@ -68,6 +74,25 @@ class UsuariosController extends Controller
 
     }
 
+
+    public function cadastrarGasto(Request $request)
+    {
+        $date = date('Y-m-d h:i:s', time());
+        $usuario = $this->findByCpf($request->cpfUsuario);
+        
+        $gasto = new Gasto();
+        $gasto->dsTipo = $request->dsTipo;
+        $gasto->dsValor = $request->dsValor;
+        $gasto->idUsuario = $usuario->id;
+        $gasto->dtGasto = $request->dtGasto;
+        $gasto->save();
+        try {
+            $gasto->save();
+        } catch (\Exception $e) {
+            return redirect("usuarios/gastos")->with("message", "Erro ao registrar gasto");
+        }
+        return redirect("usuarios/gastos")->with("message", "Gasto cadastrado com sucesso!");
+    }
 
     public function alterarView(){
         return view('usuario.alterar');

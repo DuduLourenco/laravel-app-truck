@@ -41,13 +41,13 @@ Viagens
 			<div class="row">
 				<div class="col-sm">
 					<div class="wrap-input100 m-t-16">
-						<input class="input100" type="text" id="dsTempoInfo" value="Duração: {{$viagem->dsTempoInfo}}" readonly>
+						<input class="input100 text-warning bg-dark" type="text" id="dsTempoInfo" value="Duração: {{$viagem->dsTempoInfo}}" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
 				<div class="col-sm">
 					<div class="wrap-input100 m-t-16">
-						<input class="input100" type="text" id="dsDistanciaInfo" value="Distância: {{$viagem->dsDistanciaInfo}}" readonly>
+						<input class="input100 text-warning bg-dark" type="text" id="dsDistanciaInfo" value="Distância: {{$viagem->dsDistanciaInfo}}" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
@@ -56,7 +56,7 @@ Viagens
 			<div class="row">
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16 m-t-16">
-						<input class="input100" type="text" id="dsGastosInfo" value="Total de Gastos: R$ {{$viagem->dsGastos}}" readonly>
+						<input class="input100 text-warning bg-dark" type="text" id="dsGastosInfo" value="Total de Gastos: R$ {{$viagem->dsGastos}}" readonly>
 						<span class="focus-input100"></span>
 					</div>
 				</div>
