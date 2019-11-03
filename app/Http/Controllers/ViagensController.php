@@ -109,12 +109,7 @@ class ViagensController extends Controller
     {
         $viagem = Viagem::find($id);        
         $viagem->dsStatus = "C";
-
-        $usuario = Usuario::find($viagem->idUsuario);
-        $usuario->dsValorCofrinho = $usuario->dsValorCofrinho + $viagem->dsGastoManutencao;
-
-        try {
-            $usuario->update();
+        try {            
             $viagem->save();
             return redirect("/")->with("message", "Viagem excluida com sucesso!");
         } catch (\Exception $e) {
@@ -126,7 +121,12 @@ class ViagensController extends Controller
     {
         $viagem = Viagem::find($id);
         $viagem->dsStatus = "F";
+
+        $usuario = Usuario::find($viagem->idUsuario);
+        $usuario->dsValorCofrinho = $usuario->dsValorCofrinho + $viagem->dsGastoManutencao;
+
         try {
+            $usuario->update();
             $viagem->save();
             return redirect("/")->with("message", "Viagem finalizada com sucesso!");
         } catch (\Exception $e) {
