@@ -55,13 +55,13 @@ function graficoDonut(){
     }else {
         Outros+=gastos[index].dsValor;
     }
-    
+
     }
     if (Estadia > 0) {
         gastosArray.push({y:Estadia, label:"Estadia"});
     }
     if (Manutencao > 0) {
-        gastosArray.push({y:Manutencao, label:"Manutençãp"});
+        gastosArray.push({y:Manutencao, label:"Manutenção"});
     }
     if (Combustivel > 0) {
         gastosArray.push({y:Combustivel, label:"Combustível"});
