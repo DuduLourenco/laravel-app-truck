@@ -127,7 +127,7 @@ class ViagensController extends Controller
         $usuario->dsValorCofrinho = $usuario->dsValorCofrinho + $viagem->dsGastoManutencao;
 
         $gastoManutencao = Gasto::create([
-            'dsTipo' => 'Manutenção',
+            'dsTipo' => 'Manutencão',
             'dsValor' => ($viagem->dsGastoManutencao),
             'idUsuario' => $viagem->idUsuario,
             'dtGasto' => $viagem->dtPrazo

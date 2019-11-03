@@ -58,7 +58,7 @@ function graficoDonut(){
     }
     
     gastosArray.push({y:Estadia, label:"Estadia"});
-    gastosArray.push({y:Manutencao, label:"Manutençãp"});
+    gastosArray.push({y:Manutencao, label:"Manutenção"});
     gastosArray.push({y:Combustivel, label:"Combustível"});
     gastosArray.push({y:Outros, label:"Outros"});
 
