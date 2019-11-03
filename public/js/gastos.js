@@ -56,11 +56,22 @@ function graficoDonut(){
         Outros+=gastos[index].dsValor;
     }
     }
+    if (Estadia > 0) {
+        gastosArray.push({y:Estadia, label:"Estadia"});
+    }
+    if (Manutencao > 0) {
+        gastosArray.push({y:Manutencao, label:"Manutençãp"});
+    }
+    if (Combustivel > 0) {
+        gastosArray.push({y:Combustivel, label:"Combustível"});
+    }
+    if (Outros > 0) {
+        gastosArray.push({y:Outros, label:"Outros"});
+    }
     
-    gastosArray.push({y:Estadia, label:"Estadia"});
-    gastosArray.push({y:Manutencao, label:"Manutenção"});
-    gastosArray.push({y:Combustivel, label:"Combustível"});
-    gastosArray.push({y:Outros, label:"Outros"});
+    
+    
+    
 
         var chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
