@@ -125,14 +125,7 @@ class ViagensController extends Controller
 
         $usuario = Usuario::find($viagem->idUsuario);
         $usuario->dsValorCofrinho = $usuario->dsValorCofrinho + $viagem->dsGastoManutencao;
-
-        $gastoManutencao = Gasto::create([
-            'dsTipo' => 'Manutencão',
-            'dsValor' => ($viagem->dsGastoManutencao),
-            'idUsuario' => $viagem->idUsuario,
-            'dtGasto' => $viagem->dtPrazo
-        ]);
-
+     
         $gastoCombustivel = Gasto::create([
             'dsTipo' => 'Combustível',
             'dsValor' => ($viagem->dsGastos - $viagem->dsGastoManutencao) ,
@@ -143,7 +136,6 @@ class ViagensController extends Controller
         try {
             $usuario->update();
             $viagem->save();
-            $gastoManutencao->save();
             $gastoCombustivel->save();
             return redirect("/")->with("message", "Viagem finalizada com sucesso!");
         } catch (\Exception $e) {
