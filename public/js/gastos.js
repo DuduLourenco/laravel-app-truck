@@ -45,7 +45,7 @@ function graficoDonut(){
         //     gastos+=gastos[index].dsValor  ), x: periodo });
         // }
         if( gastos[index].dsTipo=="Estadia"){
-            Estadia+=gastos[index].dsValor;
+        Estadia+=gastos[index].dsValor;
     }else if( gastos[index].dsTipo=="Alimentação"){
         Alimentacao+=gastos[index].dsValor;
     }else if( gastos[index].dsTipo=="Manutenção"){
@@ -70,7 +70,7 @@ function graficoDonut(){
                 //innerRadius: 60,
                 indexLabelFontSize: 17,
                 indexLabel: "{label} - #percent%",
-                toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+                toolTipContent: "<b>{label}:</b> R$ {y} (#percent%)",
                 dataPoints: gastosArray
             }]
         });
