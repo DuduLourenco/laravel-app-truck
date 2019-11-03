@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Veiculo;
 use App\Viagem;
 use App\Usuario;
+use App\Gasto;
 use Illuminate\Http\Request;
 
 
@@ -58,7 +59,7 @@ class ViagensController extends Controller
     public function listViagensAtivasByIdUsuario($idUsuario)
     {
         $usuario = $this->usuario->find($idUsuario);
-        $viagens = $usuario->listViagens()->where('dsStatus','=','P')->getQuery()->get(['id','dtPrazo','hrPrazo','idVeiculo', 'dsStatus','dsOrigemLat','dsOrigemLng','dsDestinoLat','dsDestinoLng']);        
+        $viagens = $usuario->listViagens()->where('dsStatus', '=', 'P')->getQuery()->get(['id', 'dtPrazo', 'hrPrazo', 'idVeiculo', 'dsStatus', 'dsOrigemLat', 'dsOrigemLng', 'dsDestinoLat', 'dsDestinoLng']);
         return $viagens;
     }
 
@@ -73,17 +74,17 @@ class ViagensController extends Controller
         $viagem->dsTempo      = $request->dsTempo;
         $viagem->dtPrazo      = $request->dtPrazo;
         $viagem->hrPrazo      = $request->hrPrazo;
-        $viagem->dsGastos     = $request->dsGastos; 
+        $viagem->dsGastos     = $request->dsGastos;
         $viagem->dsGastoManutencao     = $request->dsGastoManutencao;
         $viagem->dsValor      = $request->dsValor;
         $viagem->dsLucro      = $request->dsLucro;
         $viagem->dsStatus     = $request->dsStatus;
         $viagem->idUsuario    = $request->idUsuario;
         $viagem->idVeiculo    = $request->idVeiculo;
-        
+
         try {
-            
-            $viagem->save();            
+
+            $viagem->save();
         } catch (\Exception $e) {
             return redirect("/")->with("message", "Erro ao cadastrar Viagem!");
         }
@@ -94,7 +95,7 @@ class ViagensController extends Controller
     {
         $viagem = Viagem::find($request->idViagem);
         $viagem->dtPrazo      = $request->dtPrazo;
-        $viagem->hrPrazo      = $request->hrPrazo; 
+        $viagem->hrPrazo      = $request->hrPrazo;
         $viagem->dsValor      = $request->dsValor;
         $viagem->dsLucro      = $request->dsLucro;
         try {
@@ -107,9 +108,9 @@ class ViagensController extends Controller
 
     public function excluirViagem($id)
     {
-        $viagem = Viagem::find($id);        
+        $viagem = Viagem::find($id);
         $viagem->dsStatus = "C";
-        try {            
+        try {
             $viagem->save();
             return redirect("/")->with("message", "Viagem excluida com sucesso!");
         } catch (\Exception $e) {
@@ -125,9 +126,25 @@ class ViagensController extends Controller
         $usuario = Usuario::find($viagem->idUsuario);
         $usuario->dsValorCofrinho = $usuario->dsValorCofrinho + $viagem->dsGastoManutencao;
 
+        $gastoManutencao = Gasto::create([
+            'dsTipo' => 'Manutenção',
+            'dsValor' => ($viagem->dsGastoManutencao),
+            'idUsuario' => $viagem->idUsuario,
+            'dtGasto' => $viagem->dtPrazo
+        ]);
+
+        $gastoCombustivel = Gasto::create([
+            'dsTipo' => 'Combustível',
+            'dsValor' => ($viagem->dsGastos - $viagem->dsGastoManutencao) ,
+            'idUsuario' => $viagem->idUsuario,
+            'dtGasto' => $viagem->dtPrazo
+        ]);
+
         try {
             $usuario->update();
             $viagem->save();
+            $gastoManutencao->save();
+            $gastoCombustivel->save();
             return redirect("/")->with("message", "Viagem finalizada com sucesso!");
         } catch (\Exception $e) {
             return redirect("/")->with("message", "Erro ao finalizar Viagem!");
