@@ -58,9 +58,9 @@ Viagens
 							style="border: none; outline: 0px;">
 							<option value="Manutenção" selected="selected">Manutenção</option>
 							<option value='Estadia'> Estadia </option>
-							<option value='Estadia'> Alimentação </option>
-							<option value='Estadia'> Combustível </option>
-							<option value='Estadia'> Outro </option>
+							<option value='Alimentacao'> Alimentação </option>
+							<option value='Combustivel'> Combustível </option>
+							<option value='Outro'> Outro </option>
 							
 						</select>
 						<span class="focus-input100"></span>

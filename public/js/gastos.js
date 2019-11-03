@@ -55,6 +55,7 @@ function graficoDonut(){
     }else {
         Outros+=gastos[index].dsValor;
     }
+    
     }
     if (Estadia > 0) {
         gastosArray.push({y:Estadia, label:"Estadia"});
