@@ -16,6 +16,7 @@ class Viagem extends Model
         'dtPrazo',
         'hrPrazo',
         'dsGastos',
+        'dsGastoManutencao',
         'dsValor',
         'dsLucro',
         'dsStatus',

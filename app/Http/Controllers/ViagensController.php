@@ -74,15 +74,16 @@ class ViagensController extends Controller
         $viagem->dtPrazo      = $request->dtPrazo;
         $viagem->hrPrazo      = $request->hrPrazo;
         $viagem->dsGastos     = $request->dsGastos; 
+        $viagem->dsGastoManutencao     = $request->dsGastoManutencao;
         $viagem->dsValor      = $request->dsValor;
         $viagem->dsLucro      = $request->dsLucro;
         $viagem->dsStatus     = $request->dsStatus;
         $viagem->idUsuario    = $request->idUsuario;
         $viagem->idVeiculo    = $request->idVeiculo;
-        //return var_dump($viagem->first());
-
+        
         try {
-            $viagem->save();
+            
+            $viagem->save();            
         } catch (\Exception $e) {
             return redirect("/")->with("message", "Erro ao cadastrar Viagem!");
         }
@@ -106,9 +107,14 @@ class ViagensController extends Controller
 
     public function excluirViagem($id)
     {
-        $viagem = Viagem::find($id);
+        $viagem = Viagem::find($id);        
         $viagem->dsStatus = "C";
+
+        $usuario = Usuario::find($viagem->idUsuario);
+        $usuario->dsValorCofrinho = $usuario->dsValorCofrinho + $viagem->dsGastoManutencao;
+
         try {
+            $usuario->update();
             $viagem->save();
             return redirect("/")->with("message", "Viagem excluida com sucesso!");
         } catch (\Exception $e) {

@@ -121,6 +121,7 @@ Viagens
 
 			<input type="hidden" name="idViagem" id="idViagem" value="">
 			<input type="hidden" name="dsGastos" id="dsGastos" value="">
+			<input type="hidden" name="dsGastoManutencao" id="dsGastoManutencao" value="">
 
 			<input type="hidden" name="dsOrigemLat" id="dsOrigemLat" value="">
 			<input type="hidden" name="dsOrigemLng" id="dsOrigemLng" value="">

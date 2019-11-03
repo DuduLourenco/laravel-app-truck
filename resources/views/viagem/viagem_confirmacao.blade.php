@@ -140,7 +140,8 @@ Viagens
 			<input type="hidden" name="idVeiculo" id="idVeiculo" value="{{$request->veiculo}}">	
 
 			<input type="hidden" name="idViagem" id="idViagem" value="">
-			<input type="hidden" name="dsGastos" id="dsGastos" value="{{$request->dsGastos}}">			
+			<input type="hidden" name="dsGastos" id="dsGastos" value="{{$request->dsGastos}}">		
+			<input type="hidden" name="dsGastoManutencao" id="dsGastoManutencao" value="{{$request->dsGastoManutencao}}">	
 
 			<input type="hidden" name="dsOrigemLat"  id="dsOrigemLat"  value="{{$request->dsOrigemLat}}">
 			<input type="hidden" name="dsOrigemLng"  id="dsOrigemLng"  value="{{$request->dsOrigemLng}}">

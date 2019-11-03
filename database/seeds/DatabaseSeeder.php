@@ -35,27 +35,83 @@ class DatabaseSeeder extends Seeder
         MarcaVeiculo::create([
             'nmMarca'=>'Volvo'
         ]);
+        MarcaVeiculo::create([
+            'nmMarca'=>'Ford'
+        ]);
+
+        //MERCEDES
         ModeloVeiculo::create([
             'nmModelo'=>'Atego 2425',
             'idMarca'=>1,
         ]);
         ModeloVeiculo::create([
-            'nmModelo'=>'R440',
-            'idMarca'=>2,
-        ]);
-        ModeloVeiculo::create([
-            'nmModelo'=>'VM',
-            'idMarca'=>3,
-        ]);
-
-        ModeloVeiculo::create([
-            'nmModelo'=>'FH',
-            'idMarca'=>3,
-        ]);
-        ModeloVeiculo::create([
             'nmModelo'=>'Accelo 815',
             'idMarca'=>1,
         ]);
+        ModeloVeiculo::create([
+            'nmModelo'=>'Atron 1719',
+            'idMarca'=>1,
+        ]);
+        ModeloVeiculo::create([
+            'nmModelo'=>'Actros 2646',
+            'idMarca'=>1,
+        ]);
+
+        //SCANIA
+        ModeloVeiculo::create([
+            'nmModelo'=>'R 440',
+            'idMarca'=>2,
+        ]);
+        ModeloVeiculo::create([
+            'nmModelo'=>'R 420',
+            'idMarca'=>2,
+        ]);
+        ModeloVeiculo::create([
+            'nmModelo'=>'P 360',
+            'idMarca'=>2,
+        ]);
+        ModeloVeiculo::create([
+            'nmModelo'=>'G 420',
+            'idMarca'=>2,
+        ]);
+
+        //VOLVO
+        ModeloVeiculo::create([
+            'nmModelo'=>'VM 330',
+            'idMarca'=>3,
+        ]);
+        ModeloVeiculo::create([
+            'nmModelo'=>'FH 16',
+            'idMarca'=>3,
+        ]);
+        ModeloVeiculo::create([
+            'nmModelo'=>'FMX',
+            'idMarca'=>3,
+        ]);
+        ModeloVeiculo::create([
+            'nmModelo'=>'FM 11',
+            'idMarca'=>3,
+        ]);
+
+        //FORD
+        ModeloVeiculo::create([
+            'nmModelo'=>'Cargo 1119',
+            'idMarca'=>4,
+        ]);
+        ModeloVeiculo::create([
+            'nmModelo'=>'Cargo 816',
+            'idMarca'=>4,
+        ]);
+        ModeloVeiculo::create([
+            'nmModelo'=>'F 4000',
+            'idMarca'=>4,
+        ]);
+        ModeloVeiculo::create([
+            'nmModelo'=>'F 350',
+            'idMarca'=>4,
+        ]);
+        
+        
         for ($i=0; $i < 20; $i++) {
             $gastos=[];
             $valor=0;
@@ -76,16 +132,19 @@ class DatabaseSeeder extends Seeder
                 $ganhos=rand(0,3000);
                 $lucro = $gasto-$ganhos;
                 $gastoT-=$gasto*0.2;
+                $dsDistancia = rand(1000,1000000);
+                $dsGastoManutencao = $dsDistancia / (11.05);
                 $viagem=[
                     'dsOrigemLat'=>rand(0,100),
                     'dsOrigemLng'=>rand(0,100),
                     'dsDestinoLat'=>rand(0,100),
                     'dsDestinoLng'=>rand(0,100),
-                    'dsDistancia'=>rand(0,100),
+                    'dsDistancia'=>$dsDistancia,
                     'dsTempo'=>rand(0,100),
                     'dtPrazo'=> $this->randomDateInRange(new DateTime('2018-01-01'), new DateTime('2019-10-10')),
                     'hrPrazo'=>date("H:i",$this->randomDateInRange(new DateTime('2000-01-01'), new DateTime('2019-01-01'))->getTimestamp()),
                     'dsGastos'=>$gasto,
+                    'dsGastoManutencao'=>$dsGastoManutencao,
                     'dsValor'=>$ganhos,
                     'dsLucro'=>$lucro,
                     'dsStatus'=>"F",
@@ -113,14 +172,14 @@ class DatabaseSeeder extends Seeder
             Veiculo::create([
                 'idModelo'=>rand(1,5),
                 'idUsuario'=>$i+1,
-                'nmPlacaVeiculo'=>"AAA-".rand(111, 999),
+                'nmPlacaVeiculo'=>"AAA-".rand(1111, 9999),
                 'anoVeiculo'=> rand(1990,$y),
                 'dsConsumoVeiculo'=>rand(1,20)
                 ]);
             Veiculo::create([
                     'idModelo'=>rand(1, 5),
                     'idUsuario'=>$i+1,
-                    'nmPlacaVeiculo'=>"AAA-".rand(111, 999),
+                    'nmPlacaVeiculo'=>"AAA-".rand(1111, 9999),
                     'anoVeiculo'=> rand(1990,$y),
                     'dsConsumoVeiculo'=>rand(1,20)
             ]);
@@ -135,11 +194,12 @@ class DatabaseSeeder extends Seeder
                     'dsOrigemLng'=>rand(0,100),
                     'dsDestinoLat'=>rand(0,100),
                     'dsDestinoLng'=>rand(0,100),
-                    'dsDistancia'=>rand(0,100),
+                    'dsDistancia'=>$dsDistancia,
                     'dsTempo'=>rand(0,100),
                     'dtPrazo'=> $this->randomDateInRange(new DateTime('2015-01-01'), new DateTime('2019-10-10')),
                     'hrPrazo'=>date("H:i",$this->randomDateInRange(new DateTime('2000-01-01'), new DateTime('2019-01-01'))->getTimestamp()),
                     'dsGastos'=>$gasto,
+                    'dsGastoManutencao'=>$dsGastoManutencao,
                     'dsValor'=>$ganhos,
                     'dsLucro'=>$lucro,
                     'dsStatus'=>"F",
@@ -152,11 +212,12 @@ class DatabaseSeeder extends Seeder
                     'dsOrigemLng'=>rand(0,100),
                     'dsDestinoLat'=>rand(0,100),
                     'dsDestinoLng'=>rand(0,100),
-                    'dsDistancia'=>rand(0,100),
+                    'dsDistancia'=>$dsDistancia,
                     'dsTempo'=>rand(0,100),
                     'dtPrazo'=> $this->randomDateInRange(new DateTime('2019-09-28'), new DateTime('2019-10-10')),
                     'hrPrazo'=>date("H:i",$this->randomDateInRange(new DateTime('2000-01-01'), new DateTime('2019-01-01'))->getTimestamp()),
                     'dsGastos'=>$gasto,
+                    'dsGastoManutencao'=>$dsGastoManutencao,
                     'dsValor'=>$ganhos,
                     'dsLucro'=>$lucro,
                     'dsStatus'=>"F",

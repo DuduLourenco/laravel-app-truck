@@ -197,8 +197,10 @@ class UsuariosController extends Controller
         return $this->usuario->where('cdCpfUsuario', $cdCpfUsuario)->first();
     }
 
-    public function cofrinhoView()
-    {
+    public function cofrinhoView(Request $request)
+    {   
+        $usuario = Usuario::find($request->session()->get('usuario')->id);
+        $request->session()->put('usuario', $usuario);
         return view('usuario.cofrinho');
     }
 

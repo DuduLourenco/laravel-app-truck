@@ -53,7 +53,7 @@ function calculaLucro(){
     $("#dsLucroInfo").val("R$ " + lucro);
     $("#dsLucro").val(lucro);
 
-    if (lucro > 0) {
+    if (lucro > (gastos * 0.5)) {
         $("#dsResultado").val("A Viagem É Vantajosa");
         $("#dsResultado").css("color", "green");
     } else {

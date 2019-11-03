@@ -122,7 +122,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
         wV = (WebView) findViewById(R.id.webview);
         wV.setWebViewClient(new WebViewClient());
-        wV.loadUrl("http://192.168.15.5/appTrucks/public/usuarios/login");
+        wV.loadUrl("http://apptrucks.herokuapp.com/usuarios/login");
         WebSettings wS = wV.getSettings();
         wS.setJavaScriptEnabled(true);
 

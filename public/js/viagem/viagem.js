@@ -333,6 +333,7 @@ function calculaGasto() {
         }).done(function (veiculo) {
             dsConsumoVeiculo = veiculo.dsConsumoVeiculo.toString().replace(",", ".");
             dsGastoManutencao = arredonda((distancia / (11,05 * 1000)), 2);
+            $("#dsGastoManutencao").val(dsGastoManutencao);
             dsGastoCombustivel = arredonda ((distancia / (dsConsumoVeiculo * 1000)) * dsPrecoCombustivel, 2);
             dsGastoTotal = arredonda(dsGastoCombustivel + dsGastoManutencao, 2);
             $("#dsGastoTotalInfo").val("R$ " + dsGastoTotal);

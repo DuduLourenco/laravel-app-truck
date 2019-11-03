@@ -24,6 +24,7 @@ class CriaTbViagem extends Migration
             $table->date('dtPrazo')->required();
             $table->time('hrPrazo')->required();
             $table->double('dsGastos')->required();
+            $table->double('dsGastoManutencao')->required();
             $table->double('dsValor')->required();
             $table->double('dsLucro')->required();
             $table->string('dsStatus')->required();
