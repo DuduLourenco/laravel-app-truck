@@ -85,7 +85,6 @@ class UsuariosController extends Controller
         $gasto->dsValor = $request->dsValor;
         $gasto->idUsuario = $usuario->id;
         $gasto->dtGasto = $request->dtGasto;
-        $gasto->save();
         try {
             $gasto->save();
         } catch (\Exception $e) {

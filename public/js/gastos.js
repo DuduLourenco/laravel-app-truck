@@ -40,6 +40,7 @@ function graficoDonut(){
     var Outros=0;
     var Manutencao=0;
     var Combustivel=0;
+    var Pedagio=0;
     for (let index = 0; index < gastos.length; index++) {
         // if( new Date(gastos[index].dtGasto).getTime() > new Date(Date.now()).getTime()-(2.628*Math.pow(10,9))){
         //     gastos+=gastos[index].dsValor  ), x: periodo });
@@ -52,6 +53,8 @@ function graficoDonut(){
         Manutencao+=gastos[index].dsValor;
     }else if( gastos[index].dsTipo=="Combustível"){
         Combustivel+=gastos[index].dsValor;
+    }else if( gastos[index].dsTipo=="Pedagio"){
+        Pedagio+=gastos[index].dsValor;
     }else {
         Outros+=gastos[index].dsValor;
     }
@@ -65,6 +68,9 @@ function graficoDonut(){
     }
     if (Combustivel > 0) {
         gastosArray.push({y:Combustivel, label:"Combustível"});
+    }
+    if (Pedagio > 0) {
+        gastosArray.push({y:Pedagio, label:"Pedágio"});
     }
     if (Outros > 0) {
         gastosArray.push({y:Outros, label:"Outros"});

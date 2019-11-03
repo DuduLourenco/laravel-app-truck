@@ -60,6 +60,7 @@ Viagens
 							<option value='Estadia'> Estadia </option>
 							<option value='Alimentacao'> Alimentação </option>
 							<option value='Combustivel'> Combustível </option>
+							<option value='Pedagio'> Pedágio </option>
 							<option value='Outro'> Outro </option>
 							
 						</select>
