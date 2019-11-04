@@ -95,6 +95,7 @@ function graficoDonut(){
                 showInLegend: "true",
 		        legendText: "{label}",
                 indexLabel: "{label} - #percent%",
+                percentFormatString: "#0.##",
                 toolTipContent: "<b>{label}:</b> R$ {y} (#percent%)",
                 dataPoints: gastosArray
             }]
