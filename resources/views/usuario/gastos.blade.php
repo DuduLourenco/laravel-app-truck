@@ -17,15 +17,16 @@ Viagens
 
 
 @section('conteudo')
-
+<span class="login100-form-title p-t-40 container-login100" style="min-height: 0">
+	Gastos
+</span>
+<div id="chartContainer" style="height:30%; width: 100%;"></div>
 <div class="container-login100" style="align-items: stretch">
 <div class="wrap-login100 p-b-30 p-45" style="width: 640px">
-		
+	
 <form id="form" class="login100-form validate-form" method="postS" action="{{ url('/usuarios/registraGasto') }}">
-<span class="login100-form-title p-b-40">
-				Gastos
-			</span>
-<div id="chartContainer" style="height:30%; width: 100%;"></div> <br>
+
+
 
             {{ csrf_field() }}
             
@@ -36,7 +37,7 @@ Viagens
 			<div class="row">
 				<div class="col-sm">
 					<div class="wrap-input100 m-b-16" data-validate="" id="divdsValor">
-						<input class="input100" type="number" name="dsValor" id="dsValor"
+						<input class="input100" type="text" name="dsValor" id="dsValor"
 							placeholder="Valor">
 						<span class="focus-input100"></span>
 					</div>
@@ -56,7 +57,7 @@ Viagens
 					<div class="wrap-input100  m-b-16" data-validate="" id="divManutenção">
 						<select name="dsTipo" id="dsTipo" class="input100"
 							style="border: none; outline: 0px;">
-							<option value="Manutenção" selected="selected">Manutenção</option>
+							<option value="Manutencao" selected="selected">Manutenção</option>
 							<option value='Estadia'> Estadia </option>
 							<option value='Alimentacao'> Alimentação </option>
 							<option value='Combustivel'> Combustível </option>

@@ -45,13 +45,13 @@ function graficoDonut(){
         // if( new Date(gastos[index].dtGasto).getTime() > new Date(Date.now()).getTime()-(2.628*Math.pow(10,9))){
         //     gastos+=gastos[index].dsValor  ), x: periodo });
         // }
-        if( gastos[index].dsTipo=="Estadia"){
+    if( gastos[index].dsTipo=="Estadia"){
         Estadia+=gastos[index].dsValor;
-    }else if( gastos[index].dsTipo=="Alimentação"){
+    }else if( gastos[index].dsTipo=="Alimentacao"){
         Alimentacao+=gastos[index].dsValor;
-    }else if( gastos[index].dsTipo=="Manutenção"){
+    }else if( gastos[index].dsTipo=="Manutencao"){
         Manutencao+=gastos[index].dsValor;
-    }else if( gastos[index].dsTipo=="Combustível"){
+    }else if( gastos[index].dsTipo=="Combustivel"){
         Combustivel+=gastos[index].dsValor;
     }else if( gastos[index].dsTipo=="Pedagio"){
         Pedagio+=gastos[index].dsValor;
@@ -65,6 +65,9 @@ function graficoDonut(){
     }
     if (Manutencao > 0) {
         gastosArray.push({y:Manutencao, label:"Manutenção"});
+    }
+    if (Alimentacao > 0) {
+        gastosArray.push({y:Alimentacao, label:"Alimentação"});
     }
     if (Combustivel > 0) {
         gastosArray.push({y:Combustivel, label:"Combustível"});
@@ -82,11 +85,15 @@ function graficoDonut(){
 
         var chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
+            backgroundColor: "#e6e6e6",
             data: [{
-                type: "doughnut",
-                startAngle: 60,
+                type: "doughnut",                
+                startAngle: 60,                
                 //innerRadius: 60,
-                indexLabelFontSize: 17,
+                indexLabel: false,
+                indexLabelFontSize: 16,
+                showInLegend: "true",
+		        legendText: "{label}",
                 indexLabel: "{label} - #percent%",
                 toolTipContent: "<b>{label}:</b> R$ {y} (#percent%)",
                 dataPoints: gastosArray
