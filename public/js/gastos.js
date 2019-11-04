@@ -46,25 +46,25 @@ function graficoDonut(){
         //     gastos+=gastos[index].dsValor  ), x: periodo });
         // }
     if( gastos[index].dsTipo=="Estadia"){
-        Estadia+=gastos[index].dsValor;
+        Estadia+=parseFloat(gastos[index].dsValor);
     }else if( gastos[index].dsTipo=="Alimentacao"){
-        Alimentacao+=gastos[index].dsValor;
+        Alimentacao+=parseFloat(gastos[index].dsValor);
     }else if( gastos[index].dsTipo=="Manutencao"){
-        Manutencao+=gastos[index].dsValor;
+        Manutencao+=parseFloat(gastos[index].dsValor);
     }else if( gastos[index].dsTipo=="Combustivel"){
-        Combustivel+=gastos[index].dsValor;
+        Combustivel+=parseFloat(gastos[index].dsValor);
     }else if( gastos[index].dsTipo=="Pedagio"){
-        Pedagio+=gastos[index].dsValor;
+        Pedagio+=parseFloat(gastos[index].dsValor);
     }else {
-        Outros+=gastos[index].dsValor;
+        Outros+=parseFloat(gastos[index].dsValor);
     }
 
     
 
     }
 
-    tudo = Estadia + Alimentacao + Manutencao + Combustivel + Pedagio + Outros;
     alert(JSON.stringify({y:Estadia}));
+    
     if (Estadia > 0) {
         gastosArray.push({y:Estadia, label:"Estadia"});
     }
