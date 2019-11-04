@@ -59,7 +59,12 @@ function graficoDonut(){
         Outros+=gastos[index].dsValor;
     }
 
+    
+
     }
+
+    tudo = Estadia + Alimentacao + Manutencao + Combustivel + Pedagio + Outros;
+    alert(JSON.stringify({y:Estadia}));
     if (Estadia > 0) {
         gastosArray.push({y:Estadia, label:"Estadia"});
     }
