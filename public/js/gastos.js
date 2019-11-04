@@ -63,8 +63,7 @@ function graficoDonut(){
 
     }
 
-    alert(JSON.stringify({y:Estadia}));
-    
+
     if (Estadia > 0) {
         gastosArray.push({y:Estadia, label:"Estadia"});
     }
