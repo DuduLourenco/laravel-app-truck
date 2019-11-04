@@ -8,6 +8,7 @@ Viagens
 
 @endsection
 
+<script src="{{ asset('js/canvasjs.min.js') }}"></script>
 @if(!Session::get('logado'))
 <script>
 	window.location = '{{url('usuarios/login')}}';
@@ -91,7 +92,7 @@ Viagens
 
 
 
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 @endsection
 
 
@@ -99,4 +100,5 @@ Viagens
 @section('importacoes')
 
 <script src="{{ asset('js/gastos.js') }}"></script>
+
 @endsection
